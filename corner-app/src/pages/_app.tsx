@@ -1,12 +1,16 @@
-import "../styles/globals.css";
+import type { AppProps } from 'next/app'
+import './_app.css'
 
-// import { AppProvider } from './context/AppContext'
-// import { AppNavigator } from './pages/AppNavigator'
+import { AppProvider } from '../context/AppContext'
+import { SWRConfig } from 'swr'
+import { fetcher } from '../libs/api'
 
-import type { AppProps } from "next/app";
-
-function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps}></Component>;
+export default function App({ Component, pageProps }: AppProps) {
+  return (
+    <AppProvider>
+      <SWRConfig value={{ fetcher: fetcher }}>
+        <Component {...pageProps} />
+      </SWRConfig>
+    </AppProvider>
+  )
 }
-
-export default App;
