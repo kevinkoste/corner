@@ -51,10 +51,13 @@ const Header: React.FC<{ title: string }> = ({ title }) => {
   }
   return (
     <div className={styles.menuContainer}>
-      <div className={styles.headerWrapper}>
+      <div
+        className={styles.headerWrapper}
+        style={{ backgroundColor: '#000000' }}
+      >
         <div
           className={styles.headerContainer}
-          style={{ borderColor: '#ffffff', backgroundColor: 'black' }}
+          style={{ borderColor: '#ffffff' }}
         >
           <h1 style={{ color: 'white' }}>Corner</h1>
           <img

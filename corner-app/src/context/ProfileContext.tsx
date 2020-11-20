@@ -1,7 +1,7 @@
 import React, { createContext, useReducer, useContext, Dispatch } from 'react'
 
 import { Profile, EmptyProfile } from '../models/Profile'
-import { PostProtectUsername, PostProtectComponents } from '../libs/api'
+// import { PostProtectUsername, PostProtectComponents } from '../libs/api'
 
 type StateType = {
   profile: Profile
@@ -27,8 +27,8 @@ const ProfileContext = createContext<ProfileContextType>({
 
 // Action constants
 const UPDATE_PROFILE = 'UPDATE_PROFILE'
-const POST_USERNAME = 'POST_USERNAME'
-const POST_COMPONENTS = 'POST_COMPONENTS'
+// const POST_USERNAME = 'POST_USERNAME'
+// const POST_COMPONENTS = 'POST_COMPONENTS'
 const SET_EDITING = 'SET_EDITING'
 const SET_MODAL = 'SET_MODAL'
 const UPDATE_COMPONENT = 'UPDATE_COMPONENT'
@@ -44,8 +44,8 @@ const SWAP_COMPONENTS = 'SWAP_COMPONENTS'
 // Valid action types
 type Action =
   | { type: 'UPDATE_PROFILE'; profile: Profile }
-  | { type: 'POST_USERNAME' }
-  | { type: 'POST_COMPONENTS' }
+  // | { type: 'POST_USERNAME' }
+  // | { type: 'POST_COMPONENTS' }
   | { type: 'SET_EDITING'; editing: boolean }
   | { type: 'SET_MODAL'; modal: boolean }
   | { type: 'UPDATE_COMPONENT'; component: any }
@@ -63,13 +63,13 @@ export const updateProfile = (profile: Profile): Action => {
   return { type: UPDATE_PROFILE, profile: profile }
 }
 
-export const postUsername = (): Action => {
-  return { type: POST_USERNAME }
-}
+// export const postUsername = (): Action => {
+//   return { type: POST_USERNAME }
+// }
 
-export const postComponents = (): Action => {
-  return { type: POST_COMPONENTS }
-}
+// export const postComponents = (): Action => {
+//   return { type: POST_COMPONENTS }
+// }
 
 export const setEditing = (editing: boolean): Action => {
   return { type: SET_EDITING, editing: editing }
@@ -124,13 +124,13 @@ const ProfileReducer = (state: StateType, action: Action) => {
         profile: action.profile,
       }
 
-    case POST_USERNAME:
-      PostProtectUsername(state.profile.username)
-      return { ...state }
+    // case POST_USERNAME:
+    //   PostProtectUsername(state.profile.username)
+    //   return { ...state }
 
-    case POST_COMPONENTS:
-      PostProtectComponents(state.profile.components)
-      return { ...state }
+    // case POST_COMPONENTS:
+    //   PostProtectComponents(state.profile.components)
+    //   return { ...state }
 
     case SET_EDITING:
       return {

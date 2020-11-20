@@ -15,7 +15,7 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     if (state.auth) {
-      router.push('/browse')
+      router.push('/app/browse')
     }
   }, [])
 
@@ -35,13 +35,13 @@ const Home: React.FC = () => {
         <div className={styles.body}>
           <h1>Welcome to Your Corner of the Internet</h1>
 
-          <h2>
+          <p>
             Corner is a platform to meet young people with big ideas. It’s part
             website builder, part professional network, and part portfolio site.
-          </h2>
+          </p>
 
-          <Link href="/">
-            <a>Join Corner</a>
+          <Link href="/app/login">
+            <button>Join Corner</button>
           </Link>
         </div>
       </main>

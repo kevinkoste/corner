@@ -1,36 +1,23 @@
-import Link from 'next/link'
-import { useRouter } from 'next/router'
 import styles from './Base.module.css'
 
-export const Page = ({ children }) => {
+import BeatLoader from 'react-spinners/BeatLoader'
+
+export const Page: React.FC = ({ children }) => {
   return <div className={styles.container}>{children}</div>
 }
 
-// export const Header = () => {
-//   const router = useRouter()
-//   return (
-//     <header className={styles.header}>
-//       <Link href="/">
-//         <a>Kevin Koste</a>
-//       </Link>
-//       <div className={styles.navbar}>
-//         {['work', 'blog'].map((value, idx) => (
-//           <Link href={`/${value}`} key={idx}>
-//             <a
-//               style={{
-//                 borderBottom: router.pathname.startsWith(`/${value}`)
-//                   ? '1px solid'
-//                   : '',
-//               }}
-//             >
-//               {value}
-//             </a>
-//           </Link>
-//         ))}
-//       </div>
-//     </header>
-//   )
-// }
+export const Loader: React.FC = () => {
+  return (
+    <BeatLoader
+      css={
+        'height: 24px; width: 72px; overflow: auto; margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0;'
+      }
+      size={20}
+      loading={true}
+      color={'#000000'}
+    />
+  )
+}
 
 // export const Footer = () => {
 //   return (

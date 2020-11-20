@@ -1,0 +1,30 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.body {
+  padding: 0 1rem;
+  margin: auto;
+  width: 100vw;
+}
+
+.formContainer {
+  max-width: 400px;
+}
+
+.emailInput {
+  padding: 10px 20px 12px 20px;
+  border-radius: 30px;
+  border: 1px solid black;
+  margin-top: 1.5rem;
+}
+
+.submitButton {
+  border: 1px solid black;
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 600px) {
+}

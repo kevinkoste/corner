@@ -1,0 +1,15 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.body {
+  padding-top: 51px;
+}
+
+.floatingButton {
+  position: fixed;
+  bottom: 20px;
+  right: 1rem;
+}

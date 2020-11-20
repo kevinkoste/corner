@@ -1,0 +1,39 @@
+.containerPublic {
+  position: relative;
+  padding: 2rem 1rem 1rem 1rem;
+}
+
+.container {
+  position: relative;
+  padding: 1.5rem 0.5rem 0.5rem 0.5rem;
+}
+
+.shadowBox {
+  padding: 0.5rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.container p {
+  padding-top: 0.5rem;
+}
+
+.textareaAutosize {
+  outline: none;
+  box-shadow: none;
+  border: none;
+  overflow: hidden;
+  resize: none;
+  padding: 0px;
+  text-align: left;
+  white-space: pre-wrap;
+
+  font-family: 'inter';
+  font-size: 18px;
+  line-height: 24px;
+}
+
+@media (max-width: 768px) {
+  .textareaAutosize {
+    font-size: 16px;
+  }
+}
