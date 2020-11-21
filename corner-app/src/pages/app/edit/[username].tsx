@@ -53,6 +53,7 @@ function EditProfilePage({ profile, name }) {
   // helper function for drag and drop support
   const onDrop = (dropResult: any) => {
     const { removedIndex, addedIndex } = dropResult
+    console.log('in onDrop, removed: ', removedIndex, 'added:', addedIndex)
     profileDispatch(swapComponents(removedIndex, addedIndex))
   }
 
@@ -72,7 +73,6 @@ function EditProfilePage({ profile, name }) {
         <div className={styles.body}>
           <Container
             onDrop={onDrop}
-            // nonDragAreaSelector={profileState.editing ? undefined : '.containerPublic'}
             nonDragAreaSelector=".static"
             // dragClass='animate'
             // dragHandleSelector=".field"

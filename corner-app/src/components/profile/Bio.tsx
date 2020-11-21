@@ -51,14 +51,14 @@ export const EditBio: React.FC<BioProps> = ({ id, props, name }) => {
         </div>
       </div>
     )
-  } else {
-    return (
-      <div className={styles.containerPublic + ' static'}>
-        <h1>About {name.split(' ')[0]}</h1>
-        <p>{textInput}</p>
-      </div>
-    )
   }
+
+  return (
+    <div className={styles.containerPublic + ' static'}>
+      <h1>About {name.split(' ')[0]}</h1>
+      <p>{textInput}</p>
+    </div>
+  )
 }
 
 // public bio component

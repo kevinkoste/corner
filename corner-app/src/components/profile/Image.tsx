@@ -64,6 +64,11 @@ export const EditImage: React.FC<ImageProps> = ({ id, props }) => {
     <div className={styles.container}>
       <img
         className={styles.image}
+        style={{
+          boxShadow: profileState.editing
+            ? '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'
+            : 'unset',
+        }}
         src={process.env.NEXT_PUBLIC_S3_BUCKET + 'large/' + props.image}
       />
       {profileState.editing && (
@@ -92,10 +97,10 @@ export const EditImage: React.FC<ImageProps> = ({ id, props }) => {
   )
 }
 
-// public bio component
+// public component
 export const Image: React.FC<ImageProps> = ({ props }) => {
   return (
-    <div className={styles.container}>
+    <div className={styles.containerPublic}>
       <img
         className={styles.image}
         src={process.env.NEXT_PUBLIC_S3_BUCKET + 'large/' + props.image}
