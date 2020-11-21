@@ -79,10 +79,8 @@ function ProfileRow({ profile }) {
         src={process.env.NEXT_PUBLIC_S3_BUCKET + 'small/' + image}
       />
       <div className={styles.rowTextContainer}>
-        <p>
-          <u>{name}</u>
-          <br />"{headline}"
-        </p>
+        <p style={{ textDecoration: 'underline' }}>{name}</p>
+        <p>"{headline.substring(0, 90)}..."</p>
       </div>
     </div>
   )

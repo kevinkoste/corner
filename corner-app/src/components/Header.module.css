@@ -18,98 +18,7 @@
   white-space: nowrap;
   margin: unset;
   font-size: 24px;
-}
-
-@keyframes name {
-  0% {
-    width: 0%;
-    height: 0%;
-  }
-  0.5% {
-    width: 0%;
-    height: 100%;
-  }
-  50% {
-    width: 50%;
-    height: 100%;
-  }
-  99.5% {
-    width: 0%;
-    height: 100%;
-  }
-  100% {
-    width: 0%;
-    height: 0px;
-  }
-}
-
-@keyframes nameMobile {
-  0% {
-    width: 0%;
-    height: 0%;
-  }
-  0.5% {
-    width: 0%;
-    height: 100%;
-  }
-  50% {
-    width: 85%;
-    height: 100%;
-  }
-  99.5% {
-    width: 0%;
-    height: 100%;
-  }
-  100% {
-    width: 0%;
-    height: 0px;
-  }
-}
-
-.animatedName {
-  animation-name: name;
-  animation-duration: 3.5s;
-  animation-delay: 0.5s;
-  animation-timing-function: steps(30, end);
-  animation-fill-mode: both;
-}
-
-@keyframes title {
-  0% {
-    width: 0%;
-    height: 0px;
-  }
-  0.5% {
-    width: 0%;
-    height: 100%;
-  }
-  100% {
-    width: 50%;
-    height: 100%;
-  }
-}
-
-@keyframes titleMobile {
-  0% {
-    width: 0%;
-    height: 0px;
-  }
-  0.5% {
-    width: 0%;
-    height: 100%;
-  }
-  100% {
-    width: 70%;
-    height: 100%;
-  }
-}
-
-.animatedTitle {
-  animation-name: title;
-  animation-duration: 1.75s;
-  animation-delay: 4s;
-  animation-timing-function: steps(30, end);
-  animation-fill-mode: both;
+  cursor: pointer;
 }
 
 .burgerButton {
@@ -118,6 +27,7 @@
   right: 0;
   height: 30px;
   width: 30px;
+  cursor: pointer;
 }
 
 .exitButton {
@@ -126,10 +36,6 @@
   right: 0;
   height: 23px;
   width: 23px;
-}
-
-.burgerButton :hover,
-.exitButton :hover {
   cursor: pointer;
 }
 
@@ -153,12 +59,53 @@
   margin-top: 20px;
 }
 
-@media (max-width: 600px) {
-  .animatedName {
-    animation-name: nameMobile;
+@keyframes typing {
+  0% {
+    width: 0%;
   }
-  .animatedTitle {
-    animation-name: titleMobile;
+  33.33% {
+    width: 50%;
+  }
+  66.66% {
+    width: 0%;
+  }
+  100% {
+    width: 50%;
+  }
+}
+
+@keyframes typingMobile {
+  0% {
+    width: 0%;
+  }
+  33.33% {
+    width: 80%;
+  }
+  66.66% {
+    width: 0%;
+  }
+  100% {
+    width: 80%;
+  }
+}
+
+.typewriter {
+  -webkit-animation-name: typing;
+  -moz-animation-name: typing;
+  -o-animation-name: typing;
+  animation-name: typing;
+  animation-delay: 0.75s;
+  animation-duration: 4.75s;
+  animation-timing-function: steps(27, end);
+  animation-fill-mode: both;
+}
+
+@media (max-width: 600px) {
+  .typewriter {
+    -webkit-animation-name: typingMobile;
+    -moz-animation-name: typingMobile;
+    -o-animation-name: typingMobile;
+    animation-name: typingMobile;
   }
 }
 

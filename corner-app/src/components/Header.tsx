@@ -1,12 +1,12 @@
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import { useAppContext, setAuth } from '../context/AppContext'
 import { PostProtectInviteNewEmail, PostAuthLogout } from '../libs/api'
 
 import styles from './Header.module.css'
 
-const Header: React.FC<{ title: string }> = ({ title }) => {
+function Header({ title }) {
   const router = useRouter()
   const { state, dispatch } = useAppContext()
   const [showingBurger, setShowingBurger] = useState(false)
@@ -14,6 +14,9 @@ const Header: React.FC<{ title: string }> = ({ title }) => {
   const toggleBurger = () => setShowingBurger(!showingBurger)
 
   const takeHome = () => {
+    if (showingBurger) {
+      setShowingBurger(false)
+    }
     if (state.auth) {
       router.push('/app/browse')
     } else {
@@ -32,12 +35,7 @@ const Header: React.FC<{ title: string }> = ({ title }) => {
     return (
       <div className={styles.headerWrapper}>
         <div className={styles.headerContainer}>
-          <h1 className={styles.animatedName} onClick={takeHome}>
-            Corner
-          </h1>
-          <h1 className={styles.animatedTitle} onClick={takeHome}>
-            {title}
-          </h1>
+          <TypewriterText first="Corner" second={title} delay={3913} />
 
           <img
             className={styles.burgerButton}
@@ -59,7 +57,9 @@ const Header: React.FC<{ title: string }> = ({ title }) => {
           className={styles.headerContainer}
           style={{ borderColor: '#ffffff' }}
         >
-          <h1 style={{ color: 'white' }}>Corner</h1>
+          <h1 style={{ color: 'white' }} onClick={takeHome}>
+            Corner
+          </h1>
           <img
             className={styles.exitButton}
             onClick={toggleBurger}
@@ -121,6 +121,20 @@ const Header: React.FC<{ title: string }> = ({ title }) => {
 }
 
 export default Header
+
+function TypewriterText({ first, second, delay }) {
+  const [text, setText] = useState(first)
+
+  useEffect(() => {
+    let mounted = true
+    setTimeout(() => {
+      if (mounted) setText(second)
+    }, delay)
+    return () => (mounted = false)
+  }, [])
+
+  return <h1 className={styles.typewriter}>{text}</h1>
+}
 
 // const InviteForm: React.FC = () => {
 //   const [sent, setSent] = useState(false)
