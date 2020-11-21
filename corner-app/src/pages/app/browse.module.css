@@ -1,0 +1,41 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.body {
+  padding: 0 1rem;
+  padding-top: 51px;
+  width: 100vw;
+}
+
+.rowContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: top;
+  width: 100%;
+  height: 100px;
+  margin-top: 2rem;
+}
+
+.rowImage {
+  height: 100px;
+  width: 100px;
+  object-fit: contain;
+}
+
+.rowTextContainer {
+  flex: 1;
+  text-align: left;
+  padding-left: 1rem;
+}
+
+.rowContainer p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 600px) {
+}

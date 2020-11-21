@@ -17,7 +17,7 @@ import {
 import { Page, Loader } from '../../components/Base'
 import Header from '../../components/Header'
 
-const Home: React.FC = () => {
+function LoginPage() {
   const router = useRouter()
 
   const { state, dispatch } = useAppContext()
@@ -104,4 +104,4 @@ const Home: React.FC = () => {
   )
 }
 
-export default Home
+export default LoginPage

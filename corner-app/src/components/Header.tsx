@@ -15,7 +15,7 @@ const Header: React.FC<{ title: string }> = ({ title }) => {
 
   const takeHome = () => {
     if (state.auth) {
-      router.push('/browse')
+      router.push('/app/browse')
     } else {
       router.push('/')
     }
@@ -72,7 +72,7 @@ const Header: React.FC<{ title: string }> = ({ title }) => {
       <div className={styles.menuBody}>
         <h1
           onClick={() => {
-            router.push(`/browse`)
+            router.push(`/app/browse`)
             toggleBurger()
           }}
         >
@@ -82,7 +82,7 @@ const Header: React.FC<{ title: string }> = ({ title }) => {
         {!state.onboarded && !state.auth && (
           <h1
             onClick={() => {
-              router.push(`/login`)
+              router.push(`/app/login`)
               toggleBurger()
             }}
           >
@@ -93,7 +93,7 @@ const Header: React.FC<{ title: string }> = ({ title }) => {
         {!state.onboarded && state.auth && (
           <h1
             onClick={() => {
-              router.push(`/onboarding`)
+              router.push(`/app/onboarding`)
               toggleBurger()
             }}
           >
@@ -104,7 +104,7 @@ const Header: React.FC<{ title: string }> = ({ title }) => {
         {state.onboarded && state.auth && (
           <h1
             onClick={() => {
-              router.push(`/edit/${state.username}`)
+              router.push(`/app/edit/${state.username}`)
               toggleBurger()
             }}
           >

@@ -66,5 +66,7 @@ export const Title: React.FC<TitleProps> = ({ props }) => {
         <h1>{props.headline}</h1>
       </div>
     )
+  } else {
+    return null
   }
 }

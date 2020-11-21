@@ -70,5 +70,7 @@ export const Bio: React.FC<BioProps> = ({ props, name }) => {
         <p>{props.bio}</p>
       </div>
     )
+  } else {
+    return null
   }
 }
