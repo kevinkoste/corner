@@ -5,6 +5,10 @@ export const api = axios.create({
   withCredentials: true,
 })
 
+export const bookApi = axios.create({
+  baseURL: 'https://www.googleapis.com',
+})
+
 // SWR fetcher function
 export const fetcher = async (url: string) => {
   return api({

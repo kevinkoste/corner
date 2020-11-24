@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import styles from './Image.module.css'
+import styles from './profile.module.css'
 import { api } from '../../libs/api'
 
 import imageCompression from 'browser-image-compression'
@@ -53,7 +53,7 @@ export const EditImage: React.FC<ImageProps> = ({ id, props }) => {
       method: 'post',
       url: `/protect/components`,
       data: {
-        components: profileState.profile.components,
+        components: profileState.components,
       },
     })
 

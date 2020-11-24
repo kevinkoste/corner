@@ -56,7 +56,7 @@ export type Book = {
   link: string
   image: string
 }
-export type BookshelfComponent = {
+export type BookshelfProps = {
   id: string
   type: 'bookshelf'
   props: {
@@ -72,7 +72,7 @@ export type ExperienceType = {
   date: string
 }
 
-export type ExperienceComponent = {
+export type ExperienceProps = {
   id: string
   type: 'experiences'
   props: {
@@ -110,9 +110,9 @@ export type EducationType = {
   date: string
 }
 
-export type EducationComponent = {
+export type EducationProps = {
   id: string
-  type: 'experiences'
+  type: 'education'
   props: {
     education: EducationType[]
   }

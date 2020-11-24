@@ -3,6 +3,7 @@ import './_app.css'
 
 import { AppProvider } from '../context/AppContext'
 import { ProfileProvider } from '../context/ProfileContext'
+
 import { SWRConfig } from 'swr'
 import { fetcher } from '../libs/api'
 

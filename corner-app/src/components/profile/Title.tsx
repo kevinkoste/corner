@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import styles from './Title.module.css'
+import styles from './profile.module.css'
 
 import TextareaAutosize from 'react-textarea-autosize'
 
@@ -39,7 +39,7 @@ export const EditTitle: React.FC<TitleProps> = ({ id, props }) => {
         <div className={styles.shadowBox}>
           {/* <ComponentMenu> */}
           <TextareaAutosize
-            className={styles.textareaAutosize}
+            className={styles.textareaAutosizeH1}
             placeholder={placeholder}
             onBlur={handleClickAway}
             onChange={(event: any) => setTextInput(event.target.value)}

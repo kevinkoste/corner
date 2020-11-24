@@ -1,0 +1,158 @@
+.containerPublic {
+  position: relative;
+  padding: 1rem 1rem 2rem 1rem;
+}
+
+.container {
+  position: relative;
+  padding: 0.5rem 0.5rem 1.5rem 0.5rem;
+}
+
+.shadowBox {
+  padding: 0.5rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: #ffffff;
+}
+
+/* bio styles */
+.bioText {
+  padding-top: 0.5rem;
+}
+
+.textareaAutosizeP {
+  outline: none;
+  box-shadow: none;
+  border: none;
+  overflow: hidden;
+  resize: none;
+  padding: 0px;
+  text-align: left;
+  white-space: pre-wrap;
+
+  font-family: 'inter';
+  font-size: 18px;
+  line-height: 24px;
+  padding-top: 0.5rem;
+}
+
+/* title styles */
+.textareaAutosizeH1 {
+  outline: none;
+  box-shadow: none;
+  border: none;
+  overflow: hidden;
+  resize: none;
+  white-space: pre-wrap;
+  text-align: left;
+  padding: 0px;
+
+  font-family: 'source-serif';
+  font-weight: unset;
+}
+
+/* image styles */
+.image {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  padding: 0.5rem;
+}
+
+.uploadInput {
+  display: none;
+  width: unset;
+}
+
+.uploadWrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(0, -50%);
+}
+
+.uploadButton {
+  position: relative;
+  left: -50%;
+  text-align: center;
+  width: unset;
+
+  border: none;
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+
+  font-family: 'inter';
+  font-size: 16px;
+
+  background-color: black;
+  color: white;
+  padding: 10px 20px 12px 20px;
+  cursor: pointer;
+  border-radius: 30px;
+}
+
+/* experience & education styles */
+.rowContainer {
+  flex-direction: row;
+  align-items: top;
+  margin: 1rem 0;
+}
+
+.rowImageContainer {
+  position: relative;
+}
+
+.rowImage {
+  width: 72px;
+  height: 72px;
+  margin-top: 2px;
+}
+
+.rowBookImage {
+  width: 52px;
+  height: 72px;
+  margin: 2px 10px 0px 10px;
+}
+
+.rowDeleteImage {
+  position: absolute;
+  top: 22px;
+  left: 20px;
+  z-index: 2;
+  height: 32px;
+  width: 32px;
+}
+
+.rowText {
+  flex: 1;
+  justify-content: center;
+  margin-left: 15px;
+}
+
+.rowAddInput {
+  padding: 3px 5px;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  margin-top: 8px;
+}
+
+.rowInput {
+  margin: 0px;
+}
+
+.addContainer {
+  flex-direction: column;
+}
+
+.addFormContainer {
+  margin: 1rem 0px;
+}
+
+@media (max-width: 768px) {
+  .textareaAutosizeH1 {
+    font-size: 28px;
+  }
+  .textareaAutosizeP {
+    font-size: 16px;
+  }
+}

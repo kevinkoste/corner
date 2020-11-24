@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import styles from './Bio.module.css'
+import styles from './profile.module.css'
 
 import TextareaAutosize from 'react-textarea-autosize'
 
@@ -40,7 +40,7 @@ export const EditBio: React.FC<BioProps> = ({ id, props, name }) => {
             About {name.split(' ')[0]}
           </h1>
           <TextareaAutosize
-            className={styles.textareaAutosize}
+            className={styles.textareaAutosizeP}
             placeholder={placeholder}
             onBlur={handleClickAway}
             onChange={(event: any) =>
@@ -56,7 +56,7 @@ export const EditBio: React.FC<BioProps> = ({ id, props, name }) => {
   return (
     <div className={styles.containerPublic + ' static'}>
       <h1>About {name.split(' ')[0]}</h1>
-      <p>{textInput}</p>
+      <p className={styles.bioText}>{textInput}</p>
     </div>
   )
 }
@@ -67,7 +67,7 @@ export const Bio: React.FC<BioProps> = ({ props, name }) => {
     return (
       <div className={styles.containerPublic}>
         <h1>About {name.split(' ')[0]}</h1>
-        <p>{props.bio}</p>
+        <p className={styles.bioText}>{props.bio}</p>
       </div>
     )
   } else {

@@ -1,11 +1,13 @@
 import React from 'react'
 
 import { Component } from '../models/Profile'
-import { EditBio } from '../components/profile/Bio'
-import { EditTitle } from '../components/profile/Title'
-import { EditImage } from '../components/profile/Image'
+import { Bio } from '../components/profile/Bio'
+import { Title } from '../components/profile/Title'
+import { Image } from '../components/profile/Image'
+import { Experience } from '../components/profile/Experience'
+import { Education } from '../components/profile/Education'
+import { Bookshelf } from '../components/profile/Bookshelf'
 
-// import { Experiences } from './Experiences'
 // import { Bookshelf } from './Bookshelf'
 
 // GenerateComponent takes JSON {id, component, props},
@@ -16,16 +18,22 @@ type ComponentIndex = {
   [index: string]: any
 }
 const Components: ComponentIndex = {
-  bio: EditBio,
-  headline: EditTitle,
-  headshot: EditImage,
-  // experiences: Experiences,
-  // bookshelf: Bookshelf,
+  bio: Bio,
+  headline: Title,
+  headshot: Image,
+  experiences: Experience,
+  education: Education,
+  bookshelf: Bookshelf,
 }
 
-export const GenerateEditComponent = (component: Component, name: string) => {
+export const GenerateComponent = (component: Component, name: string) => {
   // component exists
   if (typeof Components[component.type] !== 'undefined') {
+    // console.log('generating ', component.type, ' with: ', {
+    //   ...component,
+    //   key: component.id,
+    //   name: name,
+    // })
     return React.createElement(Components[component.type], {
       ...component,
       key: component.id,

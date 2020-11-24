@@ -9,7 +9,7 @@ import { api } from '../../../libs/api'
 import { useAppContext } from '../../../context/AppContext'
 import {
   useProfileContext,
-  updateProfile,
+  updateState,
   setEditing,
   setModal,
   swapComponents,
@@ -17,19 +17,35 @@ import {
 
 import Header from '../../../components/Header'
 import { Page } from '../../../components/Base'
-import { GenerateEditComponent } from '../../../factories/ProfileEdit'
+import { GenerateEditComponent } from '../../../factories/GenerateEditProfile'
 
-function EditProfilePage({ profile, name }) {
+function EditProfilePage({ username, name, components }) {
   const router = useRouter()
   const { state } = useAppContext()
   const { profileState, profileDispatch } = useProfileContext()
 
   useEffect(() => {
-    if (state.username !== profile.username) {
-      router.push(`${profile.username}`)
+    if (state.username !== username) {
+      router.push(`${username}`)
     }
     // get data from props and push to profile context
-    profileDispatch(updateProfile(profile))
+    profileDispatch(
+      updateState({
+        username: username,
+        name: name,
+        components: components,
+      })
+    )
+  }, [])
+
+  useEffect(() => {
+    const cleanClasses = () => {
+      document.body.className = ''
+    }
+    document.addEventListener('touchend', cleanClasses, false)
+    return () => {
+      document.removeEventListener('touchend', cleanClasses, false)
+    }
   }, [])
 
   // on save profile, post new profile data to server, NOT async
@@ -37,13 +53,13 @@ function EditProfilePage({ profile, name }) {
     disableScroll()
     setTimeout(() => {
       enableScroll()
-    }, 100)
+    }, 150)
     if (profileState.editing) {
       api({
         method: 'post',
         url: `/protect/components`,
         data: {
-          components: profileState.profile.components,
+          components: profileState.components,
         },
       })
     }
@@ -78,18 +94,12 @@ function EditProfilePage({ profile, name }) {
             // dragHandleSelector=".field"
             lockAxis="y"
           >
-            {profileState.profile.components.map((comp, idx) => {
-              if (
-                comp.type == 'bio' ||
-                comp.type == 'headline' ||
-                comp.type == 'headshot'
-              ) {
-                return (
-                  <Draggable key={idx}>
-                    {GenerateEditComponent(comp, name)}
-                  </Draggable>
-                )
-              }
+            {profileState.components.map((comp, idx) => {
+              return (
+                <Draggable key={idx}>
+                  {GenerateEditComponent(comp, name)}
+                </Draggable>
+              )
             })}
           </Container>
         </div>
@@ -122,11 +132,9 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 
   return {
     props: {
-      profile: {
-        username: username,
-        components: components,
-      },
+      username: username,
       name: name,
+      components: components,
     },
   }
 }
