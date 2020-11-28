@@ -1,0 +1,102 @@
+.container {
+  position: relative;
+  padding: 1rem;
+}
+
+.errorText {
+  font-size: 14px;
+  margin-left: 8px;
+  color: darkred;
+}
+
+/* username & name */
+.formRow {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.activeInput {
+  width: 270px;
+}
+
+.checkmark {
+  height: 30px;
+  width: 30px;
+  margin-top: 16px;
+}
+
+/* title */
+.textareaAutosizeP {
+  outline: none;
+  box-shadow: none;
+  border: none;
+  overflow: hidden;
+  resize: none;
+  padding: 0px;
+  text-align: left;
+  white-space: pre-wrap;
+
+  font-family: 'inter';
+  font-size: 18px;
+  line-height: 24px;
+
+  padding: 8px;
+  border: 1px solid #000000;
+  border-radius: 8px;
+  min-height: 66px;
+}
+
+/* image */
+.imageContainer {
+  position: relative;
+}
+
+.image {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+.uploadInput {
+  display: none;
+  width: unset;
+}
+
+.uploadWrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(0, -50%);
+}
+
+.uploadButton {
+  position: relative;
+  left: -50%;
+  text-align: center;
+  width: unset;
+
+  border: none;
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+
+  font-family: 'inter';
+  font-size: 16px;
+
+  background-color: black;
+  color: white;
+  padding: 10px 20px 12px 20px;
+  cursor: pointer;
+  border-radius: 30px;
+}
+
+@media (max-width: 768px) {
+  .textareaAutosizeH1 {
+    font-size: 28px;
+  }
+  .textareaAutosizeP {
+    font-size: 16px;
+  }
+}

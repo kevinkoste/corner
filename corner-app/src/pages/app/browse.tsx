@@ -1,20 +1,10 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { GetServerSideProps } from 'next'
-import { useState, useEffect } from 'react'
 import styles from './browse.module.css'
 
 import { api } from '../../libs/api'
-import {
-  useAppContext,
-  setAuth,
-  setOnboarded,
-  setUserId,
-  setEmail,
-  setUsername,
-} from '../../context/AppContext'
-
-import { Page } from '../../components/Base'
+import { Page, Main, Body } from '../../components/Base'
 import Header from '../../components/Header'
 
 function BrowsePage({ profiles }) {
@@ -28,17 +18,17 @@ function BrowsePage({ profiles }) {
         />
       </Head>
 
-      <main className={styles.main}>
+      <Main>
         <Header title="Browse" />
 
-        <div className={styles.body}>
+        <Body style={{ padding: '1rem' }}>
           {profiles
             .filter((profile) => Object.keys(profile).length !== 0)
             .map((profile, index) => (
               <ProfileRow key={index} profile={profile} />
             ))}
-        </div>
-      </main>
+        </Body>
+      </Main>
     </Page>
   )
 }

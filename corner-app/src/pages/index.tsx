@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 
 import styles from './index.module.css'
-import { Page } from '../components/Base'
+import { Page, Main, Body } from '../components/Base'
 import Header from '../components/Header'
 
 import { useAppContext } from '../context/AppContext'
@@ -29,22 +29,24 @@ const Home: React.FC = () => {
         />
       </Head>
 
-      <main className={styles.main}>
+      <Main>
         <Header title="Home" />
 
-        <div className={styles.body}>
-          <h1>Welcome to Your Corner of the Internet</h1>
+        <Body style={{ padding: '1rem' }}>
+          <h1 className={styles.title}>
+            Welcome to Your Corner of the Internet
+          </h1>
 
-          <p>
+          <p className={styles.subtitle}>
             Corner is a platform to meet young people with big ideas. It’s part
             website builder, part professional network, and part portfolio site.
           </p>
 
           <Link href="/app/login">
-            <button>Join Corner</button>
+            <button className={styles.linkButton}>Join Corner</button>
           </Link>
-        </div>
-      </main>
+        </Body>
+      </Main>
     </Page>
   )
 }

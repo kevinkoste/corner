@@ -14,7 +14,7 @@ import {
   setUsername,
 } from '../../context/AppContext'
 
-import { Page, Loader } from '../../components/Base'
+import { Page, Main, Body, Loader } from '../../components/Base'
 import Header from '../../components/Header'
 
 function LoginPage() {
@@ -78,10 +78,10 @@ function LoginPage() {
         />
       </Head>
 
-      <main className={styles.main}>
+      <Main>
         <Header title="Login" />
 
-        <div className={styles.body}>
+        <Body style={{ padding: '1rem' }}>
           {loading && <Loader />}
           {!loading && (
             <div className={styles.formContainer}>
@@ -98,8 +98,8 @@ function LoginPage() {
               </button>
             </div>
           )}
-        </div>
-      </main>
+        </Body>
+      </Main>
     </Page>
   )
 }

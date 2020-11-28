@@ -1,23 +1,13 @@
-.main {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-.body {
-  padding: 0 1rem;
-  margin: auto;
-}
-
-.body h1,
-.body p {
+.title {
+  margin-top: 120px;
   padding-bottom: 1rem;
 }
 
-.body button {
-  align-self: flex-start;
-  margin: 0.5rem 0;
+.subtitle {
+  padding-bottom: 1rem;
 }
 
-@media (max-width: 600px) {
+.linkButton {
+  align-self: flex-start;
+  margin: 0.5rem 0;
 }

@@ -1,0 +1,24 @@
+.backButton {
+  position: absolute;
+  bottom: 20px;
+  left: 1rem;
+}
+
+.forwardButton {
+  position: absolute;
+  bottom: 20px;
+  right: 1rem;
+}
+
+@media (min-width: 768px) {
+  .backButton {
+    position: absolute;
+    bottom: 32px;
+    left: 1rem;
+  }
+  .forwardButton {
+    position: absolute;
+    bottom: 32px;
+    right: 1rem;
+  }
+}

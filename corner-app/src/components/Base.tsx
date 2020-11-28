@@ -1,12 +1,33 @@
 import styles from './Base.module.css'
 
+import { useState } from 'react'
 import BeatLoader from 'react-spinners/BeatLoader'
 
-export const Page: React.FC = ({ children }) => {
-  return <div className={styles.container}>{children}</div>
+export const Page = ({ children, ...props }) => {
+  return (
+    <div className={styles.page} {...props}>
+      {children}
+    </div>
+  )
 }
 
-export const Loader: React.FC = () => {
+export const Main = ({ children, ...props }) => {
+  return (
+    <main className={styles.main} {...props}>
+      {children}
+    </main>
+  )
+}
+
+export const Body = ({ children, ...props }) => {
+  return (
+    <div className={styles.body} {...props}>
+      {children}
+    </div>
+  )
+}
+
+export const Loader = () => {
   return (
     <BeatLoader
       css={
@@ -16,6 +37,49 @@ export const Loader: React.FC = () => {
       loading={true}
       color={'#000000'}
     />
+  )
+}
+
+export const ActiveInput = ({ value, label, ...props }) => {
+  const [activated, setActivated] = useState(false)
+
+  const handleFocus = () => {
+    if ('onFocus' in props) {
+      props.onFocus()
+    }
+    if (!activated) {
+      setActivated(true)
+    }
+  }
+
+  const handleBlur = () => {
+    if ('onBlur' in props) {
+      props.onBlur()
+    }
+    if (value == '') {
+      setActivated(false)
+    }
+  }
+
+  return (
+    <div className={styles.activeInputWrapper}>
+      <div className={styles.activeInput}>
+        {'prefix' in props ? <p>{props.prefix}</p> : null}
+        <input
+          value={value}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          {...props}
+        />
+      </div>
+      <p
+        className={
+          activated ? styles.activeInputLabelOn : styles.activeInputLabelOff
+        }
+      >
+        {label}
+      </p>
+    </div>
   )
 }
 

@@ -42,44 +42,44 @@ export const PostAuthLogout = (): Promise<any> => {
 }
 
 // PUBLIC ROUTES //
-export const GetPublicProfileData = (username: string): Promise<any> => {
-  return api({
-    method: 'get',
-    url: `/public/profile`,
-    params: {
-      username: username,
-    },
-  })
-}
+// export const GetPublicProfileData = (username: string): Promise<any> => {
+//   return api({
+//     method: 'get',
+//     url: `/public/profile`,
+//     params: {
+//       username: username,
+//     },
+//   })
+// }
 
-export const GetPublicAllProfiles = (): Promise<any> => {
-  return api({
-    method: 'get',
-    url: `/public/profile/all`,
-  })
-}
+// export const GetPublicAllProfiles = (): Promise<any> => {
+//   return api({
+//     method: 'get',
+//     url: `/public/profile/all`,
+//   })
+// }
 
-export const GetPublicUsernameAvailability = (
-  username: string
-): Promise<any> => {
-  return api({
-    method: 'get',
-    url: `/public/availability`,
-    params: {
-      username: username,
-    },
-  })
-}
+// export const GetPublicUsernameAvailability = (
+//   username: string
+// ): Promise<any> => {
+//   return api({
+//     method: 'get',
+//     url: `/public/availability`,
+//     params: {
+//       username: username,
+//     },
+//   })
+// }
 
-export const GetPublicCompanyFromDomain = (domain: string): Promise<any> => {
-  return api({
-    method: 'get',
-    url: `/public/employer`,
-    params: {
-      domain: domain,
-    },
-  })
-}
+// export const GetPublicCompanyFromDomain = (domain: string): Promise<any> => {
+//   return api({
+//     method: 'get',
+//     url: `/public/employer`,
+//     params: {
+//       domain: domain,
+//     },
+//   })
+// }
 
 // PROTECTED ROUTES //
 
@@ -104,36 +104,36 @@ export const PostProtectInviteCheck = (): Promise<any> => {
   })
 }
 
-export const PostProtectUsername = (username: string): Promise<any> => {
-  return api({
-    method: 'post',
-    url: `/protect/username`,
-    data: {
-      username: username,
-    },
-  })
-}
+// export const PostProtectUsername = (username: string): Promise<any> => {
+//   return api({
+//     method: 'post',
+//     url: `/protect/username`,
+//     data: {
+//       username: username,
+//     },
+//   })
+// }
 
-export const PostProtectComponents = (components: any[]): Promise<any> => {
-  return api({
-    method: 'post',
-    url: `/protect/components`,
-    data: {
-      components: components,
-    },
-  })
-}
+// export const PostProtectComponents = (components: any[]): Promise<any> => {
+//   return api({
+//     method: 'post',
+//     url: `/protect/components`,
+//     data: {
+//       components: components,
+//     },
+//   })
+// }
 
-export const PostProtectProfileImage = (formData: FormData): Promise<any> => {
-  return api({
-    method: 'post',
-    url: `/protect/profile/image`,
-    headers: {
-      'Content-Type': 'multipart/form-data',
-    },
-    data: formData,
-  })
-}
+// export const PostProtectProfileImage = (formData: FormData): Promise<any> => {
+//   return api({
+//     method: 'post',
+//     url: `/protect/profile/image`,
+//     headers: {
+//       'Content-Type': 'multipart/form-data',
+//     },
+//     data: formData,
+//   })
+// }
 
 export const PostProtectInviteNewEmail = (
   invitedEmail: string

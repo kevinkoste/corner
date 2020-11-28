@@ -1,6 +1,6 @@
 .headerWrapper {
   position: fixed;
-  z-index: 2;
+  z-index: 5;
   width: 100vw;
   padding: 1rem 1rem 0 1rem;
   background-color: #ffffff;
@@ -9,7 +9,6 @@
 .headerContainer {
   position: relative;
   padding-bottom: 4px;
-
   border-bottom: 1px solid black;
 }
 
@@ -100,12 +99,22 @@
   animation-fill-mode: both;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .typewriter {
     -webkit-animation-name: typingMobile;
     -moz-animation-name: typingMobile;
     -o-animation-name: typingMobile;
     animation-name: typingMobile;
+  }
+}
+
+@media (min-width: 768px) {
+  .headerWrapper {
+    width: 650px;
+  }
+  .menuContainer {
+    width: 650px;
+    left: calc((100vw - 650px) / 2);
   }
 }
 

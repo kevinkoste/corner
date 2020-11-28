@@ -36,7 +36,6 @@ function Header({ title }) {
       <div className={styles.headerWrapper}>
         <div className={styles.headerContainer}>
           <TypewriterText first="Corner" second={title} delay={3913} />
-
           <img
             className={styles.burgerButton}
             onClick={toggleBurger}

@@ -16,7 +16,7 @@ import {
 } from '../../../context/ProfileContext'
 
 import Header from '../../../components/Header'
-import { Page } from '../../../components/Base'
+import { Page, Main, Body } from '../../../components/Base'
 import { GenerateEditComponent } from '../../../factories/GenerateEditProfile'
 
 function EditProfilePage({ username, name, components }) {
@@ -83,10 +83,10 @@ function EditProfilePage({ username, name, components }) {
         />
       </Head>
 
-      <main className={styles.main}>
+      <Main>
         <Header title={name} />
 
-        <div className={styles.body}>
+        <Body>
           <Container
             onDrop={onDrop}
             nonDragAreaSelector=".static"
@@ -102,14 +102,14 @@ function EditProfilePage({ username, name, components }) {
               )
             })}
           </Container>
-        </div>
+        </Body>
 
         <button className={styles.floatingButton} onClick={onSave}>
           {profileState.editing ? 'Finish Editing' : 'Edit Corner'}
         </button>
 
         <div style={{ width: '100%', height: '80px' }} />
-      </main>
+      </Main>
     </Page>
   )
 }

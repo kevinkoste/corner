@@ -1,12 +1,76 @@
-.container {
+.page {
   position: relative;
 
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 
   max-width: 100vw;
   min-height: 100vh;
+}
+
+.main {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  width: 100vw;
+}
+
+.body {
+  min-height: calc(100vh - 51px);
+  margin-top: 51px;
+  background-color: #fff;
+}
+
+@media (min-width: 768px) {
+  .page {
+    background: rgb(63, 94, 251);
+    background: radial-gradient(
+      circle,
+      rgba(63, 94, 251, 1) 0%,
+      rgba(252, 70, 107, 1) 100%
+    );
+  }
+  .main {
+    width: 650px;
+  }
+}
+
+.activeInputWrapper {
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+}
+
+.activeInput {
+  flex-direction: row;
+  align-items: center;
+
+  padding: 10px;
+  border: 1px solid #000000;
+  border-radius: 8px;
+  margin-top: 16px;
+}
+
+.activeInputLabelOn {
+  position: absolute;
+  padding: 0px 3px;
+  transition: top 300ms;
+
+  background-color: #ffffff;
+  color: #a0a0a0;
+  top: 0px;
+  left: 7px;
+}
+
+.activeInputLabelOff {
+  position: absolute;
+  padding: 0px 3px;
+  transition: top 300ms;
+
+  background-color: #ffffff;
+  color: #a0a0a0;
+  top: 26px;
+  left: 7px;
 }
 
 /* 
