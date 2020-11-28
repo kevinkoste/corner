@@ -14,7 +14,7 @@ import {
   setUsername,
 } from '../../context/AppContext'
 
-import { Page, Main, Body, Loader } from '../../components/Base'
+import { Page, Main, Body, Loader, ActiveInput } from '../../components/Base'
 import Header from '../../components/Header'
 
 function LoginPage() {
@@ -81,17 +81,19 @@ function LoginPage() {
       <Main>
         <Header title="Login" />
 
-        <Body style={{ padding: '1rem' }}>
+        <Body style={{ padding: '1rem', alignItems: 'center' }}>
           {loading && <Loader />}
           {!loading && (
             <div className={styles.formContainer}>
-              <input
+              <ActiveInput
                 className={styles.emailInput}
+                label="Email"
                 type="email"
-                placeholder={'you@example.com'}
-                onChange={(event: any) => setEmailInput(event.target.value)}
                 value={emailInput}
+                onChange={(event: any) => setEmailInput(event.target.value)}
+                spellCheck="false"
                 autoCapitalize="none"
+                autoFocus
               />
               <button className={styles.submitButton} onClick={handleLogin}>
                 Log In or Sign Up

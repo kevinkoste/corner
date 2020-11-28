@@ -165,7 +165,7 @@ function OnboardingPage() {
             )}
           </Transition>
 
-          <div style={{ width: '100%', height: '200px' }} />
+          <div style={{ width: '100%', height: '100px' }} />
 
           <Transition row timeout={duration} in={animate}>
             {(state) => (
