@@ -8,7 +8,7 @@ type StateType = {
   username: string
 }
 
-const initialState: StateType = {
+export const initialState: StateType = {
   auth: false,
   onboarded: false,
   userId: '',
@@ -21,7 +21,7 @@ type AppContextType = {
   dispatch: Dispatch<Action>
 }
 
-const AppContext = createContext<AppContextType>({
+export const AppContext = createContext<AppContextType>({
   state: initialState,
   dispatch: () => null,
 })
@@ -63,7 +63,7 @@ export const setUsername = (username: string): Action => {
 }
 
 // Reducer
-const AppReducer = (state: StateType, action: Action) => {
+export const AppReducer = (state: StateType, action: Action) => {
   switch (action.type) {
     case SET_AUTH:
       return {
@@ -100,15 +100,15 @@ const AppReducer = (state: StateType, action: Action) => {
   }
 }
 
-export const AppProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(AppReducer, initialState)
+// export const AppProvider = ({ children }) => {
+//   const [state, dispatch] = useReducer(AppReducer, initialState)
 
-  return (
-    <AppContext.Provider value={{ state, dispatch }}>
-      {children}
-    </AppContext.Provider>
-  )
-}
+//   return (
+//     <AppContext.Provider value={{ state, dispatch }}>
+//       {children}
+//     </AppContext.Provider>
+//   )
+// }
 
 export const useAppContext = () => {
   return useContext(AppContext)

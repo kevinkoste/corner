@@ -1,46 +1,15 @@
+import { useEffect, useState } from 'react'
 import styles from './Base.module.css'
 
-import { useEffect, useState } from 'react'
-
 import BeatLoader from 'react-spinners/BeatLoader'
-import { api } from '../libs/api'
-import {
-  useAppContext,
-  setAuth,
-  setOnboarded,
-  setUserId,
-  setEmail,
-  setUsername,
-} from '../context/AppContext'
+import { useAppContext } from '../context/AppContext'
 
 export const Page = ({ children, ...props }) => {
-  const { dispatch } = useAppContext()
+  const { state } = useAppContext()
 
   useEffect(() => {
-    const onMount = async () => {
-      const { data } = await api({
-        method: 'post',
-        url: `/auth/check`,
-      })
-
-      const { auth, userId, email, onboarded, username } = data
-      console.log('response from /auth/check:', data)
-
-      if (!auth) {
-        dispatch(setAuth(false))
-      } else {
-        dispatch(setAuth(true))
-        dispatch(setUserId(userId))
-        dispatch(setEmail(email))
-
-        if (onboarded) {
-          dispatch(setOnboarded(true))
-          dispatch(setUsername(username))
-        }
-      }
-    }
-    onMount()
-  }, [])
+    console.log(state)
+  }, [state])
 
   return (
     <div className={styles.page} {...props}>

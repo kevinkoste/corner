@@ -1,20 +1,60 @@
 import type { AppProps } from 'next/app'
-import { SWRConfig } from 'swr'
+import { useEffect, useReducer, useState } from 'react'
 import './_app.css'
 
-import { AppProvider } from '../context/AppContext'
+import { api } from '../libs/api'
+import { Loader } from '../components/Base'
 import { ProfileProvider } from '../context/ProfileContext'
-
-import { fetcher } from '../libs/api'
+import {
+  initialState,
+  AppContext,
+  AppReducer,
+  setAuth,
+  setOnboarded,
+  setUserId,
+  setEmail,
+  setUsername,
+} from '../context/AppContext'
 
 export default function App({ Component, pageProps }: AppProps) {
+  const [loading, setLoading] = useState(true)
+
+  const [state, dispatch] = useReducer(AppReducer, initialState)
+
+  useEffect(() => {
+    const onMount = async () => {
+      const { data } = await api({
+        method: 'post',
+        url: `/auth/check`,
+      })
+
+      const { auth, userId, email, onboarded, username } = data
+      console.log('response from /auth/check:', data)
+
+      dispatch(setUsername('buttplug'))
+
+      if (!auth) {
+        dispatch(setAuth(false))
+      } else {
+        dispatch(setAuth(true))
+        dispatch(setUserId(userId))
+        dispatch(setEmail(email))
+
+        if (onboarded) {
+          dispatch(setOnboarded(true))
+          dispatch(setUsername(username))
+        }
+      }
+      setLoading(false)
+    }
+    onMount()
+  }, [])
+
   return (
-    <AppProvider>
+    <AppContext.Provider value={{ state, dispatch }}>
       <ProfileProvider>
-        <SWRConfig value={{ fetcher: fetcher }}>
-          <Component {...pageProps} />
-        </SWRConfig>
+        {loading ? <Loader /> : <Component {...pageProps} />}
       </ProfileProvider>
-    </AppProvider>
+    </AppContext.Provider>
   )
 }
