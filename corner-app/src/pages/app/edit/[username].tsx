@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 import { Container, Draggable } from 'react-smooth-dnd'
 import styles from './[username].module.css'
 
-import { api } from '../../../libs/api'
+import { api, apiSSR } from '../../../libs/api'
 import { useAppContext } from '../../../context/AppContext'
 import {
   useProfileContext,
@@ -27,17 +27,20 @@ function EditProfilePage({ username, name, components }) {
   const { profileState, profileDispatch } = useProfileContext()
 
   useEffect(() => {
-    if (state.username !== username) {
-      router.push(`${username}`)
+    if (!state.auth) {
+      router.push(`/app/login`)
+    } else if (state.username !== username) {
+      router.push(`/${username}`)
+    } else {
+      // get data from props and push to profile context
+      profileDispatch(
+        updateState({
+          username: username,
+          name: name,
+          components: components,
+        })
+      )
     }
-    // get data from props and push to profile context
-    profileDispatch(
-      updateState({
-        username: username,
-        name: name,
-        components: components,
-      })
-    )
   }, [])
 
   useEffect(() => {
@@ -152,7 +155,7 @@ export default EditProfilePage
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const { username } = params
 
-  const { data } = await api({
+  const { data } = await apiSSR({
     method: 'get',
     url: `/public/profile`,
     params: {

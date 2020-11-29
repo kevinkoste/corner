@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { GetServerSideProps } from 'next'
 import styles from './browse.module.css'
 
-import { api } from '../../libs/api'
+import { apiSSR } from '../../libs/api'
 import { Page, Main, Body } from '../../components/Base'
 import Header from '../../components/Header'
 
@@ -36,7 +36,7 @@ function BrowsePage({ profiles }) {
 export default BrowsePage
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const { data } = await api({
+  const { data } = await apiSSR({
     method: 'get',
     url: `/public/profile/all`,
   })

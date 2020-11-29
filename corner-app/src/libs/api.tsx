@@ -5,6 +5,12 @@ export const api = axios.create({
   withCredentials: true,
 })
 
+export const apiSSR = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
+  withCredentials: false,
+  headers: { origin: 'SSR' },
+})
+
 export const bookApi = axios.create({
   baseURL: 'https://www.googleapis.com',
 })
@@ -34,12 +40,12 @@ export const fetcher = async (url: string) => {
 //   })
 // }
 
-export const PostAuthLogout = (): Promise<any> => {
-  return api({
-    method: 'post',
-    url: `/auth/logout`,
-  })
-}
+// export const PostAuthLogout = (): Promise<any> => {
+//   return api({
+//     method: 'post',
+//     url: `/auth/logout`,
+//   })
+// }
 
 // PUBLIC ROUTES //
 // export const GetPublicProfileData = (username: string): Promise<any> => {

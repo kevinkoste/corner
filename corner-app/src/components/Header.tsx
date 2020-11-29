@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 
 import { useAppContext, setAuth } from '../context/AppContext'
-import { PostProtectInviteNewEmail, PostAuthLogout } from '../libs/api'
+import { api } from '../libs/api'
 
 import styles from './Header.module.css'
 
@@ -13,20 +13,23 @@ function Header({ title }) {
 
   const toggleBurger = () => setShowingBurger(!showingBurger)
 
-  const takeHome = () => {
+  const takeHome = async () => {
+    if (state.auth) {
+      await router.push('/app/browse')
+    } else {
+      await router.push('/')
+    }
     if (showingBurger) {
       setShowingBurger(false)
-    }
-    if (state.auth) {
-      router.push('/app/browse')
-    } else {
-      router.push('/')
     }
   }
 
   const handleLogOut = async () => {
     try {
-      await PostAuthLogout()
+      await api({
+        method: 'post',
+        url: `/auth/logout`,
+      })
     } catch (err) {
       console.log('error while logging out: ', err)
     }
@@ -43,7 +46,7 @@ function Header({ title }) {
           <img
             className={styles.burgerButton}
             onClick={toggleBurger}
-            src="/icons/burger.svg"
+            src="/icons/gray-burger.svg"
             alt="burger button"
           />
         </div>
@@ -74,8 +77,8 @@ function Header({ title }) {
 
       <div className={styles.menuBody}>
         <h1
-          onClick={() => {
-            router.push(`/app/browse`)
+          onClick={async () => {
+            await router.push(`/app/browse`)
             toggleBurger()
           }}
           style={{ cursor: 'pointer' }}
@@ -85,8 +88,8 @@ function Header({ title }) {
 
         {!state.onboarded && !state.auth && (
           <h1
-            onClick={() => {
-              router.push(`/app/login`)
+            onClick={async () => {
+              await router.push(`/app/login`)
               toggleBurger()
             }}
             style={{ cursor: 'pointer' }}
@@ -97,8 +100,8 @@ function Header({ title }) {
 
         {!state.onboarded && state.auth && (
           <h1
-            onClick={() => {
-              router.push(`/app/onboarding`)
+            onClick={async () => {
+              await router.push(`/app/onboarding`)
               toggleBurger()
             }}
             style={{ cursor: 'pointer' }}
@@ -109,8 +112,8 @@ function Header({ title }) {
 
         {state.onboarded && state.auth && (
           <h1
-            onClick={() => {
-              router.push(`/app/edit/${state.username}`)
+            onClick={async () => {
+              await router.push(`/app/edit/${state.username}`)
               toggleBurger()
             }}
             style={{ cursor: 'pointer' }}

@@ -52,7 +52,6 @@ function LoginPage() {
       dispatch(setAuth(true))
       dispatch(setUserId(userId))
       dispatch(setEmail(email))
-      setLoading(false)
 
       if (onboarded) {
         dispatch(setUsername(username))
@@ -62,10 +61,10 @@ function LoginPage() {
         router.push('/app/onboarding')
       }
     } catch (err) {
-      setLoading(false)
       console.log('login error:', err)
       router.push('/')
     }
+    setLoading(false)
   }
 
   // enter key advances form

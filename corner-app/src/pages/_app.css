@@ -45,6 +45,7 @@ h1 {
   font-weight: unset;
   margin: unset;
   padding: 0px;
+  color: #333333;
 }
 
 p {
@@ -55,6 +56,7 @@ p {
   font-weight: unset;
   margin: unset;
   padding: 0px;
+  color: #333333;
 }
 
 button {
@@ -106,6 +108,7 @@ input {
   font-size: 16px;
   font-family: 'inter';
   line-height: 24px;
+  color: #333333;
 }
 
 @media (max-width: 768px) {
