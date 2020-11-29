@@ -7,12 +7,14 @@ import AuthModel, { Auth } from '../models/Auth'
 
 passport.use(
   new Strategy(async (user, done) => {
+    console.log('in magic strategy with user object: ', user)
+
     const existingAuth = await AuthModel.findOne({ authId: user.issuer }).exec()
 
-    // console.log(
-    //   'in passport-magic strategy, found existingAuth object: ',
-    //   existingAuth
-    // )
+    console.log(
+      'in passport-magic strategy, found existingAuth object: ',
+      existingAuth
+    )
 
     // Log in existing user
     if (existingAuth) {
