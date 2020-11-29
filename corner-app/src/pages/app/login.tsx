@@ -50,11 +50,11 @@ function LoginPage() {
       const { userId, email, onboarded, username } = data
 
       dispatch(setAuth(true))
+      dispatch(setUserId(userId))
+      dispatch(setEmail(email))
       setLoading(false)
 
       if (onboarded) {
-        dispatch(setUserId(userId))
-        dispatch(setEmail(email))
         dispatch(setUsername(username))
         dispatch(setOnboarded(true))
         router.push(`/app/edit/${username}`)

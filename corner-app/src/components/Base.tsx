@@ -1,13 +1,45 @@
 import styles from './Base.module.css'
 
 import { useEffect, useState } from 'react'
+
 import BeatLoader from 'react-spinners/BeatLoader'
+import { api } from '../libs/api'
+import {
+  useAppContext,
+  setAuth,
+  setOnboarded,
+  setUserId,
+  setEmail,
+  setUsername,
+} from '../context/AppContext'
 
 export const Page = ({ children, ...props }) => {
+  const { dispatch } = useAppContext()
+
   useEffect(() => {
-    window.onbeforeunload = () => {
-      window.scrollTo(0, 0)
+    const onMount = async () => {
+      const { data } = await api({
+        method: 'post',
+        url: `/auth/check`,
+      })
+
+      const { auth, userId, email, onboarded, username } = data
+      console.log('response from /auth/check:', data)
+
+      if (!auth) {
+        dispatch(setAuth(false))
+      } else {
+        dispatch(setAuth(true))
+        dispatch(setUserId(userId))
+        dispatch(setEmail(email))
+
+        if (onboarded) {
+          dispatch(setOnboarded(true))
+          dispatch(setUsername(username))
+        }
+      }
     }
+    onMount()
   }, [])
 
   return (

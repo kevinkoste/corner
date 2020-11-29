@@ -8,6 +8,7 @@ import { Transition } from 'react-transition-group'
 import Header from '../../components/Header'
 import { Page, Main, Body } from '../../components/Base'
 import { api } from '../../libs/api'
+import { useAppContext, setOnboarded } from '../../context/AppContext'
 
 import { Username } from '../../components/onboarding/Username'
 import { Name } from '../../components/onboarding/Name'
@@ -17,6 +18,7 @@ import { Done } from '../../components/onboarding/Done'
 
 function OnboardingPage() {
   const router = useRouter()
+  const { state, dispatch } = useAppContext()
 
   const [animate, setAnimate] = useState(false)
   const [activeItem, setActiveItem] = useState(1)
@@ -61,6 +63,11 @@ function OnboardingPage() {
 
   useEffect(() => {
     const onMount = async () => {
+      // redirect if onboarded
+      if (state.onboarded || state.username) {
+        router.push(`/app/edit/${state.username}`)
+      }
+      // redirect if not invited
       const { data } = await api({
         method: 'post',
         url: `/protect/invite/check`,
@@ -68,7 +75,6 @@ function OnboardingPage() {
       if (!data) {
         router.push('/not-invited')
       }
-      // could also check to see if user has already onboarded and redirect
     }
     onMount()
   }, [])

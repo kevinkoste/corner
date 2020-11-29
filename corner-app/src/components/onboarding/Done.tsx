@@ -4,8 +4,15 @@ import styles from './onboarding.module.css'
 
 import { api } from '../../libs/api'
 import { OnboardingProps } from '../../models/onboarding'
+import {
+  useAppContext,
+  setOnboarded,
+  setUsername,
+} from '../../context/AppContext'
 
 export const Done: React.FC<OnboardingProps> = ({ onboardingData }) => {
+  const { state, dispatch } = useAppContext()
+
   useEffect(() => {
     const onMount = async () => {
       await api({
@@ -32,6 +39,8 @@ export const Done: React.FC<OnboardingProps> = ({ onboardingData }) => {
           ],
         },
       })
+      dispatch(setUsername(onboardingData.username))
+      dispatch(setOnboarded(true))
     }
     onMount()
     // upload profile here

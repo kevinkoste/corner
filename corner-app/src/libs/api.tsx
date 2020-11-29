@@ -19,20 +19,20 @@ export const fetcher = async (url: string) => {
 
 // AUTH ROUTES //
 
-export const PostAuthCheck = (): Promise<any> => {
-  return api({
-    method: 'post',
-    url: `/auth/check`,
-  })
-}
+// export const PostAuthCheck = (): Promise<any> => {
+//   return api({
+//     method: 'post',
+//     url: `/auth/check`,
+//   })
+// }
 
-export const PostAuthLogin = (authToken: string): Promise<any> => {
-  return api({
-    method: 'post',
-    url: `/auth/login`,
-    headers: { authorization: `Bearer ${authToken}` },
-  })
-}
+// export const PostAuthLogin = (authToken: string): Promise<any> => {
+//   return api({
+//     method: 'post',
+//     url: `/auth/login`,
+//     headers: { authorization: `Bearer ${authToken}` },
+//   })
+// }
 
 export const PostAuthLogout = (): Promise<any> => {
   return api({
