@@ -7,16 +7,15 @@ export const loggerMiddleware = (
   next: any
 ) => {
   console.log('________________________________________________\n')
-  console.log('Origin: ', req.headers.origin)
-  console.log('Headers: ', req.headers)
-  console.log('Cookies: ', req.cookies)
-  console.log('Session: ', req.session)
   console.log(
     `${req.method.padEnd(8, ' ')}${req.path.padEnd(24, ' ')}${JSON.stringify(
       req.query
     )}`
   )
-  // console.log('headers:', req.headers)
+  console.log('Origin: ', req.headers.origin)
+  console.log('Headers: ', req.headers)
+  console.log('Cookies: ', req.cookies)
+  console.log('Session: ', req.session)
   next()
 }
 
@@ -45,9 +44,10 @@ export const authMiddleware = (
   next: any
 ) => {
   if (req.isAuthenticated()) {
+    console.log('Authenticated request')
     next()
   } else {
-    console.log('Rejecting unauthenticated request')
+    console.log('Unauthenticated request')
     res.status(401).end(`Unable to authenticate request`)
   }
 }

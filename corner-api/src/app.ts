@@ -11,7 +11,6 @@ import authRouter from './routes/auth'
 import protectRouter from './routes/protect'
 import publicRouter from './routes/public'
 import socialRouter from './routes/social'
-import { truncate } from 'fs'
 
 // top-level await to connect to mongo before establishing session connection
 await connectMongoDB()
@@ -28,13 +27,13 @@ app.use(
     secret: process.env.SESSION_SECRET!,
     store: store,
     resave: false,
-    saveUninitialized: false,
-    unset: 'destroy',
+    saveUninitialized: true,
+    // unset: 'destroy',
     cookie: {
-      maxAge: 1000 * 60 * 60 * 24 * 7 * 2, // 2 weeks
+      // maxAge: 1000 * 60 * 60 * 24 * 7 * 2, // 2 weeks
       secure: process.env.NODE_ENV === 'production',
-      httpOnly: process.env.NODE_ENV !== 'production',
-      sameSite: process.env.NODE_ENV === 'production' ? 'strict' : false,
+      // httpOnly: process.env.NODE_ENV !== 'production',
+      // sameSite: process.env.NODE_ENV === 'production' ? 'strict' : false,
     },
   })
 )
