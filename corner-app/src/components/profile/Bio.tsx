@@ -19,6 +19,8 @@ export const EditBio: React.FC<BioProps> = ({ id, props, name }) => {
   const { profileState, profileDispatch } = useProfileContext()
   const [textInput, setTextInput] = useState<string>(props.bio)
 
+  const [editing, setEditing] = useState(false)
+
   const handleClickAway = () => {
     profileDispatch(
       updateComponent({
@@ -34,7 +36,22 @@ export const EditBio: React.FC<BioProps> = ({ id, props, name }) => {
   return (
     <div className={styles.container}>
       <DndShadowBox>
-        <h1>About {name.split(' ')[0]}</h1>
+        <div className={styles.header}>
+          <h1>About {name.split(' ')[0]}</h1>
+          {profileState.editing && (
+            <img
+              className={styles.editIcon}
+              src={
+                editing
+                  ? '/icons/green-checkmark.svg'
+                  : '/icons/gray-settings.svg'
+              }
+              alt="gray pencil"
+              onClick={() => setEditing(!editing)}
+            />
+          )}
+        </div>
+
         {profileState.editing ? (
           <TextareaAutosize
             className={styles.textareaAutosizeP}

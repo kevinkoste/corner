@@ -20,6 +20,8 @@ export const EditImage: React.FC<ImageProps> = ({ id, props }) => {
   const { profileState, profileDispatch } = useProfileContext()
   const [uploading, setUploading] = useState(false)
 
+  const [editing, setEditing] = useState(false)
+
   const handleFileUpload = async (event: any) => {
     setUploading(true)
     const imageFile = event.target.files[0]
@@ -64,6 +66,18 @@ export const EditImage: React.FC<ImageProps> = ({ id, props }) => {
   return (
     <div className={styles.imageContainer}>
       <DndShadowBox>
+        {profileState.editing && (
+          <img
+            className={styles.absoluteEditIcon}
+            src={
+              editing
+                ? '/icons/green-checkmark.svg'
+                : '/icons/gray-settings.svg'
+            }
+            alt="toggle menu"
+            onClick={() => setEditing(!editing)}
+          />
+        )}
         <img
           className={styles.image}
           // style={{

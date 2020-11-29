@@ -19,6 +19,8 @@ export const EditTitle: React.FC<TitleProps> = ({ id, props }) => {
 
   const [textInput, setTextInput] = useState<string>(props.headline)
 
+  const [editing, setEditing] = useState(false)
+
   const handleClickAway = () => {
     profileDispatch(
       updateComponent({
@@ -34,6 +36,18 @@ export const EditTitle: React.FC<TitleProps> = ({ id, props }) => {
   return (
     <div className={styles.container}>
       <DndShadowBox>
+        {profileState.editing && (
+          <img
+            className={styles.absoluteEditIcon}
+            src={
+              editing
+                ? '/icons/green-checkmark.svg'
+                : '/icons/gray-settings.svg'
+            }
+            alt="toggle menu"
+            onClick={() => setEditing(!editing)}
+          />
+        )}
         {profileState.editing ? (
           <TextareaAutosize
             className={styles.textareaAutosizeH1}

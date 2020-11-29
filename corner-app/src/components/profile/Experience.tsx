@@ -28,9 +28,11 @@ export const EditExperience: React.FC<ExperienceProps> = ({ id, props }) => {
             <img
               className={styles.editIcon}
               src={
-                editing ? '/icons/green-checkmark.svg' : '/icons/green-plus.svg'
+                editing
+                  ? '/icons/green-checkmark.svg'
+                  : '/icons/gray-settings.svg'
               }
-              alt="gray pencil"
+              alt="toggle menu"
               onClick={() => setEditing(!editing)}
             />
           )}
@@ -48,29 +50,6 @@ export const EditExperience: React.FC<ExperienceProps> = ({ id, props }) => {
       </DndShadowBox>
     </div>
   )
-
-  // if (profileState.editing) {
-  //   return (
-  //     <div className={styles.container}>
-  //       <DndShadowBox>
-  //         <h1>Experience</h1>
-  //         <AddExperienceRow id={id} />
-  //         {props.experiences.map((exp, idx) => (
-  //           <EditExperienceRow key={idx} experience={exp} />
-  //         ))}
-  //       </DndShadowBox>
-  //     </div>
-  //   )
-  // } else {
-  //   return (
-  //     <div className={styles.containerPublic + ' static'}>
-  //       <h1>Experience</h1>
-  //       {props.experiences.map((exp, idx) => (
-  //         <ExperienceRow key={idx} experience={exp} />
-  //       ))}
-  //     </div>
-  //   )
-  // }
 }
 
 // public component

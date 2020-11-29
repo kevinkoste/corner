@@ -15,8 +15,17 @@
 }
 
 .editIcon {
-  height: 30px;
-  width: 30px;
+  height: 28px;
+  width: 28px;
+  cursor: pointer;
+}
+
+.absoluteEditIcon {
+  position: absolute;
+  top: 18px;
+  right: 16px;
+  height: 28px;
+  width: 28px;
   cursor: pointer;
 }
 
@@ -187,6 +196,21 @@
 
 .addFormContainer {
   margin: 1rem 0px;
+}
+
+/* modal styles  */
+.modal {
+  position: fixed;
+  z-index: 10;
+  width: 100vw;
+  height: 100vh;
+
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 @media (min-width: 768px) {

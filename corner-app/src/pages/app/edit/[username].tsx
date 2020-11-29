@@ -12,12 +12,14 @@ import {
   updateState,
   setEditing,
   setDnd,
+  setModal,
   swapComponents,
 } from '../../../context/ProfileContext'
 
 import Header from '../../../components/Header'
 import { Page, Main, Body } from '../../../components/Base'
 import { GenerateEditComponent } from '../../../factories/GenerateEditProfile'
+import { AddComponentModal } from '../../../components/profile/AddModal'
 
 function EditProfilePage({ username, name, components }) {
   const router = useRouter()
@@ -90,11 +92,9 @@ function EditProfilePage({ username, name, components }) {
 
         {profileState.editing && (
           <div className={styles.menuBar}>
-            <img
-              className={styles.menuIcon}
-              src="/icons/green-checkmark.svg"
-              alt="green checkmark"
-            />
+            <button onClick={onSave} style={{ margin: '0 1rem' }}>
+              Done
+            </button>
             <img
               className={styles.menuIcon}
               src="/icons/gray-settings.svg"
@@ -111,18 +111,15 @@ function EditProfilePage({ username, name, components }) {
               className={styles.menuIcon}
               src="/icons/gray-plus.svg"
               alt="green plus sign"
+              onClick={() => profileDispatch(setModal(!profileState.dnd))}
             />
           </div>
         )}
 
+        {profileState.modal && <AddComponentModal />}
+
         <Body style={{ paddingBottom: '80px' }}>
-          <Container
-            onDrop={onDrop}
-            nonDragAreaSelector=".static"
-            // dragClass='animate'
-            // dragHandleSelector=".field"
-            lockAxis="y"
-          >
+          <Container onDrop={onDrop} nonDragAreaSelector=".static" lockAxis="y">
             {profileState.components.map((comp, idx) => {
               return (
                 <Draggable
@@ -135,9 +132,15 @@ function EditProfilePage({ username, name, components }) {
             })}
           </Container>
 
-          <button className={styles.floatingButton} onClick={onSave}>
+          {!profileState.editing && (
+            <button className={styles.floatingButton} onClick={onSave}>
+              Edit Corner
+            </button>
+          )}
+
+          {/* <button className={styles.floatingButton} onClick={onSave}>
             {profileState.editing ? 'Finish Editing' : 'Edit Corner'}
-          </button>
+          </button> */}
         </Body>
       </Main>
     </Page>

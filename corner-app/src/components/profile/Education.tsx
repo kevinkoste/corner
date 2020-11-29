@@ -28,9 +28,11 @@ export const EditEducation: React.FC<EducationProps> = ({ id, props }) => {
             <img
               className={styles.editIcon}
               src={
-                editing ? '/icons/green-checkmark.svg' : '/icons/green-plus.svg'
+                editing
+                  ? '/icons/green-checkmark.svg'
+                  : '/icons/gray-settings.svg'
               }
-              alt="gray pencil"
+              alt="toggle menu"
               onClick={() => setEditing(!editing)}
             />
           )}
