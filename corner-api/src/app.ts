@@ -21,30 +21,29 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
+// trust proxy in prod
+if (process.env.NODE_ENV === 'production') {
+  app.set('trust proxy', 1)
+}
+
 app.use(
   session({
     name: 'corner-sid',
     secret: process.env.SESSION_SECRET!,
     store: store,
     resave: false,
-    saveUninitialized: true,
-    // unset: 'destroy',
-    // cookie: {
-    // maxAge: 1000 * 60 * 60 * 24 * 7 * 2, // 2 weeks
-    // secure: process.env.NODE_ENV === 'production',
-    // httpOnly: process.env.NODE_ENV !== 'production',
-    // sameSite: process.env.NODE_ENV === 'production' ? 'strict' : false,
-    // },
+    saveUninitialized: false,
+    cookie: {
+      // maxAge: 1000 * 60 * 60 * 24 * 7 * 2, // 2 weeks
+      secure: process.env.NODE_ENV === 'production',
+      // httpOnly: process.env.NODE_ENV !== 'production',
+      // sameSite: process.env.NODE_ENV === 'production' ? 'strict' : false,
+    },
   })
 )
 
 app.use(passport.initialize())
 app.use(passport.session())
-
-// trust first proxy in prod
-if (process.env.NODE_ENV === 'production') {
-  app.set('trust proxy', 1)
-}
 
 app.use(loggerMiddleware)
 app.use(corsMiddleware)

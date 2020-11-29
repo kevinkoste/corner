@@ -14,7 +14,6 @@ export const loggerMiddleware = (
   )
   console.log('Origin: ', req.headers.origin)
   console.log('Headers: ', req.headers)
-  console.log('Cookies: ', req.cookies)
   console.log('Session: ', req.session)
   next()
 }
