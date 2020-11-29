@@ -29,12 +29,12 @@ app.use(
     resave: false,
     saveUninitialized: true,
     // unset: 'destroy',
-    cookie: {
-      // maxAge: 1000 * 60 * 60 * 24 * 7 * 2, // 2 weeks
-      secure: process.env.NODE_ENV === 'production',
-      // httpOnly: process.env.NODE_ENV !== 'production',
-      // sameSite: process.env.NODE_ENV === 'production' ? 'strict' : false,
-    },
+    // cookie: {
+    // maxAge: 1000 * 60 * 60 * 24 * 7 * 2, // 2 weeks
+    // secure: process.env.NODE_ENV === 'production',
+    // httpOnly: process.env.NODE_ENV !== 'production',
+    // sameSite: process.env.NODE_ENV === 'production' ? 'strict' : false,
+    // },
   })
 )
 
