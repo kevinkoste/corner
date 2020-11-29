@@ -31,8 +31,6 @@ export default function App({ Component, pageProps }: AppProps) {
       const { auth, userId, email, onboarded, username } = data
       console.log('response from /auth/check:', data)
 
-      dispatch(setUsername('buttplug'))
-
       if (!auth) {
         dispatch(setAuth(false))
       } else {
