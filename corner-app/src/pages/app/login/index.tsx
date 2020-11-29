@@ -1,9 +1,9 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
-import styles from './login.module.css'
+import styles from './index.module.css'
 
-import { api } from '../../libs/api'
+import { api } from '../../../libs/api'
 import { Magic } from 'magic-sdk'
 import {
   useAppContext,
@@ -12,35 +12,44 @@ import {
   setUserId,
   setEmail,
   setUsername,
-} from '../../context/AppContext'
+} from '../../../context/AppContext'
 
-import { Page, Main, Body, Loader, ActiveInput } from '../../components/Base'
-import Header from '../../components/Header'
+import { Page, Main, Body, Loader, ActiveInput } from '../../../components/Base'
+import Header from '../../../components/Header'
 
 function LoginPage() {
   const router = useRouter()
 
   const { state, dispatch } = useAppContext()
 
-  const [loading, setLoading] = useState<boolean>(false)
-  const [emailInput, setEmailInput] = useState<string>('')
+  const [loading, setLoading] = useState(false)
+  const [emailInput, setEmailInput] = useState('')
+
+  const magic = new Magic(process.env.NEXT_PUBLIC_MAGIC_PUBLISHABLE_KEY)
 
   useEffect(() => {
-    if (state.auth) {
-      router.push('/app/browse')
-    }
+    onMount()
   }, [])
+
+  const onMount = async () => {
+    magic.preload()
+    if (state.auth) {
+      await router.push('/app/browse')
+    }
+  }
 
   const handleLogin = async () => {
     setLoading(true)
     try {
-      const magic = new Magic(process.env.NEXT_PUBLIC_MAGIC_PUBLISHABLE_KEY)
+      console.log(
+        'callback url is: ',
+        `${window.location.origin}/app/login/callback`
+      )
+
       const didToken = await magic.auth.loginWithMagicLink({
         email: emailInput,
+        redirectURI: `${window.location.origin}/app/login/callback`,
       })
-      if (!didToken) {
-        throw Error('Magic API error')
-      }
 
       const { data } = await api({
         method: 'post',
@@ -56,13 +65,13 @@ function LoginPage() {
       if (onboarded) {
         dispatch(setUsername(username))
         dispatch(setOnboarded(true))
-        router.push(`/app/edit/${username}`)
+        await router.push(`/app/edit/${username}`)
       } else {
-        router.push('/app/onboarding')
+        await router.push('/app/onboarding')
       }
     } catch (err) {
       console.log('login error:', err)
-      router.push('/')
+      await router.push('/')
     }
     setLoading(false)
   }

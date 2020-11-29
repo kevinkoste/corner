@@ -34,8 +34,8 @@ function Header({ title }) {
       console.log('error while logging out: ', err)
     }
     dispatch(setAuth(false))
+    await router.push('/')
     toggleBurger()
-    router.push('/')
   }
 
   if (!showingBurger) {
