@@ -8,6 +8,8 @@ export const loggerMiddleware = (
 ) => {
   console.log('________________________________________________\n')
   console.log('Origin: ', req.headers.origin)
+  console.log('Headers: ', req.headers)
+  console.log('Cookies: ', req.cookies)
   console.log(
     `${req.method.padEnd(8, ' ')}${req.path.padEnd(24, ' ')}${JSON.stringify(
       req.query
