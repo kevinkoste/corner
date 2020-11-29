@@ -20,6 +20,7 @@ router.get('/profile', async (req, res) => {
     return res.status(200).send({
       username: user.username,
       components: user.components,
+      name: user.name || '',
     })
   }
   return res.status(200).send(false)

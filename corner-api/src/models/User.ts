@@ -9,6 +9,9 @@ const userSchema = new mongoose.Schema(
     username: {
       type: String,
     },
+    name: {
+      type: String,
+    },
     components: [],
     followers: [],
     following: [],
@@ -20,6 +23,7 @@ const userSchema = new mongoose.Schema(
 export interface User {
   userId: string
   username: string
+  name: string
   components: any[]
   followers: any[]
   following: any[]
