@@ -34,7 +34,7 @@ app.use(
     saveUninitialized: false,
     cookie: {
       maxAge: 1000 * 60 * 60 * 24 * 7 * 2, // 2 weeks
-      domain: process.env.NODE_ENV === 'production' ? 'corner.so' : '127.0.0.1',
+      domain: process.env.NODE_ENV === 'production' ? 'corner.so' : 'localhost',
       secure: process.env.NODE_ENV === 'production',
       sameSite: process.env.NODE_ENV === 'production' ? 'none' : false,
     },

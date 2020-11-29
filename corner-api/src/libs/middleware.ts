@@ -15,7 +15,7 @@ export const loggerMiddleware = (
   console.log('Origin: ', req.headers.origin)
   if (req.headers.origin !== 'SSR') {
     console.log('Cookie: ', req.headers.cookie)
-    console.log('Session: ', req.session?.passport.user)
+    console.log('Session: ', req.session?.passport?.user || null)
   }
   next()
 }
