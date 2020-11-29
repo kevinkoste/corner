@@ -4,6 +4,7 @@ import styles from './profile.module.css'
 
 import { api } from '../../libs/api'
 import { DndShadowBox } from '../../components/profile/DndShadowBox'
+import { ActiveInput } from '../../components/Base'
 import {
   useProfileContext,
   updateComponent,
@@ -231,14 +232,16 @@ function AddEducationRow({ id, ...props }) {
   return (
     <div className={styles.addContainer} {...props}>
       <div className={styles.addFormContainer}>
-        <p>Enter your school's website URL</p>
-        <input
+        {/* <p>Enter your school's website URL</p> */}
+        <ActiveInput
           className={styles.rowAddInput}
-          type="url"
-          placeholder={'yale.edu'}
-          onChange={(event: any) => setTextInput(event.target.value)}
+          style={{ textTransform: 'lowercase' }}
+          label="University domain name, e.g. yale.edu"
           value={textInput}
+          onChange={(event: any) => setTextInput(event.target.value)}
           onKeyDown={onKeyDown}
+          spellCheck="false"
+          autoFocus
         />
       </div>
       {textInput !== '' && (

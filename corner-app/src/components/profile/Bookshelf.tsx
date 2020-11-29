@@ -4,6 +4,7 @@ import styles from './profile.module.css'
 
 import { bookApi } from '../../libs/api'
 import { DndShadowBox } from '../../components/profile/DndShadowBox'
+import { ActiveInput } from '../../components/Base'
 import {
   useProfileContext,
   updateComponent,
@@ -200,14 +201,14 @@ function AddBookshelfRow({ id }) {
   return (
     <div className={styles.addContainer}>
       <div className={styles.addFormContainer}>
-        <p>Enter the title of a book</p>
-        <input
+        <ActiveInput
           className={styles.rowAddInput}
-          type="url"
-          placeholder={'Great Expectations'}
-          onChange={(event: any) => setTextInput(event.target.value)}
+          label="Book title, e.g. Great Expectations"
           value={textInput}
+          onChange={(event: any) => setTextInput(event.target.value)}
           onKeyDown={onKeyDown}
+          spellCheck="false"
+          autoFocus
         />
       </div>
       {textInput !== '' && (

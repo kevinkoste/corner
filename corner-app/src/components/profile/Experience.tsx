@@ -4,7 +4,7 @@ import styles from './profile.module.css'
 
 import { api } from '../../libs/api'
 import { DndShadowBox } from '../../components/profile/DndShadowBox'
-
+import { ActiveInput } from '../../components/Base'
 import {
   useProfileContext,
   updateComponent,
@@ -256,14 +256,14 @@ function AddExperienceRow({ id }) {
   return (
     <div className={styles.addContainer}>
       <div className={styles.addFormContainer}>
-        <p>Enter your company's website URL</p>
-        <input
+        <ActiveInput
           className={styles.rowAddInput}
-          type="url"
-          placeholder={'acme.com'}
-          onChange={(event: any) => setTextInput(event.target.value)}
+          label="Company domain name, e.g. acme.com"
           value={textInput}
+          onChange={(event: any) => setTextInput(event.target.value)}
           onKeyDown={onKeyDown}
+          spellCheck="false"
+          autoFocus
         />
       </div>
       {textInput !== '' && (
