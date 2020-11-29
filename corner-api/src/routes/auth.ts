@@ -55,6 +55,8 @@ router.post('/login', passport.authenticate('magic'), async (req, res) => {
 
 // POST /auth/check - handles session check
 router.post('/check', async (req, res) => {
+  console.log('in auth/check with req headers: ', req.headers)
+
   if (!req.isAuthenticated()) {
     console.log('user is not authenticated')
     return res.status(200).json({

@@ -58,14 +58,14 @@ passport.use(
 
 /* Defines what data are stored in the user session */
 passport.serializeUser((user: Auth, done) => {
-  // console.log('in serializeUser with auth object:', user)
+  console.log('in serializeUser with auth object:', user)
   done(null, user.authId)
 })
 
 /* Populates user data in the req.user object */
 passport.deserializeUser(async (id: string, done) => {
   const user = await AuthModel.findOne({ authId: id }).exec()
-  // console.log('in deserializeUser with auth object:', user)
+  console.log('in deserializeUser with auth object:', user)
 
   if (user) {
     return done(null, user)
