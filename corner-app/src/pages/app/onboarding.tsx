@@ -181,7 +181,7 @@ function OnboardingPage() {
                   </button>
                 )}
 
-                {activeItem < items.length && canContinue && (
+                {activeItem <= items.length && canContinue && (
                   <button
                     className={styles.forwardButton}
                     onClick={onForwardClick}

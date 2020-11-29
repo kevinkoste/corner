@@ -68,6 +68,14 @@ function LoginPage() {
     }
   }
 
+  // enter key advances form
+  const onKeyDown = (event: any) => {
+    if (event.key === 'Enter' && emailInput !== '') {
+      event.preventDefault()
+      handleLogin()
+    }
+  }
+
   return (
     <Page>
       <Head>
@@ -91,6 +99,7 @@ function LoginPage() {
                 type="email"
                 value={emailInput}
                 onChange={(event: any) => setEmailInput(event.target.value)}
+                onKeyDown={onKeyDown}
                 spellCheck="false"
                 autoCapitalize="none"
                 autoFocus
