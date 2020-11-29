@@ -9,6 +9,8 @@ const router = express.Router()
 
 // POST /auth/login - handles login or signup, on success return user data
 router.post('/login', passport.authenticate('magic'), async (req, res) => {
+  console.log('in /auth/login with req.user: ', req.user)
+
   if (!req.user) {
     res.status(401).end('Could not log user in.')
   }
