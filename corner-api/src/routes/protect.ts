@@ -56,6 +56,19 @@ router.post('/components', async (req, res) => {
   return res.status(200).send('successfully updated components')
 })
 
+// POST /protect/profile - update profile data for auth'd user
+router.post('/profile', async (req, res) => {
+  const { userId } = req.user as Auth
+  const { username, name, components } = req.body
+
+  await UserModel.updateOne(
+    { userId: userId },
+    { username: username, name: name, components: components }
+  ).exec()
+
+  return res.status(200).send('successfully updated profile')
+})
+
 // POST /protect/upload-image - uploads a new image for a profile
 // also need to try to delete profiles prev photo on new upload
 router.post('/profile/image', async (req, res) => {
