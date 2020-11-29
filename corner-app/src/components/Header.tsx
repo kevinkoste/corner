@@ -50,13 +50,13 @@ function Header({ title }) {
     <div className={styles.menuContainer}>
       <div
         className={styles.headerWrapper}
-        style={{ backgroundColor: '#000000' }}
+        style={{ backgroundColor: '#333333' }}
       >
         <div
           className={styles.headerContainer}
           style={{ borderColor: '#ffffff' }}
         >
-          <h1 style={{ color: 'white' }} onClick={takeHome}>
+          <h1 style={{ color: 'white', cursor: 'pointer' }} onClick={takeHome}>
             Corner
           </h1>
           <img
@@ -74,6 +74,7 @@ function Header({ title }) {
             router.push(`/app/browse`)
             toggleBurger()
           }}
+          style={{ cursor: 'pointer' }}
         >
           Browse Profiles
         </h1>
@@ -84,6 +85,7 @@ function Header({ title }) {
               router.push(`/app/login`)
               toggleBurger()
             }}
+            style={{ cursor: 'pointer' }}
           >
             Join Corner
           </h1>
@@ -95,6 +97,7 @@ function Header({ title }) {
               router.push(`/app/onboarding`)
               toggleBurger()
             }}
+            style={{ cursor: 'pointer' }}
           >
             Make Your Profile
           </h1>
@@ -106,6 +109,7 @@ function Header({ title }) {
               router.push(`/app/edit/${state.username}`)
               toggleBurger()
             }}
+            style={{ cursor: 'pointer' }}
           >
             My Profile
           </h1>

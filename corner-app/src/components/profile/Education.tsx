@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid'
 import styles from './profile.module.css'
 
 import { api } from '../../libs/api'
+import { DndShadowBox } from '../../components/profile/DndShadowBox'
 import {
   useProfileContext,
   updateComponent,
@@ -15,28 +16,37 @@ import { EducationProps } from '../../models/Profile'
 export const EditEducation: React.FC<EducationProps> = ({ id, props }) => {
   const { profileState } = useProfileContext()
 
-  if (profileState.editing) {
-    return (
-      <div className={styles.container}>
-        <div className={styles.shadowBox}>
+  const [editing, setEditing] = useState(false)
+
+  return (
+    <div className={styles.container}>
+      <DndShadowBox>
+        <div className={styles.header}>
           <h1>Education</h1>
-          <AddEducationRow id={id} />
-          {props.education.map((exp, idx) => (
-            <EditEducationRow key={idx} education={exp} />
-          ))}
+          {profileState.editing && (
+            <img
+              className={styles.editIcon}
+              src={
+                editing ? '/icons/green-checkmark.svg' : '/icons/green-plus.svg'
+              }
+              alt="gray pencil"
+              onClick={() => setEditing(!editing)}
+            />
+          )}
         </div>
-      </div>
-    )
-  } else {
-    return (
-      <div className={styles.containerPublic + ' static'}>
-        <h1>Education</h1>
-        {props.education.map((exp, idx) => (
-          <EducationRow key={idx} education={exp} />
-        ))}
-      </div>
-    )
-  }
+
+        {editing && <AddEducationRow id={id} />}
+
+        {props.education.map((edu, idx) => {
+          return editing ? (
+            <EditEducationRow key={idx} education={edu} />
+          ) : (
+            <EducationRow key={idx} education={edu} />
+          )
+        })}
+      </DndShadowBox>
+    </div>
+  )
 }
 
 // public component
@@ -55,11 +65,11 @@ export const Education: React.FC<EducationProps> = ({ props }) => {
   }
 }
 
-function EducationRow({ education }) {
+function EducationRow({ education, ...props }) {
   const { domain, degree, school, date } = education
 
   return (
-    <div className={styles.rowContainer}>
+    <div className={styles.rowContainer} {...props}>
       <img
         className={styles.rowImage}
         src={`//logo.clearbit.com/${domain}`}
@@ -78,7 +88,7 @@ function EducationRow({ education }) {
   )
 }
 
-function EditEducationRow({ education }) {
+function EditEducationRow({ education, ...props }) {
   const { id, domain, degree, school, date } = education
   const { profileDispatch } = useProfileContext()
 
@@ -111,7 +121,7 @@ function EditEducationRow({ education }) {
   }
 
   return (
-    <div className={styles.rowContainer}>
+    <div className={styles.rowContainer} {...props}>
       <div className={styles.rowImageContainer}>
         <img
           className={styles.rowImage}
@@ -156,7 +166,7 @@ function EditEducationRow({ education }) {
   )
 }
 
-function AddEducationRow({ id }) {
+function AddEducationRow({ id, ...props }) {
   const { profileState, profileDispatch } = useProfileContext()
 
   const [textInput, setTextInput] = useState('')
@@ -193,9 +203,9 @@ function AddEducationRow({ id }) {
         type: 'education',
         props: {
           education: [
+            education,
             ...profileState.components.find((comp) => comp.type === 'education')
               ?.props.education,
-            education,
           ],
         },
       })
@@ -219,7 +229,7 @@ function AddEducationRow({ id }) {
   }
 
   return (
-    <div className={styles.addContainer}>
+    <div className={styles.addContainer} {...props}>
       <div className={styles.addFormContainer}>
         <p>Enter your school's website URL</p>
         <input

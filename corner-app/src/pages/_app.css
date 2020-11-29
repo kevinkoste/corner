@@ -67,7 +67,7 @@ button {
 
   /* custom button styles */
   color: white;
-  background-color: black;
+  background-color: #333333;
   padding: 10px 20px 12px 20px;
   cursor: pointer;
   border-radius: 30px;
@@ -86,7 +86,7 @@ label {
 
   /* custom button styles */
   color: white;
-  background-color: black;
+  background-color: #333333;
   padding: 10px 20px 12px 20px;
   cursor: pointer;
   border-radius: 30px;

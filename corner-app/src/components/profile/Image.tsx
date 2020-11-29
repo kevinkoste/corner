@@ -4,6 +4,7 @@ import { api } from '../../libs/api'
 
 import imageCompression from 'browser-image-compression'
 import ClipLoader from 'react-spinners/ClipLoader'
+import { DndShadowBox } from '../../components/profile/DndShadowBox'
 
 import {
   useProfileContext,
@@ -61,38 +62,38 @@ export const EditImage: React.FC<ImageProps> = ({ id, props }) => {
   }
 
   return (
-    <div className={styles.container}>
-      <img
-        className={styles.image}
-        style={{
-          boxShadow: profileState.editing
-            ? '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'
-            : 'unset',
-        }}
-        src={process.env.NEXT_PUBLIC_S3_BUCKET + 'large/' + props.image}
-      />
-      {profileState.editing && (
-        <div className={styles.uploadWrapper}>
-          {uploading && (
-            <ClipLoader
-              css={'position: relative; left: -50%; text-align: center;'}
-              loading={uploading}
-              color={'#000000'}
-            />
-          )}
-          {!uploading && (
-            <label className={styles.uploadButton}>
-              Choose Photo
-              <input
-                className={styles.uploadInput}
-                type="file"
-                accept="image/*"
-                onChange={handleFileUpload}
+    <div className={styles.imageContainer}>
+      <DndShadowBox>
+        <img
+          className={styles.image}
+          // style={{
+          //   objectFit: profileState.dnd ? 'cover' : 'contain',
+          // }}
+          src={process.env.NEXT_PUBLIC_S3_BUCKET + 'large/' + props.image}
+        />
+        {profileState.editing && !profileState.dnd && (
+          <div className={styles.uploadWrapper}>
+            {uploading && (
+              <ClipLoader
+                css={'position: relative; left: -50%; text-align: center;'}
+                loading={uploading}
+                color={'#333333'}
               />
-            </label>
-          )}
-        </div>
-      )}
+            )}
+            {!uploading && (
+              <label className={styles.uploadButton}>
+                Choose Photo
+                <input
+                  className={styles.uploadInput}
+                  type="file"
+                  accept="image/*"
+                  onChange={handleFileUpload}
+                />
+              </label>
+            )}
+          </div>
+        )}
+      </DndShadowBox>
     </div>
   )
 }

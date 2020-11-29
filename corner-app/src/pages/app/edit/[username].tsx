@@ -11,7 +11,7 @@ import {
   useProfileContext,
   updateState,
   setEditing,
-  setModal,
+  setDnd,
   swapComponents,
 } from '../../../context/ProfileContext'
 
@@ -51,9 +51,13 @@ function EditProfilePage({ username, name, components }) {
   // on save profile, post new profile data to server, NOT async
   const onSave = () => {
     disableScroll()
+    profileDispatch(setDnd(false))
+    setTimeout(() => {
+      profileDispatch(setEditing(!profileState.editing))
+    }, 300)
     setTimeout(() => {
       enableScroll()
-    }, 150)
+    }, 350)
     if (profileState.editing) {
       api({
         method: 'post',
@@ -63,13 +67,11 @@ function EditProfilePage({ username, name, components }) {
         },
       })
     }
-    profileDispatch(setEditing(!profileState.editing))
   }
 
   // helper function for drag and drop support
   const onDrop = (dropResult: any) => {
     const { removedIndex, addedIndex } = dropResult
-    console.log('in onDrop, removed: ', removedIndex, 'added:', addedIndex)
     profileDispatch(swapComponents(removedIndex, addedIndex))
   }
 
@@ -84,9 +86,36 @@ function EditProfilePage({ username, name, components }) {
       </Head>
 
       <Main>
-        <Header title={name} />
+        {!profileState.editing && <Header title={name} />}
 
-        <Body>
+        {profileState.editing && (
+          <div className={styles.menuBar}>
+            <img
+              className={styles.menuIcon}
+              src="/icons/green-checkmark.svg"
+              alt="green checkmark"
+            />
+            <img
+              className={styles.menuIcon}
+              src="/icons/gray-settings.svg"
+              alt="gray settings"
+            />
+            <img
+              className={styles.menuIcon}
+              src="/icons/gray-reorder.svg"
+              alt="gray reorder"
+              onClick={() => profileDispatch(setDnd(!profileState.dnd))}
+            />
+
+            <img
+              className={styles.menuIcon}
+              src="/icons/gray-plus.svg"
+              alt="green plus sign"
+            />
+          </div>
+        )}
+
+        <Body style={{ paddingBottom: '80px' }}>
           <Container
             onDrop={onDrop}
             nonDragAreaSelector=".static"
@@ -96,19 +125,20 @@ function EditProfilePage({ username, name, components }) {
           >
             {profileState.components.map((comp, idx) => {
               return (
-                <Draggable key={idx}>
+                <Draggable
+                  key={idx}
+                  className={profileState.dnd ? '' : 'static'}
+                >
                   {GenerateEditComponent(comp, name)}
                 </Draggable>
               )
             })}
           </Container>
+
+          <button className={styles.floatingButton} onClick={onSave}>
+            {profileState.editing ? 'Finish Editing' : 'Edit Corner'}
+          </button>
         </Body>
-
-        <button className={styles.floatingButton} onClick={onSave}>
-          {profileState.editing ? 'Finish Editing' : 'Edit Corner'}
-        </button>
-
-        <div style={{ width: '100%', height: '80px' }} />
       </Main>
     </Page>
   )

@@ -61,7 +61,9 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   })
 
   const { components } = data
-  const name = components.find((comp) => comp.type === 'name')?.props.name
+  const name = components
+    ? components.find((comp) => comp.type === 'name')?.props.name
+    : 'Not Found'
 
   return {
     props: {

@@ -2,16 +2,11 @@ import Head from 'next/head'
 import styles from './browse.module.css'
 
 import { useState } from 'react'
+import { Page, Main, Body } from '../../components/Base'
 
-import { Page, Body,  ActiveInput } from '../../components/Base'
+import { Timeline } from 'react-twitter-widgets'
 
 function SandboxPage() {
-  const [textInput, setTextInput] = useState('')
-
-  const handleChange = (event: any) => {
-    setTextInput(event.target.value)
-  }
-
   return (
     <Page>
       <Head>
@@ -22,15 +17,19 @@ function SandboxPage() {
         />
       </Head>
 
-      <main className={styles.main}>
+      <Main>
         <Body>
-          <ActiveInput
-            value={textInput}
-            label="Username"
-            onChange={handleChange}
+          <Timeline
+            dataSource={{
+              sourceType: 'profile',
+              screenName: 'TwitterDev',
+            }}
+            options={{
+              height: '400',
+            }}
           />
-        </div>
-      </main>
+        </Body>
+      </Main>
     </Page>
   )
 }

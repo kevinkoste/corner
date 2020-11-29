@@ -64,7 +64,7 @@ export const Image: React.FC<OnboardingProps> = ({
             <ClipLoader
               css={'position: relative; left: -50%; text-align: center;'}
               loading={uploading}
-              color={'#000000'}
+              color={'#333333'}
             />
           )}
           {!uploading && (

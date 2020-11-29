@@ -8,6 +8,7 @@ type StateType = {
   components: Component[]
   editing: boolean
   modal: boolean
+  dnd: boolean
 }
 
 const initialState: StateType = {
@@ -16,6 +17,7 @@ const initialState: StateType = {
   components: [],
   editing: false,
   modal: false,
+  dnd: false,
 }
 
 type ProfileContextType = {
@@ -32,6 +34,7 @@ const ProfileContext = createContext<ProfileContextType>({
 const UPDATE_STATE = 'UPDATE_STATE'
 const SET_EDITING = 'SET_EDITING'
 const SET_MODAL = 'SET_MODAL'
+const SET_DND = 'SET_DND'
 
 const UPDATE_COMPONENT = 'UPDATE_COMPONENT'
 const DELETE_COMPONENT = 'DELETE_COMPONENT'
@@ -49,6 +52,7 @@ type Action =
   | { type: 'UPDATE_STATE'; state: any }
   | { type: 'SET_EDITING'; editing: boolean }
   | { type: 'SET_MODAL'; modal: boolean }
+  | { type: 'SET_DND'; dnd: boolean }
   | { type: 'UPDATE_COMPONENT'; component: any }
   | { type: 'DELETE_COMPONENT'; id: string }
   | { type: 'SWAP_COMPONENTS'; fromIdx: number; toIdx: number }
@@ -70,6 +74,10 @@ export const setEditing = (editing: boolean): Action => {
 
 export const setModal = (modal: boolean): Action => {
   return { type: SET_MODAL, modal: modal }
+}
+
+export const setDnd = (dnd: boolean): Action => {
+  return { type: SET_DND, dnd: dnd }
 }
 
 export const updateComponent = (component: any): Action => {
@@ -129,6 +137,12 @@ const ProfileReducer = (state: StateType, action: Action) => {
         modal: action.modal,
       }
 
+    case SET_DND:
+      return {
+        ...state,
+        dnd: action.dnd,
+      }
+
     case UPDATE_COMPONENT:
       if (
         state.components.find(
@@ -159,21 +173,10 @@ const ProfileReducer = (state: StateType, action: Action) => {
       }
 
     case SWAP_COMPONENTS:
-      console.log(
-        'in swap components from: ',
-        action.fromIdx,
-        'to: ',
-        action.toIdx
-      )
-
       const comp = state.components[action.fromIdx]
       const removed = state.components.filter(
         (val, idx) => idx !== action.fromIdx
       )
-
-      console.log('removed component is: ', comp)
-
-      console.log('remaining comp array is: ', removed)
 
       if (action.toIdx === 0) {
         return {

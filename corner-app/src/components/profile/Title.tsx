@@ -2,6 +2,7 @@ import { useState } from 'react'
 import styles from './profile.module.css'
 
 import TextareaAutosize from 'react-textarea-autosize'
+import { DndShadowBox } from '../../components/profile/DndShadowBox'
 
 import {
   useProfileContext,
@@ -18,9 +19,6 @@ export const EditTitle: React.FC<TitleProps> = ({ id, props }) => {
 
   const [textInput, setTextInput] = useState<string>(props.headline)
 
-  const placeholder =
-    'John Kauber is a Security Engineer and Analyst passionate about protecting critical systems from threat of attack.'
-
   const handleClickAway = () => {
     profileDispatch(
       updateComponent({
@@ -33,29 +31,23 @@ export const EditTitle: React.FC<TitleProps> = ({ id, props }) => {
     )
   }
 
-  if (profileState.editing) {
-    return (
-      <div className={styles.container}>
-        <div className={styles.shadowBox}>
-          {/* <ComponentMenu> */}
+  return (
+    <div className={styles.container}>
+      <DndShadowBox>
+        {profileState.editing ? (
           <TextareaAutosize
             className={styles.textareaAutosizeH1}
-            placeholder={placeholder}
             onBlur={handleClickAway}
             onChange={(event: any) => setTextInput(event.target.value)}
             value={textInput}
+            disabled={profileState.dnd}
           />
-          {/* </ComponentMenu> */}
-        </div>
-      </div>
-    )
-  } else {
-    return (
-      <div className={styles.containerPublic + ' static'}>
-        <h1 className={styles.titleText}>{textInput}</h1>
-      </div>
-    )
-  }
+        ) : (
+          <h1 className={styles.titleText}>{textInput}</h1>
+        )}
+      </DndShadowBox>
+    </div>
+  )
 }
 
 // public bio component

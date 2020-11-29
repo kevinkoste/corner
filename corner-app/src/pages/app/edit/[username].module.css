@@ -3,3 +3,30 @@
   bottom: 20px;
   right: 1rem;
 }
+
+.menuBar {
+  position: fixed;
+  z-index: 5;
+  width: 100vw;
+  background-color: #ffffff;
+
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  height: 51px;
+}
+
+.menuIcon {
+  height: 36px;
+  width: 36px;
+  margin: 0 1rem;
+}
+
+@media (min-width: 768px) {
+  .floatingButton {
+    right: calc(1rem + (100vw - 650px) / 2);
+  }
+  .menuBar {
+    width: 650px;
+  }
+}

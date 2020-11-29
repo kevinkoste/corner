@@ -3,6 +3,7 @@ import styles from './profile.module.css'
 
 import TextareaAutosize from 'react-textarea-autosize'
 
+import { DndShadowBox } from '../../components/profile/DndShadowBox'
 import {
   useProfileContext,
   updateComponent,
@@ -17,8 +18,6 @@ type BioProps = {
 export const EditBio: React.FC<BioProps> = ({ id, props, name }) => {
   const { profileState, profileDispatch } = useProfileContext()
   const [textInput, setTextInput] = useState<string>(props.bio)
-  const placeholder =
-    'He’s currently a security engineer at BigCo, where he’s helping to build a system wide penetration testing platform to keep BigCo’s systems safe. A big advocate for the EFF, part-time white hat hacker, and proud member of the Information Systems Security Association, John also founded the young hacker coalition (YHC) in 2018. John loves to travel internationally, and is rarely found abroad without a camera in his hand. You can find him in San Francisco, California.'
 
   const handleClickAway = () => {
     profileDispatch(
@@ -32,31 +31,23 @@ export const EditBio: React.FC<BioProps> = ({ id, props, name }) => {
     )
   }
 
-  if (profileState.editing) {
-    return (
-      <div className={styles.container}>
-        <div className={styles.shadowBox}>
-          <h1 style={{ color: textInput === '' ? 'lightgray' : 'black' }}>
-            About {name.split(' ')[0]}
-          </h1>
+  return (
+    <div className={styles.container}>
+      <DndShadowBox>
+        <h1>About {name.split(' ')[0]}</h1>
+        {profileState.editing ? (
           <TextareaAutosize
             className={styles.textareaAutosizeP}
-            placeholder={placeholder}
             onBlur={handleClickAway}
             onChange={(event: any) =>
               setTextInput(event.target.value.replace(/\s{2,}/g, ' '))
             }
             value={textInput}
           />
-        </div>
-      </div>
-    )
-  }
-
-  return (
-    <div className={styles.containerPublic + ' static'}>
-      <h1>About {name.split(' ')[0]}</h1>
-      <p className={styles.bioText}>{textInput}</p>
+        ) : (
+          <p className={styles.bioText}>{textInput}</p>
+        )}
+      </DndShadowBox>
     </div>
   )
 }

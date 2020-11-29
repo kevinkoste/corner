@@ -8,10 +8,38 @@
   padding: 0.5rem 0.5rem 1.5rem 0.5rem;
 }
 
+.header {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.editIcon {
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+}
+
+/* dnd styles */
 .shadowBox {
+  min-height: 85px;
   padding: 0.5rem;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   background-color: #ffffff;
+  overflow: hidden;
+  transition: all 300ms;
+}
+
+.bottomGradient {
+  position: absolute;
+  bottom: 24px;
+  left: 0.5rem;
+  width: calc(100% - 1rem);
+  height: 40px;
+  background: linear-gradient(
+    to bottom,
+    rgba(137, 255, 241, 0) 0%,
+    rgba(255, 255, 255, 1) 100%
+  );
 }
 
 /* bio styles */
@@ -47,15 +75,19 @@
   padding: 0px;
 
   font-family: 'source-serif';
-  font-weight: unset;
+  font-size: 28px;
 }
 
 /* image styles */
+.imageContainer {
+  position: relative;
+  padding: 0.5rem 0.5rem 1.5rem 0.5rem;
+}
+
 .image {
-  height: 100%;
-  width: 100%;
-  object-fit: contain;
-  padding: 0.5rem;
+  width: calc(100vw - 2rem);
+  height: calc(100vw - 2rem);
+  object-fit: cover;
 }
 
 .uploadInput {
@@ -80,6 +112,8 @@
   flex-direction: row;
   align-items: top;
   margin: 1rem 0;
+
+  overflow: hidden;
 }
 
 .rowImageContainer {
@@ -115,7 +149,7 @@
 
 .rowAddInput {
   padding: 3px 5px;
-  border: 1px solid #000000;
+  border: 1px solid #333333;
   border-radius: 5px;
   margin-top: 8px;
 }
@@ -132,8 +166,16 @@
   margin: 1rem 0px;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 768px) {
   .textareaAutosizeH1 {
-    font-size: 28px;
+    font-size: 32px;
+  }
+  .imageContainer {
+    height: 60%;
+    width: 60%;
+  }
+  .image {
+    width: calc((0.6 * 650px) - 2rem);
+    height: calc((0.6 * 650px) - 2rem);
   }
 }

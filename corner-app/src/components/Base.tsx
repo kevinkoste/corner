@@ -1,9 +1,15 @@
 import styles from './Base.module.css'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import BeatLoader from 'react-spinners/BeatLoader'
 
 export const Page = ({ children, ...props }) => {
+  useEffect(() => {
+    window.onbeforeunload = () => {
+      window.scrollTo(0, 0)
+    }
+  }, [])
+
   return (
     <div className={styles.page} {...props}>
       {children}
@@ -27,16 +33,11 @@ export const Body = ({ children, ...props }) => {
   )
 }
 
-export const Loader = () => {
+export const Loader = ({ ...props }) => {
   return (
-    <BeatLoader
-      css={
-        'height: 24px; width: 72px; overflow: auto; margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0;'
-      }
-      size={20}
-      loading={true}
-      color={'#000000'}
-    />
+    <div className={styles.loader} {...props}>
+      <BeatLoader loading={true} color={'#333333'} />
+    </div>
   )
 }
 
@@ -82,63 +83,3 @@ export const ActiveInput = ({ value, label, ...props }) => {
     </div>
   )
 }
-
-// export const Footer = () => {
-//   return (
-//     <footer className={styles.footer}>
-//       <div>
-//         <img
-//           src="/icons/Headshot.png"
-//           alt="Headshot"
-//           className={styles.headshot}
-//           height="60px"
-//           width="60px"
-//         />
-//         <p>
-//           © Kevin Koste<br></br>2020 🚀
-//         </p>
-//       </div>
-//       <div>
-//         <a
-//           href="https://github.com/kevinkoste"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           <img
-//             src="/icons/Github.svg"
-//             alt="GitHub Logo"
-//             className={styles.logo}
-//             height="30px"
-//             width="30px"
-//           />
-//         </a>
-//         <a
-//           href="https://linkedin.com/in/kevinkoste"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           <img
-//             src="/icons/Linkedin.svg"
-//             alt="LinkedIn Logo"
-//             className={styles.logo}
-//             height="30px"
-//             width="30px"
-//           />
-//         </a>
-//         <a
-//           href="mailto:kevinkoste@gmail.com"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           <img
-//             src="/icons/Mail.svg"
-//             alt="Email Logo"
-//             className={styles.logo}
-//             height="30px"
-//             width="30px"
-//           />
-//         </a>
-//       </div>
-//     </footer>
-//   )
-// }

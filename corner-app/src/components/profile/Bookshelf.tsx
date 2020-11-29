@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid'
 import styles from './profile.module.css'
 
 import { bookApi } from '../../libs/api'
+import { DndShadowBox } from '../../components/profile/DndShadowBox'
 import {
   useProfileContext,
   updateComponent,
@@ -14,28 +15,37 @@ import { BookshelfProps } from '../../models/Profile'
 export const EditBookshelf: React.FC<BookshelfProps> = ({ id, props }) => {
   const { profileState } = useProfileContext()
 
-  if (profileState.editing) {
-    return (
-      <div className={styles.container}>
-        <div className={styles.shadowBox}>
+  const [editing, setEditing] = useState(false)
+
+  return (
+    <div className={styles.container}>
+      <DndShadowBox>
+        <div className={styles.header}>
           <h1>Bookshelf</h1>
-          <AddBookshelfRow id={id} />
-          {props.books.map((book, idx) => (
-            <EditBookshelfRow key={idx} book={book} />
-          ))}
+          {profileState.editing && (
+            <img
+              className={styles.editIcon}
+              src={
+                editing ? '/icons/green-checkmark.svg' : '/icons/green-plus.svg'
+              }
+              alt="gray pencil"
+              onClick={() => setEditing(!editing)}
+            />
+          )}
         </div>
-      </div>
-    )
-  } else {
-    return (
-      <div className={styles.containerPublic + ' static'}>
-        <h1>Bookshelf</h1>
-        {props.books.map((book, idx) => (
-          <BookshelfRow key={idx} book={book} />
-        ))}
-      </div>
-    )
-  }
+
+        {editing && <AddBookshelfRow id={id} />}
+
+        {props.books.map((book, idx) => {
+          return editing ? (
+            <EditBookshelfRow key={idx} book={book} />
+          ) : (
+            <BookshelfRow key={idx} book={book} />
+          )
+        })}
+      </DndShadowBox>
+    </div>
+  )
 }
 
 // public component

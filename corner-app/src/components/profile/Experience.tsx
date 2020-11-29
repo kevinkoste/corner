@@ -3,6 +3,8 @@ import { v4 as uuidv4 } from 'uuid'
 import styles from './profile.module.css'
 
 import { api } from '../../libs/api'
+import { DndShadowBox } from '../../components/profile/DndShadowBox'
+
 import {
   useProfileContext,
   updateComponent,
@@ -15,28 +17,60 @@ import { ExperienceProps } from '../../models/Profile'
 export const EditExperience: React.FC<ExperienceProps> = ({ id, props }) => {
   const { profileState } = useProfileContext()
 
-  if (profileState.editing) {
-    return (
-      <div className={styles.container}>
-        <div className={styles.shadowBox}>
+  const [editing, setEditing] = useState(false)
+
+  return (
+    <div className={styles.container}>
+      <DndShadowBox>
+        <div className={styles.header}>
           <h1>Experience</h1>
-          <AddExperienceRow id={id} />
-          {props.experiences.map((exp, idx) => (
-            <EditExperienceRow key={idx} experience={exp} />
-          ))}
+          {profileState.editing && (
+            <img
+              className={styles.editIcon}
+              src={
+                editing ? '/icons/green-checkmark.svg' : '/icons/green-plus.svg'
+              }
+              alt="gray pencil"
+              onClick={() => setEditing(!editing)}
+            />
+          )}
         </div>
-      </div>
-    )
-  } else {
-    return (
-      <div className={styles.containerPublic + ' static'}>
-        <h1>Experience</h1>
-        {props.experiences.map((exp, idx) => (
-          <ExperienceRow key={idx} experience={exp} />
-        ))}
-      </div>
-    )
-  }
+
+        {editing && <AddExperienceRow id={id} />}
+
+        {props.experiences.map((exp, idx) => {
+          return editing ? (
+            <EditExperienceRow key={idx} experience={exp} />
+          ) : (
+            <ExperienceRow key={idx} experience={exp} />
+          )
+        })}
+      </DndShadowBox>
+    </div>
+  )
+
+  // if (profileState.editing) {
+  //   return (
+  //     <div className={styles.container}>
+  //       <DndShadowBox>
+  //         <h1>Experience</h1>
+  //         <AddExperienceRow id={id} />
+  //         {props.experiences.map((exp, idx) => (
+  //           <EditExperienceRow key={idx} experience={exp} />
+  //         ))}
+  //       </DndShadowBox>
+  //     </div>
+  //   )
+  // } else {
+  //   return (
+  //     <div className={styles.containerPublic + ' static'}>
+  //       <h1>Experience</h1>
+  //       {props.experiences.map((exp, idx) => (
+  //         <ExperienceRow key={idx} experience={exp} />
+  //       ))}
+  //     </div>
+  //   )
+  // }
 }
 
 // public component
