@@ -59,7 +59,6 @@ passport.use(
 /* Defines what data are stored in the user session */
 passport.serializeUser((user: Auth, done) => {
   // console.log('in serializeUser with auth object:', user)
-
   done(null, user.authId)
 })
 

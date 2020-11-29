@@ -13,8 +13,10 @@ export const loggerMiddleware = (
     )}`
   )
   console.log('Origin: ', req.headers.origin)
-  console.log('Headers: ', req.headers)
-  console.log('Session: ', req.session)
+  if (req.headers.origin !== 'SSR') {
+    console.log('Cookie: ', req.headers.cookie)
+    console.log('Session: ', req.session)
+  }
   next()
 }
 

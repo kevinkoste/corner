@@ -18,14 +18,16 @@ const MongoStore = connectMongo(session)
 const store = new MongoStore({ mongooseConnection: mongoose.connection })
 
 const app = express()
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
 
 // trust proxy in prod
 if (process.env.NODE_ENV === 'production') {
   app.set('trust proxy', 1)
 }
 
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
+// configure session behavior
 app.use(
   session({
     name: 'corner-sid',
@@ -34,7 +36,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      // maxAge: 1000 * 60 * 60 * 24 * 7 * 2, // 2 weeks
+      maxAge: 1000 * 60 * 60 * 24 * 7 * 2, // 2 weeks
       secure: process.env.NODE_ENV === 'production',
       // httpOnly: process.env.NODE_ENV !== 'production',
       // sameSite: process.env.NODE_ENV === 'production' ? 'strict' : false,
