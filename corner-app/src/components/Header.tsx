@@ -25,7 +25,11 @@ function Header({ title }) {
   }
 
   const handleLogOut = async () => {
-    await PostAuthLogout()
+    try {
+      await PostAuthLogout()
+    } catch (err) {
+      console.log('error while logging out: ', err)
+    }
     dispatch(setAuth(false))
     toggleBurger()
     router.push('/')
