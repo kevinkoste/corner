@@ -79,6 +79,11 @@ function OnboardingPage() {
     onMount()
   }, [])
 
+  setTimeout(() => {
+    console.log(activeItem)
+    console.log(canContinue)
+  }, 1000)
+
   const onBackClick = () => {
     setAnimate(true)
     setTimeout(() => {
@@ -113,76 +118,72 @@ function OnboardingPage() {
         <Header title="Onboarding" />
 
         <Body>
-          <div style={{ width: '100%', height: '80px' }} />
           <Transition row timeout={duration} in={animate}>
             {(state) => (
-              <div
-                style={{
-                  transition: `${duration}ms`,
-                  opacity: state === 'exited' ? 1 : 0,
-                }}
-              >
-                {activeItem === 1 && (
-                  <Username
-                    onboardingData={onboardingData}
-                    setOnboardingData={setOnboardingData}
-                    onForwardClick={onForwardClick}
-                    canContinue={canContinue}
-                    setCanContinue={setCanContinue}
-                  />
-                )}
-                {activeItem === 2 && (
-                  <Name
-                    onboardingData={onboardingData}
-                    setOnboardingData={setOnboardingData}
-                    onForwardClick={onForwardClick}
-                    canContinue={canContinue}
-                    setCanContinue={setCanContinue}
-                  />
-                )}
-                {activeItem === 3 && (
-                  <Title
-                    onboardingData={onboardingData}
-                    setOnboardingData={setOnboardingData}
-                    onForwardClick={onForwardClick}
-                    canContinue={canContinue}
-                    setCanContinue={setCanContinue}
-                  />
-                )}
-                {activeItem === 4 && (
-                  <Image
-                    onboardingData={onboardingData}
-                    setOnboardingData={setOnboardingData}
-                    onForwardClick={onForwardClick}
-                    canContinue={canContinue}
-                    setCanContinue={setCanContinue}
-                  />
-                )}
-                {activeItem === 5 && (
-                  <Done
-                    onboardingData={onboardingData}
-                    setOnboardingData={setOnboardingData}
-                    onForwardClick={onForwardClick}
-                    canContinue={canContinue}
-                    setCanContinue={setCanContinue}
-                  />
-                )}
-              </div>
-            )}
-          </Transition>
+              <>
+                <div
+                  style={{
+                    paddingTop: activeItem !== 4 ? '48px' : '16px',
+                    transition: `${duration}ms`,
+                    opacity: state === 'exited' ? 1 : 0,
+                  }}
+                >
+                  {activeItem === 1 && (
+                    <Username
+                      onboardingData={onboardingData}
+                      setOnboardingData={setOnboardingData}
+                      onForwardClick={onForwardClick}
+                      canContinue={canContinue}
+                      setCanContinue={setCanContinue}
+                    />
+                  )}
+                  {activeItem === 2 && (
+                    <Name
+                      onboardingData={onboardingData}
+                      setOnboardingData={setOnboardingData}
+                      onForwardClick={onForwardClick}
+                      canContinue={canContinue}
+                      setCanContinue={setCanContinue}
+                    />
+                  )}
+                  {activeItem === 3 && (
+                    <Title
+                      onboardingData={onboardingData}
+                      setOnboardingData={setOnboardingData}
+                      onForwardClick={onForwardClick}
+                      canContinue={canContinue}
+                      setCanContinue={setCanContinue}
+                    />
+                  )}
+                  {activeItem === 4 && (
+                    <Image
+                      onboardingData={onboardingData}
+                      setOnboardingData={setOnboardingData}
+                      onForwardClick={onForwardClick}
+                      canContinue={canContinue}
+                      setCanContinue={setCanContinue}
+                    />
+                  )}
+                  {activeItem === 5 && (
+                    <Done
+                      onboardingData={onboardingData}
+                      setOnboardingData={setOnboardingData}
+                      onForwardClick={onForwardClick}
+                      canContinue={canContinue}
+                      setCanContinue={setCanContinue}
+                    />
+                  )}
+                </div>
 
-          <div style={{ width: '100%', height: '100px' }} />
-
-          <Transition row timeout={duration} in={animate}>
-            {(state) => (
-              <div
-                style={{
-                  transition: `${duration}ms`,
-                  opacity: state === 'exited' ? 1 : 0,
-                }}
-              >
                 {activeItem > 1 && activeItem < items.length && (
-                  <button className={styles.backButton} onClick={onBackClick}>
+                  <button
+                    className={styles.backButton}
+                    onClick={onBackClick}
+                    style={{
+                      transition: `${duration}ms`,
+                      opacity: state === 'exited' ? 1 : 0,
+                    }}
+                  >
                     {items[activeItem - 1].buttons.backward}
                   </button>
                 )}
@@ -191,11 +192,15 @@ function OnboardingPage() {
                   <button
                     className={styles.forwardButton}
                     onClick={onForwardClick}
+                    style={{
+                      transition: `${duration}ms`,
+                      opacity: state === 'exited' ? 1 : 0,
+                    }}
                   >
                     {items[activeItem - 1].buttons.forward}
                   </button>
                 )}
-              </div>
+              </>
             )}
           </Transition>
         </Body>

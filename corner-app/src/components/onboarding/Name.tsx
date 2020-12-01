@@ -28,10 +28,15 @@ export const Name: React.FC<OnboardingProps> = ({
 
   const onChange = (event: any) => {
     setStarted(true)
-    const filteredText = event.target.value.replace(/[^a-zA-Z0-9\s]/g, '')
+    const filteredText = event.target.value
+      .replace(/[^a-zA-Z ,.'-\s]/g, '')
+      .split(' ')
+      .map((word: string) => word.charAt(0).toUpperCase() + word.substring(1))
+      .join(' ')
+
     setOnboardingData({ ...onboardingData, name: filteredText })
 
-    if (filteredText.split(' ').length > 1) {
+    if (filteredText.split(' ')[1]?.length >= 1) {
       setValid(true)
       setCanContinue(true)
     } else {
@@ -50,7 +55,7 @@ export const Name: React.FC<OnboardingProps> = ({
 
   return (
     <div className={styles.container}>
-      <h1 style={{ marginBottom: '2rem' }}>Your Name</h1>
+      <h1 style={{ marginBottom: '1.5rem' }}>Your Name</h1>
 
       <div className={styles.formRow}>
         <ActiveInput

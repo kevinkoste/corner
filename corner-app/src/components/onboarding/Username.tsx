@@ -58,6 +58,10 @@ export const Username: React.FC<OnboardingProps> = ({
       .replace(/[^a-zA-Z0-9]/g, '')
       .substring(0, 15)
 
+    if (filteredText === onboardingData.username) {
+      setValid(true)
+      setCanContinue(true)
+    }
     setOnboardingData({ ...onboardingData, username: filteredText })
     if (filteredText !== '') {
       setValid(true)
@@ -76,11 +80,10 @@ export const Username: React.FC<OnboardingProps> = ({
 
   return (
     <div className={styles.container}>
-      <h1 style={{ marginBottom: '2rem' }}>Your unique link</h1>
+      <h1 style={{ marginBottom: '1.5rem' }}>Your unique link</h1>
 
       <div className={styles.formRow}>
         <ActiveInput
-          // className={styles.activeInput}
           prefix="corner.so/"
           label="Username"
           value={onboardingData.username}
