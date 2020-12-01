@@ -1,23 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import styles from './Base.module.css'
 
 import BeatLoader from 'react-spinners/BeatLoader'
 
 export const Page = ({ children, ...props }) => {
-  const [height, setHeight] = useState(
-    window.innerHeight *
-      (document.documentElement.clientWidth / window.innerWidth)
-  )
-
-  useEffect(() => {
-    setHeight(
-      window.innerHeight *
-        (document.documentElement.clientWidth / window.innerWidth)
-    )
-  }, [window.innerHeight])
-
   return (
-    <div className={styles.page} style={{ height: `${height}px` }} {...props}>
+    <div className={styles.page} {...props}>
       {children}
     </div>
   )

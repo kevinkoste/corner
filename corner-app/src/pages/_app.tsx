@@ -17,36 +17,38 @@ import {
 } from '../context/AppContext'
 
 export default function App({ Component, pageProps }: AppProps) {
-  const [loading, setLoading] = useState(true)
-
   const [state, dispatch] = useReducer(AppReducer, initialState)
 
-  useEffect(() => {
-    const onMount = async () => {
-      const { data } = await api({
-        method: 'post',
-        url: `/auth/check`,
-      })
+  // const [loading, setLoading] = useState(true)
 
-      const { auth, userId, email, onboarded, username } = data
-      console.log('response from /auth/check:', data)
+  // useEffect(() => {
+  //   const onMount = async () => {
+  //     const { data } = await api({
+  //       method: 'post',
+  //       url: `/auth/check`,
+  //     })
 
-      if (!auth) {
-        dispatch(setAuth(false))
-      } else {
-        dispatch(setAuth(true))
-        dispatch(setUserId(userId))
-        dispatch(setEmail(email))
+  //     const { auth, userId, email, onboarded, username } = data
+  //     console.log('response from /auth/check:', data)
 
-        if (onboarded) {
-          dispatch(setOnboarded(true))
-          dispatch(setUsername(username))
-        }
-      }
-      setLoading(false)
-    }
-    onMount()
-  }, [])
+  //     if (!auth) {
+  //       dispatch(setAuth(false))
+  //     } else {
+  //       dispatch(setAuth(true))
+  //       dispatch(setUserId(userId))
+  //       dispatch(setEmail(email))
+
+  //       if (onboarded) {
+  //         dispatch(setOnboarded(true))
+  //         dispatch(setUsername(username))
+  //       }
+  //     }
+  //     setLoading(false)
+  //   }
+  //   onMount()
+  // }, [])
+
+  const loading = false
 
   return (
     <AppContext.Provider value={{ state, dispatch }}>
