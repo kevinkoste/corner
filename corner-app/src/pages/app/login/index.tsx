@@ -25,27 +25,20 @@ function LoginPage() {
   const [loading, setLoading] = useState(false)
   const [emailInput, setEmailInput] = useState('')
 
-  const magic = new Magic(process.env.NEXT_PUBLIC_MAGIC_PUBLISHABLE_KEY)
-
   useEffect(() => {
     onMount()
   }, [])
 
   const onMount = async () => {
-    magic.preload()
     if (state.auth) {
       await router.push('/app/browse')
     }
   }
 
   const handleLogin = async () => {
+    const magic = new Magic(process.env.NEXT_PUBLIC_MAGIC_PUBLISHABLE_KEY)
     setLoading(true)
     try {
-      console.log(
-        'callback url is: ',
-        `${window.location.origin}/app/login/callback`
-      )
-
       const didToken = await magic.auth.loginWithMagicLink({
         email: emailInput,
         redirectURI: `${window.location.origin}/app/login/callback`,

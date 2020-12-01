@@ -20,13 +20,12 @@ function LoginPage() {
 
   const { state, dispatch } = useAppContext()
 
-  const magic = new Magic(process.env.NEXT_PUBLIC_MAGIC_PUBLISHABLE_KEY)
-
   useEffect(() => {
     onMount()
   }, [])
 
   const onMount = async () => {
+    const magic = new Magic(process.env.NEXT_PUBLIC_MAGIC_PUBLISHABLE_KEY)
     magic.preload()
     if (state.auth) {
       await router.push('/app/browse')
