@@ -5,6 +5,8 @@
   align-items: center;
 
   max-width: 100vw;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
 }
 
 .main {
