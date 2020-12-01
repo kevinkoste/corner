@@ -8,34 +8,25 @@
   padding: 0.5rem 0.5rem 1.5rem 0.5rem;
 }
 
-.header {
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-}
-
 .editIcon {
-  height: 28px;
-  width: 28px;
-  cursor: pointer;
-}
-
-.absoluteEditIcon {
   position: absolute;
-  top: 18px;
-  right: 16px;
-  height: 28px;
-  width: 28px;
+  height: 24px;
+  width: 24px;
   cursor: pointer;
+
+  top: 21px;
+  right: 8px;
 }
 
 /* dnd styles */
 .shadowBox {
   padding: 0.5rem;
   background-color: #ffffff;
-  transition: all 300ms;
 
   overflow: hidden;
+  transition: height 0.2s ease-out, box-shadow 0.2s ease-out;
+  height: auto;
+  min-height: 85px;
 
   /* had to add display: block to get this working on safari... mystery. */
   display: block;
@@ -83,6 +74,7 @@
   text-align: left;
   white-space: pre-wrap;
   padding: 0px;
+  background: #fff;
 
   width: 100%;
   font-family: 'inter';
@@ -107,6 +99,7 @@
   white-space: pre-wrap;
   text-align: left;
   padding: 0px;
+  background: #fff;
 
   width: 100%;
   font-family: 'source-serif';
@@ -222,7 +215,7 @@
     width: 60%;
   }
   .image {
-    width: calc((0.6 * 650px) - 2rem);
-    height: calc((0.6 * 650px) - 2rem);
+    width: calc((0.6 * 600px) - 2rem);
+    height: calc((0.6 * 600px) - 2rem);
   }
 }

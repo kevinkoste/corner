@@ -7,6 +7,7 @@ type StateType = {
   name: string
   components: Component[]
   editing: boolean
+  editingComponent: string
   modal: boolean
   dnd: boolean
 }
@@ -16,6 +17,7 @@ const initialState: StateType = {
   name: '',
   components: [],
   editing: false,
+  editingComponent: '',
   modal: false,
   dnd: false,
 }
@@ -33,6 +35,7 @@ const ProfileContext = createContext<ProfileContextType>({
 // Action constants
 const UPDATE_STATE = 'UPDATE_STATE'
 const SET_EDITING = 'SET_EDITING'
+const SET_EDITING_COMPONENT = 'SET_EDITING_COMPONENT'
 const SET_MODAL = 'SET_MODAL'
 const SET_DND = 'SET_DND'
 
@@ -51,6 +54,7 @@ const DELETE_INTEGRATION = 'DELETE_INTEGRATION'
 type Action =
   | { type: 'UPDATE_STATE'; state: any }
   | { type: 'SET_EDITING'; editing: boolean }
+  | { type: 'SET_EDITING_COMPONENT'; id: string }
   | { type: 'SET_MODAL'; modal: boolean }
   | { type: 'SET_DND'; dnd: boolean }
   | { type: 'UPDATE_COMPONENT'; component: any }
@@ -70,6 +74,10 @@ export const updateState = (state: any): Action => {
 
 export const setEditing = (editing: boolean): Action => {
   return { type: SET_EDITING, editing: editing }
+}
+
+export const setEditingComponent = (id: string): Action => {
+  return { type: SET_EDITING_COMPONENT, id: id }
 }
 
 export const setModal = (modal: boolean): Action => {
@@ -129,6 +137,13 @@ const ProfileReducer = (state: StateType, action: Action) => {
       return {
         ...state,
         editing: action.editing,
+        editingComponent: '',
+      }
+
+    case SET_EDITING_COMPONENT:
+      return {
+        ...state,
+        editingComponent: action.id,
       }
 
     case SET_MODAL:

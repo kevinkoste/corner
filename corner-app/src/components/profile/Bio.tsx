@@ -3,7 +3,7 @@ import styles from './profile.module.css'
 
 import TextareaAutosize from 'react-textarea-autosize'
 
-import { DndShadowBox } from '../../components/profile/DndShadowBox'
+import { DndShadowBox, EditIcon } from './Shared'
 import {
   useProfileContext,
   updateComponent,
@@ -18,8 +18,6 @@ type BioProps = {
 export const EditBio: React.FC<BioProps> = ({ id, props, name }) => {
   const { profileState, profileDispatch } = useProfileContext()
   const [textInput, setTextInput] = useState<string>(props.bio)
-
-  const [editing, setEditing] = useState(false)
 
   const handleClickAway = () => {
     profileDispatch(
@@ -36,21 +34,8 @@ export const EditBio: React.FC<BioProps> = ({ id, props, name }) => {
   return (
     <div className={styles.container}>
       <DndShadowBox>
-        <div className={styles.header}>
-          <h1>About {name.split(' ')[0]}</h1>
-          {profileState.editing && (
-            <img
-              className={styles.editIcon}
-              src={
-                editing
-                  ? '/icons/green-checkmark.svg'
-                  : '/icons/gray-settings.svg'
-              }
-              alt="gray pencil"
-              onClick={() => setEditing(!editing)}
-            />
-          )}
-        </div>
+        <EditIcon id={id} />
+        <h1>About {name.split(' ')[0]}</h1>
 
         {profileState.editing ? (
           <TextareaAutosize

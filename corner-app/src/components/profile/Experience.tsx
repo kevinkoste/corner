@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid'
 import styles from './profile.module.css'
 
 import { api } from '../../libs/api'
-import { DndShadowBox } from '../../components/profile/DndShadowBox'
+import { DndShadowBox, EditIcon } from './Shared'
 import { ActiveInput } from '../../components/Base'
 import {
   useProfileContext,
@@ -17,31 +17,16 @@ import { ExperienceProps } from '../../models/Profile'
 export const EditExperience: React.FC<ExperienceProps> = ({ id, props }) => {
   const { profileState } = useProfileContext()
 
-  const [editing, setEditing] = useState(false)
-
   return (
     <div className={styles.container}>
       <DndShadowBox>
-        <div className={styles.header}>
-          <h1>Experience</h1>
-          {profileState.editing && (
-            <img
-              className={styles.editIcon}
-              src={
-                editing
-                  ? '/icons/green-checkmark.svg'
-                  : '/icons/gray-settings.svg'
-              }
-              alt="toggle menu"
-              onClick={() => setEditing(!editing)}
-            />
-          )}
-        </div>
+        <EditIcon id={id} />
+        <h1>Experience</h1>
 
-        {editing && <AddExperienceRow id={id} />}
+        {profileState.editingComponent === id && <AddExperienceRow id={id} />}
 
         {props.experiences.map((exp, idx) => {
-          return editing ? (
+          return profileState.editingComponent === id ? (
             <EditExperienceRow key={idx} experience={exp} />
           ) : (
             <ExperienceRow key={idx} experience={exp} />

@@ -42,7 +42,12 @@ function Header({ title }) {
     return (
       <div className={styles.headerWrapper}>
         <div className={styles.headerContainer}>
-          <TypewriterText first="Corner" second={title} delay={3913} />
+          <TypewriterText
+            first="Corner"
+            second={title}
+            delay={3913}
+            disabled={false}
+          />
           <img
             className={styles.burgerButton}
             onClick={toggleBurger}
@@ -132,7 +137,7 @@ function Header({ title }) {
 
 export default Header
 
-function TypewriterText({ first, second, delay }) {
+function TypewriterText({ first, second, delay, disabled }) {
   const [text, setText] = useState(first)
 
   useEffect(() => {
@@ -143,46 +148,5 @@ function TypewriterText({ first, second, delay }) {
     return () => (mounted = false)
   }, [])
 
-  return <h1 className={styles.typewriter}>{text}</h1>
+  return <h1 className={disabled ? '' : styles.typewriter}>{text}</h1>
 }
-
-// const InviteForm: React.FC = () => {
-//   const [sent, setSent] = useState(false)
-//   const [emailInput, setEmailInput] = useState('')
-
-//   const onSubmit = () => {
-//     setSent(true)
-
-//     PostProtectInviteNewEmail(emailInput)
-//       .then((res) => {
-//         console.log(res)
-//       })
-//       .catch((err) => console.log(err))
-//   }
-
-//   return (
-//     <Div column width={12}>
-//       <HeaderTitleText style={{ color: 'white', marginTop: '60px' }}>
-//         Invite a friend
-//       </HeaderTitleText>
-
-//       {!sent && (
-//         <Div row width={12} style={{ position: 'relative', maxWidth: '400px' }}>
-//           <InviteTextInput
-//             placeholder={'yourfriend@gmail.com'}
-//             onChange={(event: any) => setEmailInput(event.target.value)}
-//             value={emailInput}
-//             autoCapitalize="none"
-//           />
-//           <InviteButton onClick={onSubmit}>Invite &#62;</InviteButton>
-//         </Div>
-//       )}
-
-//       {sent && (
-//         <Div row width={12} style={{ position: 'relative', maxWidth: '400px' }}>
-//           <InvitedText>{emailInput} has been invited!</InvitedText>
-//         </Div>
-//       )}
-//     </Div>
-//   )
-// }

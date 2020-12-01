@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid'
 import styles from './profile.module.css'
 
 import { bookApi } from '../../libs/api'
-import { DndShadowBox } from '../../components/profile/DndShadowBox'
+import { DndShadowBox, EditIcon } from './Shared'
 import { ActiveInput } from '../../components/Base'
 import {
   useProfileContext,
@@ -16,31 +16,16 @@ import { BookshelfProps } from '../../models/Profile'
 export const EditBookshelf: React.FC<BookshelfProps> = ({ id, props }) => {
   const { profileState } = useProfileContext()
 
-  const [editing, setEditing] = useState(false)
-
   return (
     <div className={styles.container}>
       <DndShadowBox>
-        <div className={styles.header}>
-          <h1>Bookshelf</h1>
-          {profileState.editing && (
-            <img
-              className={styles.editIcon}
-              src={
-                editing
-                  ? '/icons/green-checkmark.svg'
-                  : '/icons/gray-settings.svg'
-              }
-              alt="toggle menu"
-              onClick={() => setEditing(!editing)}
-            />
-          )}
-        </div>
+        <EditIcon id={id} />
+        <h1>Bookshelf</h1>
 
-        {editing && <AddBookshelfRow id={id} />}
+        {profileState.editingComponent === id && <AddBookshelfRow id={id} />}
 
         {props.books.map((book, idx) => {
-          return editing ? (
+          return profileState.editingComponent === id ? (
             <EditBookshelfRow key={idx} book={book} />
           ) : (
             <BookshelfRow key={idx} book={book} />

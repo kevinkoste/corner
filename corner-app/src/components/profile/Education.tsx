@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid'
 import styles from './profile.module.css'
 
 import { api } from '../../libs/api'
-import { DndShadowBox } from '../../components/profile/DndShadowBox'
+import { DndShadowBox, EditIcon } from './Shared'
 import { ActiveInput } from '../../components/Base'
 import {
   useProfileContext,
@@ -17,31 +17,16 @@ import { EducationProps } from '../../models/Profile'
 export const EditEducation: React.FC<EducationProps> = ({ id, props }) => {
   const { profileState } = useProfileContext()
 
-  const [editing, setEditing] = useState(false)
-
   return (
     <div className={styles.container}>
       <DndShadowBox>
-        <div className={styles.header}>
-          <h1>Education</h1>
-          {profileState.editing && (
-            <img
-              className={styles.editIcon}
-              src={
-                editing
-                  ? '/icons/green-checkmark.svg'
-                  : '/icons/gray-settings.svg'
-              }
-              alt="toggle menu"
-              onClick={() => setEditing(!editing)}
-            />
-          )}
-        </div>
+        <EditIcon id={id} />
+        <h1>Education</h1>
 
-        {editing && <AddEducationRow id={id} />}
+        {profileState.editingComponent === id && <AddEducationRow id={id} />}
 
         {props.education.map((edu, idx) => {
-          return editing ? (
+          return profileState.editingComponent === id ? (
             <EditEducationRow key={idx} education={edu} />
           ) : (
             <EducationRow key={idx} education={edu} />

@@ -6,6 +6,7 @@ import { Container, Draggable } from 'react-smooth-dnd'
 import styles from './[username].module.css'
 
 import { api, apiSSR } from '../../../libs/api'
+import { enableScroll, disableScroll } from '../../../libs/helpers'
 import { useAppContext } from '../../../context/AppContext'
 import {
   useProfileContext,
@@ -56,13 +57,20 @@ function EditProfilePage({ username, name, components }) {
   // on save profile, post new profile data to server, NOT async
   const onSave = () => {
     disableScroll()
-    profileDispatch(setDnd(false))
-    setTimeout(() => {
+
+    if (profileState.dnd) {
+      profileDispatch(setDnd(false))
+      setTimeout(() => {
+        profileDispatch(setEditing(!profileState.editing))
+      }, 200)
+    } else {
       profileDispatch(setEditing(!profileState.editing))
-    }, 300)
+    }
+
     setTimeout(() => {
       enableScroll()
-    }, 350)
+    }, 300)
+
     if (profileState.editing) {
       api({
         method: 'post',
@@ -90,36 +98,10 @@ function EditProfilePage({ username, name, components }) {
         />
       </Head>
 
+      {profileState.modal && <AddComponentModal />}
+
       <Main>
         {!profileState.editing && <Header title={name} />}
-
-        {profileState.editing && (
-          <div className={styles.menuBar}>
-            <button onClick={onSave} style={{ margin: '0 1rem' }}>
-              Done
-            </button>
-            <img
-              className={styles.menuIcon}
-              src="/icons/gray-settings.svg"
-              alt="gray settings"
-            />
-            <img
-              className={styles.menuIcon}
-              src="/icons/gray-reorder.svg"
-              alt="gray reorder"
-              onClick={() => profileDispatch(setDnd(!profileState.dnd))}
-            />
-
-            <img
-              className={styles.menuIcon}
-              src="/icons/gray-plus.svg"
-              alt="green plus sign"
-              onClick={() => profileDispatch(setModal(!profileState.dnd))}
-            />
-          </div>
-        )}
-
-        {profileState.modal && <AddComponentModal />}
 
         <Body style={{ paddingBottom: '80px' }}>
           <Container onDrop={onDrop} nonDragAreaSelector=".static" lockAxis="y">
@@ -135,15 +117,26 @@ function EditProfilePage({ username, name, components }) {
             })}
           </Container>
 
-          {!profileState.editing && (
-            <button className={styles.floatingButton} onClick={onSave}>
-              Edit Corner
-            </button>
-          )}
-
-          {/* <button className={styles.floatingButton} onClick={onSave}>
+          <button className={styles.floatingButton} onClick={onSave}>
             {profileState.editing ? 'Finish Editing' : 'Edit Corner'}
-          </button> */}
+          </button>
+
+          {profileState.editing && (
+            <div className={styles.menuBar}>
+              <img
+                className={styles.menuIcon}
+                src="/icons/gray-plus.svg"
+                alt="green plus sign"
+                onClick={() => profileDispatch(setModal(!profileState.modal))}
+              />
+              <img
+                className={styles.menuIcon}
+                src="/icons/gray-reorder.svg"
+                alt="gray reorder"
+                onClick={() => profileDispatch(setDnd(!profileState.dnd))}
+              />
+            </div>
+          )}
         </Body>
       </Main>
     </Page>
@@ -172,20 +165,4 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
       components: components,
     },
   }
-}
-
-// helper functions to avoid jitter when
-// "edit" components replace "public" components
-function disableScroll() {
-  // Get the current page scroll position
-  const scrollTop = window.pageYOffset || document.documentElement.scrollTop
-  const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft
-
-  // if any scroll is attempted, set this to the previous value
-  window.onscroll = function () {
-    window.scrollTo(scrollLeft, scrollTop)
-  }
-}
-function enableScroll() {
-  window.onscroll = function () {}
 }

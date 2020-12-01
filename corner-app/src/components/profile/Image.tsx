@@ -4,7 +4,7 @@ import { api } from '../../libs/api'
 
 import imageCompression from 'browser-image-compression'
 import ClipLoader from 'react-spinners/ClipLoader'
-import { DndShadowBox } from '../../components/profile/DndShadowBox'
+import { DndShadowBox, EditIcon } from './Shared'
 
 import {
   useProfileContext,
@@ -66,26 +66,12 @@ export const EditImage: React.FC<ImageProps> = ({ id, props }) => {
   return (
     <div className={styles.imageContainer}>
       <DndShadowBox>
-        {profileState.editing && (
-          <img
-            className={styles.absoluteEditIcon}
-            src={
-              editing
-                ? '/icons/green-checkmark.svg'
-                : '/icons/gray-settings.svg'
-            }
-            alt="toggle menu"
-            onClick={() => setEditing(!editing)}
-          />
-        )}
+        <EditIcon id={id} style={{ top: '4px' }} />
         <img
           className={styles.image}
-          // style={{
-          //   objectFit: profileState.dnd ? 'cover' : 'contain',
-          // }}
           src={process.env.NEXT_PUBLIC_S3_BUCKET + 'large/' + props.image}
         />
-        {profileState.editing && !profileState.dnd && (
+        {profileState.editingComponent === id && !profileState.dnd && (
           <div className={styles.uploadWrapper}>
             {uploading && (
               <ClipLoader
