@@ -103,7 +103,7 @@ function EditProfilePage({ username, name, components }) {
       <Main>
         <Header title={name} />
 
-        <Body style={{ paddingTop: '80px', paddingBottom: '80px' }}>
+        <Body style={{ paddingTop: '60px', paddingBottom: '80px' }}>
           <Container onDrop={onDrop} nonDragAreaSelector=".static" lockAxis="y">
             {profileState.components.map((comp, idx) => {
               return (

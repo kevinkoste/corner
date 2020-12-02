@@ -35,7 +35,7 @@ function ProfilePage({ username, name, components }) {
       <Main>
         <Header title={name} />
 
-        <Body style={{ paddingTop: '80px' }}>
+        <Body style={{ paddingTop: '60px', paddingBottom: '80px' }}>
           {components.map((comp) => GenerateComponent(comp, name))}
         </Body>
 
