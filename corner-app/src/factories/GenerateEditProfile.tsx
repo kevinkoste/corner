@@ -7,6 +7,7 @@ import { EditImage } from '../components/profile/Image'
 import { EditExperience } from '../components/profile/Experience'
 import { EditEducation } from '../components/profile/Education'
 import { EditBookshelf } from '../components/profile/Bookshelf'
+import { EditTwitter } from '../components/profile/Twitter'
 
 // GenerateComponent takes JSON {id, component, props},
 // then generates a React element
@@ -22,6 +23,7 @@ const Components: ComponentIndex = {
   experiences: EditExperience,
   education: EditEducation,
   bookshelf: EditBookshelf,
+  twitter: EditTwitter,
 }
 
 export const GenerateEditComponent = (component: Component, name: string) => {

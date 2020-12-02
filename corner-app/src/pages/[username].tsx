@@ -35,7 +35,9 @@ function ProfilePage({ username, name, components }) {
       <Main>
         <Header title={name} />
 
-        <Body>{components.map((comp) => GenerateComponent(comp, name))}</Body>
+        <Body style={{ paddingTop: '80px' }}>
+          {components.map((comp) => GenerateComponent(comp, name))}
+        </Body>
 
         {!state.auth && (
           <Link href="/app/login">

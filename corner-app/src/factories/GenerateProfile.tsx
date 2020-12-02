@@ -7,6 +7,7 @@ import { Image } from '../components/profile/Image'
 import { Experience } from '../components/profile/Experience'
 import { Education } from '../components/profile/Education'
 import { Bookshelf } from '../components/profile/Bookshelf'
+import { Twitter } from '../components/profile/Twitter'
 
 // import { Bookshelf } from './Bookshelf'
 
@@ -24,6 +25,7 @@ const Components: ComponentIndex = {
   experiences: Experience,
   education: Education,
   bookshelf: Bookshelf,
+  twitter: Twitter,
 }
 
 export const GenerateComponent = (component: Component, name: string) => {

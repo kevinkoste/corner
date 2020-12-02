@@ -120,15 +120,17 @@ export const EditIcon = ({ id, ...props }) => {
 
   // fadeIn/fadeOut support
   const [display, setDisplay] = useState(false)
+  const [animating, setAnimating] = useState(true)
 
   useEffect(() => {
     if (profileState.editing) {
       setDisplay(true)
     }
-  }, [profileState.editing])
+    setAnimating(profileState.editing && !profileState.dnd)
+  }, [profileState.editing, profileState.dnd])
 
   const handleAnimationEnd = () => {
-    if (!profileState.editing) setDisplay(false)
+    if (!profileState.editing || profileState.dnd) setDisplay(false)
   }
 
   return (
@@ -136,7 +138,7 @@ export const EditIcon = ({ id, ...props }) => {
       <>
         <img
           className={`${styles.editIcon} ${
-            profileState.editing ? styles.fadeIn : styles.fadeOut
+            animating ? styles.fadeIn : styles.fadeOut
           }`}
           src={
             editing ? '/icons/green-checkmark.svg' : '/icons/gray-settings.svg'
@@ -146,7 +148,7 @@ export const EditIcon = ({ id, ...props }) => {
           onAnimationEnd={handleAnimationEnd}
           {...props}
         />
-        <DeleteIcon show={editing} id={id} />
+        <DeleteIcon show={editing} id={id} {...props} />
       </>
     )
   )

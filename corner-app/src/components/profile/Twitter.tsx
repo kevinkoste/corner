@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import styles from './profile.module.css'
 
 import { ActiveInput } from '../../components/Base'
 import { Timeline } from 'react-twitter-widgets'
+import { DndShadowBox, EditIcon } from './Shared'
 
 import {
   useProfileContext,
@@ -20,6 +21,16 @@ export const EditTwitter: React.FC<TwitterProps> = ({ id, props }) => {
   const [textInput, setTextInput] = useState('')
   const [username, setUsername] = useState<string>(props.username)
 
+  // update data on a timeout (debounce)
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      if (textInput !== '') {
+        setUsername(textInput)
+      }
+    }, 200)
+    return () => clearTimeout(delayDebounceFn)
+  }, [textInput])
+
   const handleChange = (event: any) => {
     setTextInput(event.target.value)
   }
@@ -33,16 +44,26 @@ export const EditTwitter: React.FC<TwitterProps> = ({ id, props }) => {
   }
 
   const onSubmit = () => {
-    setUsername(textInput)
+    profileDispatch(
+      updateComponent({
+        id: id,
+        type: 'twitter',
+        props: {
+          username: username,
+        },
+      })
+    )
   }
 
-  if (profileState.dnd) {
-    return (
-      <div className={styles.container}>
-        <div className={styles.shadowBox}>
+  return (
+    <div className={styles.container}>
+      <DndShadowBox>
+        <EditIcon id={id} />
+        <h1 style={{ marginBottom: '1rem' }}>Twitter</h1>
+
+        {profileState.editingComponent === id && (
           <ActiveInput
-            // className={styles.activeInput}
-            label="Twitter"
+            label="Twitter username"
             prefix="@"
             value={textInput}
             onChange={handleChange}
@@ -50,48 +71,44 @@ export const EditTwitter: React.FC<TwitterProps> = ({ id, props }) => {
             spellCheck="false"
             autoFocus
           />
+        )}
+        <div style={{ minHeight: '350px', marginTop: '1rem' }}>
           <Timeline
             dataSource={{
               sourceType: 'profile',
               screenName: username,
             }}
             options={{
-              height: '400',
+              height: '350',
+              chrome: 'transparent, noheader, nofooter',
+              borderColor: '#999',
+              // tweetLimit: 6,
+              dnt: true,
             }}
           />
         </div>
-      </div>
-    )
-  } else {
-    return (
-      <div className={styles.containerPublic + ' static'}>
-        <h1 className={styles.titleText}>{textInput}</h1>
-        <Timeline
-          dataSource={{
-            sourceType: 'profile',
-            screenName: username,
-          }}
-          options={{
-            height: '400',
-          }}
-        />
-      </div>
-    )
-  }
+      </DndShadowBox>
+    </div>
+  )
 }
 
 // public twitter component
 export const Twitter: React.FC<TwitterProps> = ({ props }) => {
-  if (props.headline !== '') {
+  if (props.username !== '') {
     return (
       <div className={styles.containerPublic}>
+        <h1 style={{ marginBottom: '1rem' }}>Twitter</h1>
         <Timeline
           dataSource={{
             sourceType: 'profile',
             screenName: props.username,
           }}
           options={{
-            height: '400',
+            height: '350',
+            chrome: 'transparent, noheader, nofooter',
+            borderColor: '#999',
+            // tweetLimit: 6,
+            dnt: true,
           }}
         />
       </div>

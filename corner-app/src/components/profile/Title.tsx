@@ -34,7 +34,7 @@ export const EditTitle: React.FC<TitleProps> = ({ id, props }) => {
   return (
     <div className={styles.container}>
       <DndShadowBox>
-        <EditIcon id={id} />
+        <EditIcon id={id} style={{ top: '0px' }} />
 
         {profileState.editingComponent === id ? (
           <TextareaAutosize
@@ -53,7 +53,7 @@ export const EditTitle: React.FC<TitleProps> = ({ id, props }) => {
   )
 }
 
-// public bio component
+// public title component
 export const Title: React.FC<TitleProps> = ({ props }) => {
   if (props.headline !== '') {
     return (

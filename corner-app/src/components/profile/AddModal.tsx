@@ -32,9 +32,9 @@ export const AddComponentModal = () => {
       props: { education: [] },
     },
     {
-      display: 'Integrations',
-      type: 'integrations',
-      props: { integrations: [] },
+      display: 'Twitter',
+      type: 'twitter',
+      props: { username: '' },
     },
   ]
 
