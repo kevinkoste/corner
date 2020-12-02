@@ -19,7 +19,6 @@
     "react-textarea-autosize": "^8.3.0",
     "react-transition-group": "^4.4.1",
     "react-twitter-widgets": "^1.9.5",
-    "swr": "^0.3.9",
     "uuid": "^8.3.1"
   },
   "devDependencies": {

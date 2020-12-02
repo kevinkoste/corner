@@ -10,7 +10,7 @@ import { Page, Main, Body } from '../components/Base'
 
 import { api } from '../libs/api'
 import { useAppContext } from '../context/AppContext'
-import { GenerateComponent } from '../factories/GenerateProfile'
+import { GenerateComponent } from '../factories/generateProfile'
 
 function ProfilePage({ username, name, components }) {
   const router = useRouter()

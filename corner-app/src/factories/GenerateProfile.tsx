@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Component } from '../models/Profile'
+import { Component } from '../models/profile'
 import { Bio } from '../components/profile/Bio'
 import { Title } from '../components/profile/Title'
 import { Image } from '../components/profile/Image'

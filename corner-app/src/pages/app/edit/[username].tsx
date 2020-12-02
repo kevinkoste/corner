@@ -15,7 +15,7 @@ import {
   setDnd,
   setModal,
   swapComponents,
-} from '../../../context/ProfileContext'
+} from '../../../context/profileContext'
 
 import Header from '../../../components/Header'
 import { Page, Main, Body } from '../../../components/Base'

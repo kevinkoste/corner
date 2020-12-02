@@ -5,7 +5,7 @@ import {
   useProfileContext,
   setModal,
   updateComponent,
-} from '../../context/ProfileContext'
+} from '../../context/profileContext'
 
 export const AddComponentModal = () => {
   const { profileDispatch } = useProfileContext()

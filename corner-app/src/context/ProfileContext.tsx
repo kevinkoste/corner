@@ -1,11 +1,9 @@
 import React, { createContext, useReducer, useContext, Dispatch } from 'react'
 
-import { Component } from '../models/Profile'
-
 type StateType = {
   username: string
   name: string
-  components: Component[]
+  components: any[]
   editing: boolean
   editingComponent: string
   modal: boolean

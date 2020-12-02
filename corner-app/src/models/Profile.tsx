@@ -16,15 +16,7 @@ export type Component = {
   props: any
 }
 
-export type NameComponent = {
-  id: string
-  type: 'name'
-  props: {
-    name: string
-  }
-}
-
-export type HeadlineComponent = {
+export type TitleProps = {
   id: string
   type: 'headline'
   props: {
@@ -32,15 +24,16 @@ export type HeadlineComponent = {
   }
 }
 
-export type BioComponent = {
+export type BioProps = {
   id: string
   type: 'bio'
   props: {
     bio: string
   }
+  name?: string
 }
 
-export type HeadshotComponent = {
+export type ImageProps = {
   id: string
   type: 'headshot'
   props: {
@@ -115,5 +108,13 @@ export type EducationProps = {
   type: 'education'
   props: {
     education: EducationType[]
+  }
+}
+
+export type TwitterProps = {
+  id: string
+  type: 'twitter'
+  props: {
+    username: string
   }
 }

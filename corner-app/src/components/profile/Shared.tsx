@@ -5,7 +5,7 @@ import {
   useProfileContext,
   setEditingComponent,
   deleteComponent,
-} from '../../context/ProfileContext'
+} from '../../context/profileContext'
 
 export const DndShadowBox = ({ children, ...props }) => {
   const { profileState } = useProfileContext()
@@ -40,7 +40,6 @@ export const DndShadowBox = ({ children, ...props }) => {
   const collapse = () => {
     // get the height of the element's inner content, regardless of its actual size
     const sectionHeight = ref.current.scrollHeight
-    console.log(sectionHeight)
 
     // temporarily disable all css transitions
     const elementTransition = ref.current.style.transition
@@ -165,14 +164,12 @@ export const DeleteIcon = ({ show, id, ...props }) => {
 
   // animation support
   useEffect(() => {
-    console.log('in show useeffect with show: ', show)
     if (show) {
       setDisplay(true)
     }
   }, [show])
 
   const handleAnimationEnd = () => {
-    console.log('in animEnd with show: ', show)
     if (!show) setDisplay(false)
   }
 

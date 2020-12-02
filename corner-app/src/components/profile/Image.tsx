@@ -9,12 +9,8 @@ import { DndShadowBox, EditIcon } from './Shared'
 import {
   useProfileContext,
   updateComponent,
-} from '../../context/ProfileContext'
-
-type ImageProps = {
-  id: string
-  props: any
-}
+} from '../../context/profileContext'
+import { ImageProps } from '../../models/profile'
 
 export const EditImage: React.FC<ImageProps> = ({ id, props }) => {
   const { profileState, profileDispatch } = useProfileContext()

@@ -4,7 +4,7 @@ import './_app.css'
 
 import { api } from '../libs/api'
 import { Loader } from '../components/Base'
-import { ProfileProvider } from '../context/ProfileContext'
+import { ProfileProvider } from '../context/profileContext'
 import {
   initialState,
   AppContext,
@@ -29,7 +29,6 @@ export default function App({ Component, pageProps }: AppProps) {
       })
 
       const { auth, userId, email, onboarded, username } = data
-      console.log('response from /auth/check:', data)
 
       if (!auth) {
         dispatch(setAuth(false))

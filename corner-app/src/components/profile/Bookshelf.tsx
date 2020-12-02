@@ -9,9 +9,9 @@ import {
   useProfileContext,
   updateComponent,
   deleteBookById,
-} from '../../context/ProfileContext'
+} from '../../context/profileContext'
 
-import { BookshelfProps } from '../../models/Profile'
+import { BookshelfProps } from '../../models/profile'
 
 export const EditBookshelf: React.FC<BookshelfProps> = ({ id, props }) => {
   const { profileState } = useProfileContext()

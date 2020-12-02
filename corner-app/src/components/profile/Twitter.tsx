@@ -8,12 +8,9 @@ import { DndShadowBox, EditIcon } from './Shared'
 import {
   useProfileContext,
   updateComponent,
-} from '../../context/ProfileContext'
+} from '../../context/profileContext'
 
-type TwitterProps = {
-  id: string
-  props: any
-}
+import { TwitterProps } from '../../models/profile'
 
 export const EditTwitter: React.FC<TwitterProps> = ({ id, props }) => {
   const { profileState, profileDispatch } = useProfileContext()
@@ -72,14 +69,14 @@ export const EditTwitter: React.FC<TwitterProps> = ({ id, props }) => {
             autoFocus
           />
         )}
-        <div style={{ minHeight: '350px', marginTop: '1rem' }}>
+        <div style={{ minHeight: '375px', marginTop: '1rem' }}>
           <Timeline
             dataSource={{
               sourceType: 'profile',
               screenName: username,
             }}
             options={{
-              height: '350',
+              height: '375',
               chrome: 'transparent, noheader, nofooter',
               borderColor: '#999',
               // tweetLimit: 6,
@@ -104,7 +101,7 @@ export const Twitter: React.FC<TwitterProps> = ({ props }) => {
             screenName: props.username,
           }}
           options={{
-            height: '350',
+            height: '375',
             chrome: 'transparent, noheader, nofooter',
             borderColor: '#999',
             // tweetLimit: 6,

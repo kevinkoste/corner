@@ -7,13 +7,9 @@ import { DndShadowBox, EditIcon } from './Shared'
 import {
   useProfileContext,
   updateComponent,
-} from '../../context/ProfileContext'
+} from '../../context/profileContext'
 
-type BioProps = {
-  id: string
-  props: any
-  name: string
-}
+import { BioProps } from '../../models/profile'
 
 export const EditBio: React.FC<BioProps> = ({ id, props, name }) => {
   const { profileState, profileDispatch } = useProfileContext()

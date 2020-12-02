@@ -7,12 +7,9 @@ import { DndShadowBox, EditIcon } from './Shared'
 import {
   useProfileContext,
   updateComponent,
-} from '../../context/ProfileContext'
+} from '../../context/profileContext'
 
-type TitleProps = {
-  id: string
-  props: any
-}
+import { TitleProps } from '../../models/profile'
 
 export const EditTitle: React.FC<TitleProps> = ({ id, props }) => {
   const { profileState, profileDispatch } = useProfileContext()

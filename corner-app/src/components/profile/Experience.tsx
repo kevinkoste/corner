@@ -10,9 +10,9 @@ import {
   updateComponent,
   updateExperience,
   deleteExperience,
-} from '../../context/ProfileContext'
+} from '../../context/profileContext'
 
-import { ExperienceProps } from '../../models/Profile'
+import { ExperienceProps } from '../../models/profile'
 
 export const EditExperience: React.FC<ExperienceProps> = ({ id, props }) => {
   const { profileState } = useProfileContext()

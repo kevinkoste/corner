@@ -10,9 +10,9 @@ import {
   updateComponent,
   updateEducation,
   deleteEducation,
-} from '../../context/ProfileContext'
+} from '../../context/profileContext'
 
-import { EducationProps } from '../../models/Profile'
+import { EducationProps } from '../../models/profile'
 
 export const EditEducation: React.FC<EducationProps> = ({ id, props }) => {
   const { profileState } = useProfileContext()
