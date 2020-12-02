@@ -89,7 +89,7 @@ export const Username: React.FC<OnboardingProps> = ({
           value={onboardingData.username}
           onChange={onChange}
           onKeyDown={onKeyDown}
-          spellCheck="false"
+          spellcheck="false"
           autoFocus
         />
         {canContinue && (

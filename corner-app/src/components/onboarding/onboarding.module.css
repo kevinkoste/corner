@@ -76,9 +76,20 @@
   left: -50%;
 }
 
+.uploadButtonChange {
+  position: absolute;
+  top: -57px;
+  right: 0px;
+}
+
 @media (min-width: 768px) {
   .imageContainer {
     height: 60%;
     width: 60%;
+  }
+  .uploadButtonChange {
+    position: absolute;
+    top: -59px;
+    right: 0px;
   }
 }

@@ -19,36 +19,34 @@ import {
 export default function App({ Component, pageProps }: AppProps) {
   const [state, dispatch] = useReducer(AppReducer, initialState)
 
-  // const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true)
 
-  // useEffect(() => {
-  //   const onMount = async () => {
-  //     const { data } = await api({
-  //       method: 'post',
-  //       url: `/auth/check`,
-  //     })
+  useEffect(() => {
+    const onMount = async () => {
+      const { data } = await api({
+        method: 'post',
+        url: `/auth/check`,
+      })
 
-  //     const { auth, userId, email, onboarded, username } = data
-  //     console.log('response from /auth/check:', data)
+      const { auth, userId, email, onboarded, username } = data
+      console.log('response from /auth/check:', data)
 
-  //     if (!auth) {
-  //       dispatch(setAuth(false))
-  //     } else {
-  //       dispatch(setAuth(true))
-  //       dispatch(setUserId(userId))
-  //       dispatch(setEmail(email))
+      if (!auth) {
+        dispatch(setAuth(false))
+      } else {
+        dispatch(setAuth(true))
+        dispatch(setUserId(userId))
+        dispatch(setEmail(email))
 
-  //       if (onboarded) {
-  //         dispatch(setOnboarded(true))
-  //         dispatch(setUsername(username))
-  //       }
-  //     }
-  //     setLoading(false)
-  //   }
-  //   onMount()
-  // }, [])
-
-  const loading = false
+        if (onboarded) {
+          dispatch(setOnboarded(true))
+          dispatch(setUsername(username))
+        }
+      }
+      setLoading(false)
+    }
+    onMount()
+  }, [])
 
   return (
     <AppContext.Provider value={{ state, dispatch }}>

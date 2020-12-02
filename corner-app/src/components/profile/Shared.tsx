@@ -4,6 +4,7 @@ import styles from './profile.module.css'
 import {
   useProfileContext,
   setEditingComponent,
+  deleteComponent,
 } from '../../context/ProfileContext'
 
 export const DndShadowBox = ({ children, ...props }) => {
@@ -117,17 +118,74 @@ export const EditIcon = ({ id, ...props }) => {
     }
   }
 
-  if (!profileState.editing) {
-    return null
+  // fadeIn/fadeOut support
+  const [display, setDisplay] = useState(false)
+
+  useEffect(() => {
+    if (profileState.editing) {
+      setDisplay(true)
+    }
+  }, [profileState.editing])
+
+  const handleAnimationEnd = () => {
+    if (!profileState.editing) setDisplay(false)
   }
 
   return (
-    <img
-      className={styles.editIcon}
-      src={editing ? '/icons/green-checkmark.svg' : '/icons/gray-settings.svg'}
-      alt="toggle menu"
-      onClick={handleClick}
-      {...props}
-    />
+    display && (
+      <>
+        <img
+          className={`${styles.editIcon} ${
+            profileState.editing ? styles.fadeIn : styles.fadeOut
+          }`}
+          src={
+            editing ? '/icons/green-checkmark.svg' : '/icons/gray-settings.svg'
+          }
+          alt="toggle menu"
+          onClick={handleClick}
+          onAnimationEnd={handleAnimationEnd}
+          {...props}
+        />
+        <DeleteIcon show={editing} id={id} />
+      </>
+    )
+  )
+}
+
+export const DeleteIcon = ({ show, id, ...props }) => {
+  const { profileDispatch } = useProfileContext()
+
+  const [display, setDisplay] = useState(false)
+
+  const handleClick = () => {
+    profileDispatch(deleteComponent(id))
+  }
+
+  // animation support
+  useEffect(() => {
+    console.log('in show useeffect with show: ', show)
+    if (show) {
+      setDisplay(true)
+    }
+  }, [show])
+
+  const handleAnimationEnd = () => {
+    console.log('in animEnd with show: ', show)
+    if (!show) setDisplay(false)
+  }
+
+  return (
+    display && (
+      <img
+        className={`${styles.deleteIcon} ${
+          show ? styles.deleteIn : styles.deleteOut
+        }`}
+        src={'/icons/red-x.svg'}
+        alt="delete component"
+        onClick={handleClick}
+        onAnimationEnd={handleAnimationEnd}
+        {...props}
+      />
+    )
   )
 }

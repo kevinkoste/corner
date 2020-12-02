@@ -14,6 +14,7 @@ export const Image: React.FC<OnboardingProps> = ({
 }) => {
   const [image, setImage] = useState('pg.jpg')
   const [uploading, setUploading] = useState(false)
+  const [uploaded, setUploaded] = useState(false)
 
   useEffect(() => {
     // if returning to component, populate input
@@ -46,6 +47,8 @@ export const Image: React.FC<OnboardingProps> = ({
     setImage(image)
     setOnboardingData({ ...onboardingData, image: image })
 
+    setUploaded(true)
+
     setUploading(false)
     setCanContinue(true)
   }
@@ -67,7 +70,7 @@ export const Image: React.FC<OnboardingProps> = ({
               color={'#333333'}
             />
           )}
-          {!uploading && (
+          {!uploading && !uploaded && (
             <label className={styles.uploadButton}>
               Choose Photo
               <input
@@ -79,6 +82,17 @@ export const Image: React.FC<OnboardingProps> = ({
             </label>
           )}
         </div>
+        {!uploading && uploaded && (
+          <label className={styles.uploadButtonChange}>
+            Change Photo
+            <input
+              className={styles.uploadInput}
+              type="file"
+              accept="image/*"
+              onChange={handleFileUpload}
+            />
+          </label>
+        )}
       </div>
     </div>
   )

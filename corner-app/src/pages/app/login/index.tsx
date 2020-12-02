@@ -26,14 +26,13 @@ function LoginPage() {
   const [emailInput, setEmailInput] = useState('')
 
   useEffect(() => {
+    const onMount = async () => {
+      if (state.auth) {
+        await router.push('/app/browse')
+      }
+    }
     onMount()
   }, [])
-
-  const onMount = async () => {
-    if (state.auth) {
-      await router.push('/app/browse')
-    }
-  }
 
   const handleLogin = async () => {
     const magic = new Magic(process.env.NEXT_PUBLIC_MAGIC_PUBLISHABLE_KEY)

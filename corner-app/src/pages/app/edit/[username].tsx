@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { GetServerSideProps } from 'next'
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { Container, Draggable } from 'react-smooth-dnd'
 import styles from './[username].module.css'
 
@@ -101,7 +101,7 @@ function EditProfilePage({ username, name, components }) {
       {profileState.modal && <AddComponentModal />}
 
       <Main>
-        {!profileState.editing && <Header title={name} />}
+        <Header title={name} />
 
         <Body style={{ paddingBottom: '80px' }}>
           <Container onDrop={onDrop} nonDragAreaSelector=".static" lockAxis="y">
@@ -121,22 +121,8 @@ function EditProfilePage({ username, name, components }) {
             {profileState.editing ? 'Finish Editing' : 'Edit Corner'}
           </button>
 
-          {profileState.editing && (
-            <div className={styles.menuBar}>
-              <img
-                className={styles.menuIcon}
-                src="/icons/gray-plus.svg"
-                alt="green plus sign"
-                onClick={() => profileDispatch(setModal(!profileState.modal))}
-              />
-              <img
-                className={styles.menuIcon}
-                src="/icons/gray-reorder.svg"
-                alt="gray reorder"
-                onClick={() => profileDispatch(setDnd(!profileState.dnd))}
-              />
-            </div>
-          )}
+          <AddIcon />
+          <DragIcon />
         </Body>
       </Main>
     </Page>
@@ -165,4 +151,68 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
       components: components,
     },
   }
+}
+
+export const AddIcon = ({ ...props }) => {
+  const { profileDispatch, profileState } = useProfileContext()
+
+  // fadeIn/fadeOut support
+  const [display, setDisplay] = useState(false)
+
+  useEffect(() => {
+    if (profileState.editing) {
+      setDisplay(true)
+    }
+  }, [profileState.editing])
+
+  const handleAnimationEnd = () => {
+    if (!profileState.editing) setDisplay(false)
+  }
+
+  return (
+    display && (
+      <img
+        className={`${styles.addIcon} ${
+          profileState.editing ? styles.slideIn : styles.slideOut
+        }`}
+        src="/icons/gray-plus.svg"
+        alt="gray plus sign"
+        onClick={() => profileDispatch(setModal(!profileState.modal))}
+        onAnimationEnd={handleAnimationEnd}
+        {...props}
+      />
+    )
+  )
+}
+
+export const DragIcon = ({ ...props }) => {
+  const { profileDispatch, profileState } = useProfileContext()
+
+  // fadeIn/fadeOut support
+  const [display, setDisplay] = useState(false)
+
+  useEffect(() => {
+    if (profileState.editing) {
+      setDisplay(true)
+    }
+  }, [profileState.editing])
+
+  const handleAnimationEnd = () => {
+    if (!profileState.editing) setDisplay(false)
+  }
+
+  return (
+    display && (
+      <img
+        className={`${styles.dragIcon} ${
+          profileState.editing ? styles.dragSlideIn : styles.dragSlideOut
+        }`}
+        src="/icons/gray-reorder.svg"
+        alt="gray reorder sign"
+        onClick={() => profileDispatch(setDnd(!profileState.dnd))}
+        onAnimationEnd={handleAnimationEnd}
+        {...props}
+      />
+    )
+  )
 }

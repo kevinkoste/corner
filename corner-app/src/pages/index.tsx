@@ -33,13 +33,15 @@ const Home: React.FC = () => {
         <Header title="Home" />
 
         <Body style={{ padding: '1rem' }}>
-          <h1 className={styles.title}>
-            Welcome to Your Corner of the Internet
-          </h1>
+          <h1 className={styles.title}>Build your internet presence</h1>
 
           <p className={styles.subtitle}>
-            Corner is a platform to meet young people with big ideas. It’s part
-            website builder, part professional network, and part portfolio site.
+            Stop worrying about finding 500 people to "connect" with. Your
+            Corner profile looks professional from the moment you build it.
+          </p>
+
+          <p className={styles.subtitle}>
+            It takes 60 seconds, and it's perfect for your link-in-bio.
           </p>
 
           <Link href="/app/login">
