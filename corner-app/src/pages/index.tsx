@@ -9,7 +9,7 @@ import Header from '../components/Header'
 
 import { useAppContext } from '../context/appContext'
 
-const Home: React.FC = () => {
+export default function Home() {
   const router = useRouter()
   const { state } = useAppContext()
 
@@ -52,5 +52,3 @@ const Home: React.FC = () => {
     </Page>
   )
 }
-
-export default Home

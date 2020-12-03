@@ -7,7 +7,7 @@ import { apiSSR } from '../../libs/api'
 import { Page, Main, Body } from '../../components/Base'
 import Header from '../../components/Header'
 
-function BrowsePage({ profiles }) {
+export default function BrowsePage({ profiles }) {
   return (
     <Page>
       <Head>
@@ -32,8 +32,6 @@ function BrowsePage({ profiles }) {
     </Page>
   )
 }
-
-export default BrowsePage
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const { data } = await apiSSR({

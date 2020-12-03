@@ -15,7 +15,7 @@ import {
 
 import { Page, Main, Body, Loader } from '../../../components/Base'
 
-function LoginPage() {
+export default function LoginPage() {
   const router = useRouter()
 
   const { state, dispatch } = useAppContext()
@@ -77,5 +77,3 @@ function LoginPage() {
     </Page>
   )
 }
-
-export default LoginPage

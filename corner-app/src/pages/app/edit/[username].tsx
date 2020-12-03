@@ -22,7 +22,7 @@ import { Page, Main, Body } from '../../../components/Base'
 import { GenerateEditComponent } from '../../../factories/generateEditProfile'
 import { AddComponentModal } from '../../../components/profile/AddModal'
 
-function EditProfilePage({ username, name, components }) {
+export default function EditProfilePage({ username, name, components }) {
   const router = useRouter()
   const { state } = useAppContext()
   const { profileState, profileDispatch } = useProfileContext()
@@ -128,8 +128,6 @@ function EditProfilePage({ username, name, components }) {
     </Page>
   )
 }
-
-export default EditProfilePage
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const { username } = params

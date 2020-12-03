@@ -16,7 +16,7 @@ import { Title } from '../../components/onboarding/Title'
 import { Image } from '../../components/onboarding/Image'
 import { Done } from '../../components/onboarding/Done'
 
-function OnboardingPage() {
+export default function OnboardingPage() {
   const router = useRouter()
   const { state } = useAppContext()
 
@@ -208,5 +208,3 @@ function OnboardingPage() {
     </Page>
   )
 }
-
-export default OnboardingPage

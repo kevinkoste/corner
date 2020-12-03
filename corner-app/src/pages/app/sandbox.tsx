@@ -6,7 +6,7 @@ import { Page, Main, Body } from '../../components/Base'
 
 import { Timeline } from 'react-twitter-widgets'
 
-function SandboxPage() {
+export default function SandboxPage() {
   return (
     <Page>
       <Head>
@@ -33,5 +33,3 @@ function SandboxPage() {
     </Page>
   )
 }
-
-export default SandboxPage

@@ -12,7 +12,7 @@ import { api } from '../libs/api'
 import { useAppContext } from '../context/appContext'
 import { GenerateComponent } from '../factories/generateProfile'
 
-function ProfilePage({ username, name, components }) {
+export default function ProfilePage({ username, name, components }) {
   const router = useRouter()
   const { state } = useAppContext()
 
@@ -48,8 +48,6 @@ function ProfilePage({ username, name, components }) {
     </Page>
   )
 }
-
-export default ProfilePage
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const { username } = params

@@ -17,7 +17,7 @@ import {
 import { Page, Main, Body, Loader, ActiveInput } from '../../../components/Base'
 import Header from '../../../components/Header'
 
-function LoginPage() {
+export default function LoginPage() {
   const router = useRouter()
 
   const { state, dispatch } = useAppContext()
@@ -114,5 +114,3 @@ function LoginPage() {
     </Page>
   )
 }
-
-export default LoginPage
