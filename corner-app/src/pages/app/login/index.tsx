@@ -12,7 +12,7 @@ import {
   setUserId,
   setEmail,
   setUsername,
-} from '../../../context/AppContext'
+} from '../../../context/appContext'
 
 import { Page, Main, Body, Loader, ActiveInput } from '../../../components/Base'
 import Header from '../../../components/Header'

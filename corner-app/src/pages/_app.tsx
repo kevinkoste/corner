@@ -14,7 +14,7 @@ import {
   setUserId,
   setEmail,
   setUsername,
-} from '../context/AppContext'
+} from '../context/appContext'
 
 export default function App({ Component, pageProps }: AppProps) {
   const [state, dispatch] = useReducer(AppReducer, initialState)

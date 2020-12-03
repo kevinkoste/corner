@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import styles from './profile.module.css'
 
 import TextareaAutosize from 'react-textarea-autosize'

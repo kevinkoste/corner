@@ -9,7 +9,7 @@ import Header from '../components/Header'
 import { Page, Main, Body } from '../components/Base'
 
 import { api } from '../libs/api'
-import { useAppContext } from '../context/AppContext'
+import { useAppContext } from '../context/appContext'
 import { GenerateComponent } from '../factories/generateProfile'
 
 function ProfilePage({ username, name, components }) {

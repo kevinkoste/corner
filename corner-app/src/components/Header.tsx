@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 
-import { useAppContext, setAuth } from '../context/AppContext'
+import { useAppContext, setAuth } from '../context/appContext'
 import { api } from '../libs/api'
 
 import styles from './Header.module.css'

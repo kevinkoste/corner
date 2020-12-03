@@ -11,7 +11,7 @@ import {
   setUserId,
   setEmail,
   setUsername,
-} from '../../../context/AppContext'
+} from '../../../context/appContext'
 
 import { Page, Main, Body, Loader } from '../../../components/Base'
 

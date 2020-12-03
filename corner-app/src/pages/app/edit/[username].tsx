@@ -7,7 +7,7 @@ import styles from './[username].module.css'
 
 import { api, apiSSR } from '../../../libs/api'
 import { enableScroll, disableScroll } from '../../../libs/helpers'
-import { useAppContext } from '../../../context/AppContext'
+import { useAppContext } from '../../../context/appContext'
 import {
   useProfileContext,
   updateState,
@@ -19,7 +19,7 @@ import {
 
 import Header from '../../../components/Header'
 import { Page, Main, Body } from '../../../components/Base'
-import { GenerateEditComponent } from '../../../factories/GenerateEditProfile'
+import { GenerateEditComponent } from '../../../factories/generateEditProfile'
 import { AddComponentModal } from '../../../components/profile/AddModal'
 
 function EditProfilePage({ username, name, components }) {

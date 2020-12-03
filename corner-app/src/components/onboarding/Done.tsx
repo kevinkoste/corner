@@ -8,7 +8,7 @@ import {
   useAppContext,
   setOnboarded,
   setUsername,
-} from '../../context/AppContext'
+} from '../../context/appContext'
 
 export const Done: React.FC<OnboardingProps> = ({ onboardingData }) => {
   const { state, dispatch } = useAppContext()

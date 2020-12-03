@@ -8,7 +8,7 @@ import { Transition } from 'react-transition-group'
 import Header from '../../components/Header'
 import { Page, Main, Body } from '../../components/Base'
 import { api } from '../../libs/api'
-import { useAppContext } from '../../context/AppContext'
+import { useAppContext } from '../../context/appContext'
 
 import { Username } from '../../components/onboarding/Username'
 import { Name } from '../../components/onboarding/Name'
