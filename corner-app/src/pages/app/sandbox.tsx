@@ -2,7 +2,7 @@ import Head from 'next/head'
 import styles from './browse.module.css'
 
 import { useState } from 'react'
-import { Page, Main, Body } from '../../components/Base'
+import { Page, Header, Main } from '../../components/Base'
 
 import { Timeline } from 'react-twitter-widgets'
 
@@ -18,17 +18,15 @@ export default function SandboxPage() {
       </Head>
 
       <Main>
-        <Body>
-          <Timeline
-            dataSource={{
-              sourceType: 'profile',
-              screenName: 'TwitterDev',
-            }}
-            options={{
-              height: '400',
-            }}
-          />
-        </Body>
+        <Timeline
+          dataSource={{
+            sourceType: 'profile',
+            screenName: 'TwitterDev',
+          }}
+          options={{
+            height: '400',
+          }}
+        />
       </Main>
     </Page>
   )

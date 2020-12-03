@@ -4,8 +4,7 @@ import { GetServerSideProps } from 'next'
 import styles from './browse.module.css'
 
 import { apiSSR } from '../../libs/api'
-import { Page, Main, Body } from '../../components/Base'
-import Header from '../../components/Header'
+import { Page, Header, Main } from '../../components/Base'
 
 export default function BrowsePage({ profiles }) {
   return (
@@ -18,16 +17,14 @@ export default function BrowsePage({ profiles }) {
         />
       </Head>
 
-      <Main>
-        <Header title="Browse" />
+      <Header title="Browse" />
 
-        <Body style={{ padding: '1rem' }}>
-          {profiles
-            .filter((profile) => Object.keys(profile).length !== 0)
-            .map((profile, index) => (
-              <ProfileRow key={index} profile={profile} />
-            ))}
-        </Body>
+      <Main style={{ padding: '1rem' }}>
+        {profiles
+          .filter((profile) => Object.keys(profile).length !== 0)
+          .map((profile, index) => (
+            <ProfileRow key={index} profile={profile} />
+          ))}
       </Main>
     </Page>
   )

@@ -14,8 +14,13 @@ import {
   setUsername,
 } from '../../../context/appContext'
 
-import { Page, Main, Body, Loader, ActiveInput } from '../../../components/Base'
-import Header from '../../../components/Header'
+import {
+  Page,
+  Header,
+  Main,
+  Loader,
+  ActiveInput,
+} from '../../../components/Base'
 
 export default function LoginPage() {
   const router = useRouter()
@@ -86,30 +91,29 @@ export default function LoginPage() {
         />
       </Head>
 
-      <Main>
-        <Header title="Login" />
+      <Header title="Login" />
 
-        <Body style={{ padding: '1rem', alignItems: 'center' }}>
-          {loading && <Loader />}
-          {!loading && (
-            <div className={styles.formContainer}>
-              <ActiveInput
-                className={styles.emailInput}
-                label="Email"
-                type="email"
-                value={emailInput}
-                onChange={(event: any) => setEmailInput(event.target.value)}
-                onKeyDown={onKeyDown}
-                spellCheck="false"
-                autoCapitalize="none"
-                autoFocus
-              />
-              <button className={styles.submitButton} onClick={handleLogin}>
-                Log In or Sign Up
-              </button>
-            </div>
-          )}
-        </Body>
+      <Main style={{ padding: '1rem', alignItems: 'center' }}>
+        {loading ? (
+          <Loader />
+        ) : (
+          <div className={styles.formContainer}>
+            <ActiveInput
+              className={styles.emailInput}
+              label="Email"
+              type="email"
+              value={emailInput}
+              onChange={(event: any) => setEmailInput(event.target.value)}
+              onKeyDown={onKeyDown}
+              spellCheck="false"
+              autoCapitalize="none"
+              autoFocus
+            />
+            <button className={styles.submitButton} onClick={handleLogin}>
+              Log In or Sign Up
+            </button>
+          </div>
+        )}
       </Main>
     </Page>
   )

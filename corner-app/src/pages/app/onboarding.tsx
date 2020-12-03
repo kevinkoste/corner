@@ -5,8 +5,7 @@ import styles from './onboarding.module.css'
 
 import { Transition } from 'react-transition-group'
 
-import Header from '../../components/Header'
-import { Page, Main, Body } from '../../components/Base'
+import { Page, Header, Main } from '../../components/Base'
 import { api } from '../../libs/api'
 import { useAppContext } from '../../context/appContext'
 
@@ -113,97 +112,94 @@ export default function OnboardingPage() {
           content="Corner - an internet profile builder"
         />
       </Head>
+      <Header title="Onboarding" />
 
       <Main>
-        <Header title="Onboarding" />
+        <Transition row timeout={duration} in={animate}>
+          {(state) => (
+            <>
+              <div
+                style={{
+                  paddingTop: activeItem !== 4 ? '48px' : '16px',
+                  transition: `${duration}ms`,
+                  opacity: state === 'exited' ? 1 : 0,
+                }}
+              >
+                {activeItem === 1 && (
+                  <Username
+                    onboardingData={onboardingData}
+                    setOnboardingData={setOnboardingData}
+                    onForwardClick={onForwardClick}
+                    canContinue={canContinue}
+                    setCanContinue={setCanContinue}
+                  />
+                )}
+                {activeItem === 2 && (
+                  <Name
+                    onboardingData={onboardingData}
+                    setOnboardingData={setOnboardingData}
+                    onForwardClick={onForwardClick}
+                    canContinue={canContinue}
+                    setCanContinue={setCanContinue}
+                  />
+                )}
+                {activeItem === 3 && (
+                  <Title
+                    onboardingData={onboardingData}
+                    setOnboardingData={setOnboardingData}
+                    onForwardClick={onForwardClick}
+                    canContinue={canContinue}
+                    setCanContinue={setCanContinue}
+                  />
+                )}
+                {activeItem === 4 && (
+                  <Image
+                    onboardingData={onboardingData}
+                    setOnboardingData={setOnboardingData}
+                    onForwardClick={onForwardClick}
+                    canContinue={canContinue}
+                    setCanContinue={setCanContinue}
+                  />
+                )}
+                {activeItem === 5 && (
+                  <Done
+                    onboardingData={onboardingData}
+                    setOnboardingData={setOnboardingData}
+                    onForwardClick={onForwardClick}
+                    canContinue={canContinue}
+                    setCanContinue={setCanContinue}
+                  />
+                )}
+              </div>
 
-        <Body>
-          <Transition row timeout={duration} in={animate}>
-            {(state) => (
-              <>
-                <div
+              {activeItem > 1 && activeItem < items.length && (
+                <button
+                  className={styles.backButton}
+                  onClick={onBackClick}
                   style={{
-                    paddingTop: activeItem !== 4 ? '48px' : '16px',
                     transition: `${duration}ms`,
                     opacity: state === 'exited' ? 1 : 0,
                   }}
                 >
-                  {activeItem === 1 && (
-                    <Username
-                      onboardingData={onboardingData}
-                      setOnboardingData={setOnboardingData}
-                      onForwardClick={onForwardClick}
-                      canContinue={canContinue}
-                      setCanContinue={setCanContinue}
-                    />
-                  )}
-                  {activeItem === 2 && (
-                    <Name
-                      onboardingData={onboardingData}
-                      setOnboardingData={setOnboardingData}
-                      onForwardClick={onForwardClick}
-                      canContinue={canContinue}
-                      setCanContinue={setCanContinue}
-                    />
-                  )}
-                  {activeItem === 3 && (
-                    <Title
-                      onboardingData={onboardingData}
-                      setOnboardingData={setOnboardingData}
-                      onForwardClick={onForwardClick}
-                      canContinue={canContinue}
-                      setCanContinue={setCanContinue}
-                    />
-                  )}
-                  {activeItem === 4 && (
-                    <Image
-                      onboardingData={onboardingData}
-                      setOnboardingData={setOnboardingData}
-                      onForwardClick={onForwardClick}
-                      canContinue={canContinue}
-                      setCanContinue={setCanContinue}
-                    />
-                  )}
-                  {activeItem === 5 && (
-                    <Done
-                      onboardingData={onboardingData}
-                      setOnboardingData={setOnboardingData}
-                      onForwardClick={onForwardClick}
-                      canContinue={canContinue}
-                      setCanContinue={setCanContinue}
-                    />
-                  )}
-                </div>
+                  {items[activeItem - 1].buttons.backward}
+                </button>
+              )}
 
-                {activeItem > 1 && activeItem < items.length && (
-                  <button
-                    className={styles.backButton}
-                    onClick={onBackClick}
-                    style={{
-                      transition: `${duration}ms`,
-                      opacity: state === 'exited' ? 1 : 0,
-                    }}
-                  >
-                    {items[activeItem - 1].buttons.backward}
-                  </button>
-                )}
-
-                {activeItem <= items.length && canContinue && (
-                  <button
-                    className={styles.forwardButton}
-                    onClick={onForwardClick}
-                    style={{
-                      transition: `${duration}ms`,
-                      opacity: state === 'exited' ? 1 : 0,
-                    }}
-                  >
-                    {items[activeItem - 1].buttons.forward}
-                  </button>
-                )}
-              </>
-            )}
-          </Transition>
-        </Body>
+              {activeItem <= items.length && canContinue && (
+                <button
+                  className={styles.forwardButton}
+                  onClick={onForwardClick}
+                  style={{
+                    transition: `${duration}ms`,
+                    opacity: state === 'exited' ? 1 : 0,
+                  }}
+                >
+                  {items[activeItem - 1].buttons.forward}
+                </button>
+              )}
+            </>
+          )}
+        </Transition>
       </Main>
     </Page>
   )

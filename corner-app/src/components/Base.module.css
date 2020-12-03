@@ -1,6 +1,5 @@
 .page {
   position: relative;
-
   flex-direction: column;
   align-items: center;
 
@@ -10,14 +9,10 @@
 }
 
 .main {
-  display: flex;
   position: relative;
   flex-direction: column;
   flex: 1;
-  width: 100vw;
-}
 
-.body {
   margin-top: 51px;
   background-color: #fff;
 }
@@ -90,5 +85,123 @@
   }
   .body {
     min-height: calc(100vh - 51px);
+  }
+}
+
+/* HEADER STYLES */
+.headerWrapper {
+  position: fixed;
+  z-index: 5;
+  width: 100vw;
+  padding: 1rem 1rem 0 1rem;
+  background-color: #ffffff;
+}
+
+.headerContainer {
+  position: relative;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #444444;
+}
+
+.headerContainer h1 {
+  overflow: hidden;
+  white-space: nowrap;
+  margin: unset;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.burgerButton {
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+}
+
+.exitButton {
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  height: 23px;
+  width: 23px;
+  cursor: pointer;
+}
+
+.menuContainer {
+  position: fixed;
+  z-index: 6;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+
+  background-color: #333333;
+}
+
+.menuBody {
+  padding: 51px 1rem 0 1rem;
+}
+
+.menuBody h1 {
+  color: #ffffff;
+  margin-top: 20px;
+}
+
+@keyframes typing {
+  0% {
+    width: 0%;
+  }
+  33.33% {
+    width: 50%;
+  }
+  66.66% {
+    width: 0%;
+  }
+  100% {
+    width: 50%;
+  }
+}
+
+@keyframes typingMobile {
+  0% {
+    width: 0%;
+  }
+  33.33% {
+    width: 80%;
+  }
+  66.66% {
+    width: 0%;
+  }
+  100% {
+    width: 80%;
+  }
+}
+
+.typewriter {
+  -webkit-animation-name: typingMobile;
+  -moz-animation-name: typingMobile;
+  -o-animation-name: typingMobile;
+  animation-name: typingMobile;
+  animation-delay: 0.75s;
+  animation-duration: 4.75s;
+  animation-timing-function: steps(27, end);
+  animation-fill-mode: both;
+}
+
+@media (min-width: 768px) {
+  .typewriter {
+    -webkit-animation-name: typing;
+    -moz-animation-name: typing;
+    -o-animation-name: typing;
+    animation-name: typing;
+  }
+  .headerWrapper {
+    width: 600px;
+  }
+  .menuContainer {
+    width: 600px;
+    left: calc((100vw - 600px) / 2);
   }
 }

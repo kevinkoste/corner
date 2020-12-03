@@ -5,8 +5,7 @@ import { GetServerSideProps } from 'next'
 import { useEffect } from 'react'
 
 import styles from './[username].module.css'
-import Header from '../components/Header'
-import { Page, Main, Body } from '../components/Base'
+import { Page, Header, Main } from '../components/Base'
 
 import { api } from '../libs/api'
 import { useAppContext } from '../context/appContext'
@@ -32,18 +31,10 @@ export default function ProfilePage({ username, name, components }) {
         />
       </Head>
 
-      <Main>
-        <Header title={name} />
+      <Header title={name} />
 
-        <Body style={{ paddingTop: '60px', paddingBottom: '80px' }}>
-          {components.map((comp) => GenerateComponent(comp, name))}
-        </Body>
-
-        {!state.auth && (
-          <Link href="/app/login">
-            <button className={styles.floatingButton}>Join Corner</button>
-          </Link>
-        )}
+      <Main style={{ paddingTop: '60px', paddingBottom: '80px' }}>
+        {components.map((comp) => GenerateComponent(comp, name))}
       </Main>
     </Page>
   )

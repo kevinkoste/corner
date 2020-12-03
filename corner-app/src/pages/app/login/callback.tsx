@@ -13,7 +13,7 @@ import {
   setUsername,
 } from '../../../context/appContext'
 
-import { Page, Main, Body, Loader } from '../../../components/Base'
+import { Page, Main, Loader } from '../../../components/Base'
 
 export default function LoginPage() {
   const router = useRouter()
@@ -70,9 +70,7 @@ export default function LoginPage() {
       </Head>
 
       <Main>
-        <Body>
-          <Loader />
-        </Body>
+        <Loader />
       </Main>
     </Page>
   )

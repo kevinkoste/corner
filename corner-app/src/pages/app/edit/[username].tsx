@@ -17,8 +17,7 @@ import {
   swapComponents,
 } from '../../../context/profileContext'
 
-import Header from '../../../components/Header'
-import { Page, Main, Body } from '../../../components/Base'
+import { Page, Header, Main } from '../../../components/Base'
 import { GenerateEditComponent } from '../../../factories/generateEditProfile'
 import { AddComponentModal } from '../../../components/profile/AddModal'
 
@@ -98,32 +97,27 @@ export default function EditProfilePage({ username, name, components }) {
         />
       </Head>
 
+      <Header title={name} />
+
       {profileState.modal && <AddComponentModal />}
 
-      <Main>
-        <Header title={name} />
+      <Main style={{ paddingTop: '60px', paddingBottom: '80px' }}>
+        <Container onDrop={onDrop} nonDragAreaSelector=".static" lockAxis="y">
+          {profileState.components.map((comp, idx) => {
+            return (
+              <Draggable key={idx} className={profileState.dnd ? '' : 'static'}>
+                {GenerateEditComponent(comp, name)}
+              </Draggable>
+            )
+          })}
+        </Container>
 
-        <Body style={{ paddingTop: '60px', paddingBottom: '80px' }}>
-          <Container onDrop={onDrop} nonDragAreaSelector=".static" lockAxis="y">
-            {profileState.components.map((comp, idx) => {
-              return (
-                <Draggable
-                  key={idx}
-                  className={profileState.dnd ? '' : 'static'}
-                >
-                  {GenerateEditComponent(comp, name)}
-                </Draggable>
-              )
-            })}
-          </Container>
+        <button className={styles.floatingButton} onClick={onSave}>
+          {profileState.editing ? 'Finish Editing' : 'Edit Corner'}
+        </button>
 
-          <button className={styles.floatingButton} onClick={onSave}>
-            {profileState.editing ? 'Finish Editing' : 'Edit Corner'}
-          </button>
-
-          <AddIcon />
-          <DragIcon />
-        </Body>
+        <AddIcon />
+        <DragIcon />
       </Main>
     </Page>
   )

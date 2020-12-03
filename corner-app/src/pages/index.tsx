@@ -4,8 +4,7 @@ import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 
 import styles from './index.module.css'
-import { Page, Main, Body } from '../components/Base'
-import Header from '../components/Header'
+import { Page, Header, Main } from '../components/Base'
 
 import { useAppContext } from '../context/appContext'
 
@@ -29,25 +28,23 @@ export default function Home() {
         />
       </Head>
 
-      <Main>
-        <Header title="Home" />
+      <Header title="Home" />
 
-        <Body style={{ padding: '1rem' }}>
-          <h1 className={styles.title}>Build your internet presence</h1>
+      <Main style={{ padding: '1rem' }}>
+        <h1 className={styles.title}>Build your internet presence</h1>
 
-          <p className={styles.subtitle}>
-            Stop worrying about finding 500 people to "connect" with. Your
-            Corner profile looks professional from the moment you build it.
-          </p>
+        <p className={styles.subtitle}>
+          Stop worrying about finding 500 people to "connect" with. Your Corner
+          profile looks professional from the moment you build it.
+        </p>
 
-          <p className={styles.subtitle}>
-            It takes 60 seconds, and it's perfect for your link-in-bio.
-          </p>
+        <p className={styles.subtitle}>
+          It takes 60 seconds, and it's perfect for your link-in-bio.
+        </p>
 
-          <Link href="/app/login">
-            <button className={styles.linkButton}>Join Corner</button>
-          </Link>
-        </Body>
+        <Link href="/app/login">
+          <button className={styles.linkButton}>Join Corner</button>
+        </Link>
       </Main>
     </Page>
   )
