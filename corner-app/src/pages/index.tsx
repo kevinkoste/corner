@@ -7,7 +7,7 @@ import styles from './index.module.css'
 import { Page, Main, Body } from '../components/Base'
 import Header from '../components/Header'
 
-import { useAppContext } from '../context/AppContext'
+import { useAppContext } from '../context/appContext'
 
 const Home: React.FC = () => {
   const router = useRouter()
