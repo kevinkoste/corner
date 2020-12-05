@@ -17,16 +17,9 @@ export const Page = ({ children, ...props }) => {
 }
 
 export const Main = ({ children, ...props }) => {
-  const { state } = useAppContext()
-
   return (
     <main className={styles.main} {...props}>
       {children}
-      {!state.auth && (
-        <Link href="/app/login">
-          <button className={styles.floatingButton}>Join Corner</button>
-        </Link>
-      )}
     </main>
   )
 }
@@ -168,7 +161,7 @@ export function Header({ title }) {
           Browse Profiles
         </h1>
 
-        {!state.onboarded && !state.auth && (
+        {!state.auth && (
           <h1
             onClick={async () => {
               await router.push(`/app/login`)
@@ -176,11 +169,11 @@ export function Header({ title }) {
             }}
             style={{ cursor: 'pointer' }}
           >
-            Join Corner
+            Join or Log In
           </h1>
         )}
 
-        {!state.onboarded && state.auth && (
+        {state.auth && !state.onboarded && (
           <h1
             onClick={async () => {
               await router.push(`/app/onboarding`)
@@ -192,7 +185,7 @@ export function Header({ title }) {
           </h1>
         )}
 
-        {state.onboarded && state.auth && (
+        {state.auth && state.onboarded && (
           <h1
             onClick={async () => {
               await router.push(`/app/edit/${state.username}`)
@@ -205,8 +198,6 @@ export function Header({ title }) {
         )}
 
         {state.auth && <h1 onClick={handleLogOut}>Log Out</h1>}
-
-        {/* <InviteForm /> */}
       </div>
     </div>
   )

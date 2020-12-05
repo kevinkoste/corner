@@ -33,7 +33,7 @@ export const EditBio: React.FC<BioProps> = ({ id, props, name }) => {
         <EditIcon id={id} />
         <h1>About {name.split(' ')[0]}</h1>
 
-        {profileState.editing ? (
+        {profileState.editingComponent === id ? (
           <TextareaAutosize
             className={styles.textareaAutosizeP}
             onBlur={handleClickAway}

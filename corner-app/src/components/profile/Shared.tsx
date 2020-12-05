@@ -21,7 +21,7 @@ export const DndShadowBox = ({ children, ...props }) => {
     if (profileState.dnd) {
       ref.current.style.height = `${collapsedHeight}px`
       setCollapsed(true)
-      setMounted(true) // unsure if this is needed
+      // setMounted(true) // unsure if this is needed
     }
   }, [])
 
@@ -122,7 +122,7 @@ export const EditIcon = ({ id, ...props }) => {
   const [animating, setAnimating] = useState(true)
 
   useEffect(() => {
-    if (profileState.editing) {
+    if (profileState.editing && !profileState.dnd) {
       setDisplay(true)
     }
     setAnimating(profileState.editing && !profileState.dnd)

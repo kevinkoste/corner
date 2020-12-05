@@ -19,7 +19,7 @@ export default function BrowsePage({ profiles }) {
 
       <Header title="Browse" />
 
-      <Main style={{ padding: '1rem' }}>
+      <Main style={{ padding: '51px 1rem' }}>
         {profiles
           .filter((profile) => Object.keys(profile).length !== 0)
           .map((profile, index) => (
@@ -65,7 +65,7 @@ function ProfileRow({ profile }) {
       />
       <div className={styles.rowTextContainer}>
         <p style={{ textDecoration: 'underline' }}>{name}</p>
-        <p>"{headline.substring(0, 90)}..."</p>
+        {headline && <p>"{headline.substring(0, 90)}..."</p>}
       </div>
     </div>
   )

@@ -43,6 +43,24 @@
   }
 }
 
+@keyframes slideInDesktop {
+  from {
+    transform: translateX(calc(600px - 1rem - 125px));
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutDesktop {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(600px - 1rem - 125px));
+  }
+}
+
 .dragIcon {
   position: fixed;
   z-index: 3;
@@ -80,6 +98,24 @@
   }
 }
 
+@keyframes dragSlideInDesktop {
+  from {
+    transform: translateX(calc(600px - 1rem - 125px - 42px));
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes dragSlideOutDesktop {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(600px - 1rem - 125px - 42px));
+  }
+}
+
 @media (min-width: 768px) {
   .floatingButton {
     right: calc(1rem + (100vw - 600px) / 2);
@@ -89,5 +125,18 @@
   }
   .dragIcon {
     left: calc(2rem + 42px + (100vw - 600px) / 2);
+  }
+
+  .slideIn {
+    animation: slideInDesktop 0.35s ease-in-out;
+  }
+  .slideOut {
+    animation: slideOutDesktop 0.35s ease-in-out;
+  }
+  .dragSlideIn {
+    animation: dragSlideInDesktop 0.35s ease-in-out;
+  }
+  .dragSlideOut {
+    animation: dragSlideOutDesktop 0.35s ease-in-out;
   }
 }

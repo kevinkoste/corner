@@ -23,6 +23,15 @@ export const EditTwitter: React.FC<TwitterProps> = ({ id, props }) => {
     const delayDebounceFn = setTimeout(() => {
       if (textInput !== '') {
         setUsername(textInput)
+        profileDispatch(
+          updateComponent({
+            id: id,
+            type: 'twitter',
+            props: {
+              username: textInput,
+            },
+          })
+        )
       }
     }, 200)
     return () => clearTimeout(delayDebounceFn)
@@ -69,7 +78,13 @@ export const EditTwitter: React.FC<TwitterProps> = ({ id, props }) => {
             autoFocus
           />
         )}
-        <div style={{ minHeight: '375px', marginTop: '1rem' }}>
+        <div
+          style={{
+            minHeight: '375px',
+            marginTop: '1rem',
+            opacity: profileState.dnd ? 0 : 1,
+          }}
+        >
           <Timeline
             dataSource={{
               sourceType: 'profile',
@@ -79,7 +94,6 @@ export const EditTwitter: React.FC<TwitterProps> = ({ id, props }) => {
               height: '375',
               chrome: 'transparent, noheader, nofooter',
               borderColor: '#999',
-              // tweetLimit: 6,
               dnt: true,
             }}
           />
@@ -104,7 +118,6 @@ export const Twitter: React.FC<TwitterProps> = ({ props }) => {
             height: '375',
             chrome: 'transparent, noheader, nofooter',
             borderColor: '#999',
-            // tweetLimit: 6,
             dnt: true,
           }}
         />

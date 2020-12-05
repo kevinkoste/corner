@@ -62,7 +62,7 @@ export const EditImage: React.FC<ImageProps> = ({ id, props }) => {
   return (
     <div className={styles.imageContainer}>
       <DndShadowBox>
-        <EditIcon id={id} style={{ top: '4px' }} />
+        <EditIcon id={id} style={{ top: '0px' }} />
         <img
           className={styles.image}
           src={process.env.NEXT_PUBLIC_S3_BUCKET + 'large/' + props.image}

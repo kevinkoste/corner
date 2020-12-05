@@ -11,9 +11,10 @@
 .main {
   position: relative;
   flex-direction: column;
-  flex: 1;
+  width: 100vw;
+  min-height: 100vh;
 
-  margin-top: 51px;
+  padding-top: 51px;
   background-color: #fff;
 }
 
