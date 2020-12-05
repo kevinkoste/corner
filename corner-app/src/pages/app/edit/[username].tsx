@@ -22,7 +22,6 @@ import {
 
 import { Page, Header, Main } from '../../../components/Base'
 import { GenerateEditComponent } from '../../../factories/generateEditProfile'
-// import { AddComponentModal } from '../../../components/profile/AddModal'
 
 export default function EditProfilePage({ username, name, components }) {
   const router = useRouter()
@@ -91,7 +90,7 @@ export default function EditProfilePage({ username, name, components }) {
     profileDispatch(swapComponents(removedIndex, addedIndex))
   }
 
-  //
+  // data for add component buttons
   const addComponents = [
     {
       display: 'Bio',
@@ -119,9 +118,6 @@ export default function EditProfilePage({ username, name, components }) {
       props: { username: '' },
     },
   ]
-
-  const ref = useRef(null)
-  useOutsideAlerter(ref, () => profileDispatch(setModal(false)))
 
   return (
     <Page>
@@ -161,11 +157,9 @@ export default function EditProfilePage({ username, name, components }) {
 
         <AddIcon />
         <DragIcon />
-        <div ref={ref}>
-          {addComponents.map((comp, idx) => (
-            <AddButton key={idx} comp={comp} idx={idx} />
-          ))}
-        </div>
+        {addComponents.map((comp, idx) => (
+          <AddButton key={idx} comp={comp} idx={idx} />
+        ))}
       </Main>
     </Page>
   )
@@ -193,7 +187,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   }
 }
 
-export const AddIcon = ({ ...props }) => {
+function AddIcon({ ...props }) {
   const { profileDispatch, profileState } = useProfileContext()
 
   // fadeIn/fadeOut support
@@ -209,15 +203,26 @@ export const AddIcon = ({ ...props }) => {
     if (!profileState.editing) setDisplay(false)
   }
 
+  const handleClick = () => {
+    profileDispatch(setModal(!profileState.modal))
+  }
+
+  const ref = useRef(null)
+  useOutsideAlerter(ref, () => {
+    console.log('firing outsideAlert with modal:', profileState.modal)
+    profileDispatch(setModal(false))
+  })
+
   return (
     display && (
       <img
+        ref={ref}
         className={`${styles.addIcon} ${
           profileState.editing ? styles.slideIn : styles.slideOut
         }`}
         src="/icons/gray-plus.svg"
         alt="gray plus sign"
-        onClick={() => profileDispatch(setModal(!profileState.modal))}
+        onClick={handleClick}
         onAnimationEnd={handleAnimationEnd}
         {...props}
       />
@@ -257,7 +262,7 @@ export const DragIcon = ({ ...props }) => {
   )
 }
 
-const AddButton: React.FC<{ comp: any; idx: number }> = ({ comp, idx }) => {
+function AddButton({ comp, idx }) {
   const { profileState, profileDispatch } = useProfileContext()
 
   // fadeIn/fadeOut support
@@ -286,10 +291,6 @@ const AddButton: React.FC<{ comp: any; idx: number }> = ({ comp, idx }) => {
     profileDispatch(setEditingComponent(newId))
   }
 
-  useEffect(() => {
-    console.log(idx)
-  }, [])
-
   return (
     display && (
       <button
@@ -306,6 +307,12 @@ const AddButton: React.FC<{ comp: any; idx: number }> = ({ comp, idx }) => {
             position: fixed;
             bottom: 20px;
             left: 1rem;
+          }
+
+          @media (min-width: 768px) {
+            .base {
+              left: calc((100vw - 600px) / 2 + 1rem);
+            }
           }
 
           .slideIn {
