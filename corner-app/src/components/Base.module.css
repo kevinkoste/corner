@@ -73,16 +73,10 @@
 }
 
 @media (min-width: 768px) {
-  .page {
-    background: rgb(63, 94, 251);
-    background: radial-gradient(
-      circle,
-      rgba(63, 94, 251, 1) 0%,
-      rgba(252, 70, 107, 1) 100%
-    );
-  }
   .main {
     width: 600px;
+    border-left: 1px solid #333333;
+    border-right: 1px solid #333333;
   }
   .body {
     min-height: calc(100vh - 51px);
@@ -200,6 +194,8 @@
   }
   .headerWrapper {
     width: 600px;
+    border-left: 1px solid #333333;
+    border-right: 1px solid #333333;
   }
   .menuContainer {
     width: 600px;

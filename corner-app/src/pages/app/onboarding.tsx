@@ -66,14 +66,14 @@ export default function OnboardingPage() {
       if (state.onboarded || state.username) {
         router.push(`/app/edit/${state.username}`)
       }
-      // redirect if not invited
-      const { data } = await api({
-        method: 'post',
-        url: `/protect/invite/check`,
-      })
-      if (!data) {
-        router.push('/not-invited')
-      }
+      // // redirect if not invited
+      // const { data } = await api({
+      //   method: 'post',
+      //   url: `/protect/invite/check`,
+      // })
+      // if (!data) {
+      //   router.push(`/app/not-invited`)
+      // }
     }
     onMount()
   }, [])
