@@ -35,6 +35,7 @@ router.get('/profile/all', async (req, res) => {
       return {
         username: user.username,
         components: user.components,
+        name: user.name || '',
       }
     })
   return res.status(200).send(result)
