@@ -1,0 +1,41 @@
+{
+  "name": "corner-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "axios": "^0.21.0",
+    "browser-image-compression": "^1.0.13",
+    "magic-sdk": "^4.0.0",
+    "next": "10.0.1",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "react-smooth-dnd": "^0.11.1",
+    "react-spinners": "^0.9.0",
+    "react-textarea-autosize": "^8.3.0",
+    "react-transition-group": "^4.4.1",
+    "react-twitter-widgets": "^1.9.5",
+    "uuid": "^8.3.1"
+  },
+  "devDependencies": {
+    "@types/body-scroll-lock": "^2.6.1",
+    "@types/node": "^14.14.8",
+    "@types/react": "^16.9.56",
+    "@types/react-transition-group": "^4.4.0",
+    "@types/uuid": "^8.3.0",
+    "typescript": "^4.0.5"
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "semi": false,
+    "singleQuote": true
+  },
+  "engines": {
+    "node": "14.x"
+  }
+}

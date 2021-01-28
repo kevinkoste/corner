@@ -1,0 +1,24 @@
+.formContainer {
+  margin-top: 100px;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.emailInput {
+  width: 280px;
+}
+
+.submitButton {
+  border: 1px solid #333333;
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .formContainer {
+    width: 350px;
+  }
+
+  .emailInput {
+    width: 328px;
+  }
+}

@@ -1,0 +1,142 @@
+.floatingButton {
+  position: fixed;
+  z-index: 4;
+  bottom: 20px;
+  right: 1rem;
+  cursor: pointer;
+}
+
+.addIcon {
+  position: fixed;
+  z-index: 2;
+  bottom: 20px;
+  left: 1rem;
+
+  height: 42px;
+  width: 42px;
+  cursor: pointer;
+}
+
+.slideIn {
+  animation: slideIn 0.35s ease-in-out;
+}
+
+.slideOut {
+  animation: slideOut 0.35s ease-in-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(calc(100vw - 1rem - 125px));
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(100vw - 1rem - 125px));
+  }
+}
+
+@keyframes slideInDesktop {
+  from {
+    transform: translateX(calc(600px - 1rem - 125px));
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutDesktop {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(600px - 1rem - 125px));
+  }
+}
+
+.dragIcon {
+  position: fixed;
+  z-index: 3;
+  bottom: 20px;
+  left: calc(2rem + 42px);
+
+  height: 42px;
+  width: 42px;
+  cursor: pointer;
+}
+
+.dragSlideIn {
+  animation: dragSlideIn 0.35s ease-in-out;
+}
+
+.dragSlideOut {
+  animation: dragSlideOut 0.35s ease-in-out;
+}
+
+@keyframes dragSlideIn {
+  from {
+    transform: translateX(calc(100vw - 1rem - 125px - 42px));
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes dragSlideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(100vw - 1rem - 125px - 42px));
+  }
+}
+
+@keyframes dragSlideInDesktop {
+  from {
+    transform: translateX(calc(600px - 1rem - 125px - 42px));
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes dragSlideOutDesktop {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(600px - 1rem - 125px - 42px));
+  }
+}
+
+@media (min-width: 768px) {
+  .floatingButton {
+    right: calc(1rem + (100vw - 600px) / 2);
+  }
+  .addIcon {
+    left: calc(1rem + (100vw - 600px) / 2);
+  }
+  .dragIcon {
+    left: calc(2rem + 42px + (100vw - 600px) / 2);
+  }
+
+  .slideIn {
+    animation: slideInDesktop 0.35s ease-in-out;
+  }
+  .slideOut {
+    animation: slideOutDesktop 0.35s ease-in-out;
+  }
+  .dragSlideIn {
+    animation: dragSlideInDesktop 0.35s ease-in-out;
+  }
+  .dragSlideOut {
+    animation: dragSlideOutDesktop 0.35s ease-in-out;
+  }
+}

@@ -1,0 +1,118 @@
+@font-face {
+  font-family: 'inter';
+  font-weight: normal;
+  font-style: normal;
+  src: local('inter'), url('/fonts/Inter-Regular-slnt=0.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'source-serif';
+  font-weight: normal;
+  font-style: normal;
+  src: local('source-serif'),
+    url('/fonts/SourceSerifPro-Regular.ttf') format('truetype');
+  font-display: swap;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+div {
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  font-family: 'source-serif';
+  font-size: 32px;
+  text-align: left;
+  font-weight: unset;
+  margin: unset;
+  padding: 0px;
+  color: #333333;
+}
+
+p {
+  font-family: 'inter';
+  font-size: 16px;
+  line-height: 24px;
+  text-align: left;
+  font-weight: unset;
+  margin: unset;
+  padding: 0px;
+  color: #333333;
+}
+
+button {
+  /* removing default button styles */
+  display: inline-block;
+  border: none;
+  outline: none;
+  text-decoration: none;
+  margin: 0px;
+
+  /* custom button styles */
+  color: white;
+  background-color: #333333;
+  padding: 10px 20px 12px 20px;
+  cursor: pointer;
+  border-radius: 30px;
+
+  font-family: 'inter';
+  font-size: 16px;
+}
+
+label {
+  /* removing default button styles */
+  display: inline-block;
+  border: none;
+  outline: none;
+  text-decoration: none;
+  margin: 0px;
+
+  /* custom button styles */
+  color: white;
+  background-color: #333333;
+  padding: 10px 20px 12px 20px;
+  cursor: pointer;
+  border-radius: 30px;
+
+  font-family: 'inter';
+  font-size: 16px;
+}
+
+input {
+  outline: none;
+  box-shadow: none;
+  border: none;
+  overflow: hidden;
+  padding: 0px;
+  margin: 0px;
+
+  font-size: 16px;
+  font-family: 'inter';
+  line-height: 24px;
+  color: #333333;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 28px;
+  }
+}

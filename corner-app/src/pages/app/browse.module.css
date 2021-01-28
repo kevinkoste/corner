@@ -1,0 +1,34 @@
+.rowContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: top;
+  width: 100%;
+  height: 100px;
+  margin-top: 2rem;
+
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.rowContainer:hover,
+.rowContainer:active {
+  transform: scale(0.98);
+}
+
+.rowImage {
+  height: 100px;
+  width: 100px;
+  object-fit: contain;
+}
+
+.rowTextContainer {
+  flex: 1;
+  text-align: left;
+  padding-left: 1rem;
+}
+
+.rowContainer p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

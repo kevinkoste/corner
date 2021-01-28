@@ -1,0 +1,13 @@
+.title {
+  margin-top: 120px;
+  padding-bottom: 1rem;
+}
+
+.subtitle {
+  padding-bottom: 1rem;
+}
+
+.linkButton {
+  align-self: flex-start;
+  margin: 0.5rem 0;
+}
